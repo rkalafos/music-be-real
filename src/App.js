@@ -6,8 +6,12 @@ import Details from "./components/details";
 import Search from "./components/search";
 import Login from "./components/login";
 
+// import bootstrap,
+import { ChakraProvider } from "@chakra-ui/react"
+
 function App() {
   return (
+  <ChakraProvider>
       <BrowserRouter>
         <div className="container">
           <Routes>
@@ -19,6 +23,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+  </ChakraProvider>
   );
 }
 
