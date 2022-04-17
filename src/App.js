@@ -9,7 +9,7 @@ function App() {
         <div className="container">
           <Routes>
               <Route index element={<Home/>} />
-              <Route path="/profile/:profileId" element={<Profile/>} />
+              <Route path="/profile/:profileId?" element={<Profile/>} />
           </Routes>
         </div>
       </BrowserRouter>

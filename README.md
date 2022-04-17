@@ -1,6 +1,9 @@
 # MusicBeReal
+## CS4550: Final Project
+### Authors: Anika Rabenhorst, Dani Rowe, Shane Mitnick, Rachel Kalafos
 
 Planning Document: [here](https://docs.google.com/document/d/18W28yWstCxFbI7fHY6392mrX5UyARRKzL5meeA_Di3A/edit#heading=h.f5hzqoikee0r)
+
 Figma Design Board: [here](https://www.figma.com/file/SmQhPC3ucZxj1Pzso0ONeJ/MusicBeReal?node-id=0%3A1)
 
 
