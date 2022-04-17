@@ -39,11 +39,55 @@ const Login = () => {
               p={{ base: 4, sm: 6, md: 8 }}
               spacing={{ base: 8 }}
               maxW={{ lg: 'lg' }}>
+              <Stack spacing={4}>
+                <Heading
+                  color={'gray.800'}
+                  lineHeight={1.1}
+                  fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+                  Join Up
+                  <Text
+                    as={'span'}
+                    bgGradient="linear(to-r, red.400,pink.400)"
+                    bgClip="text">
+                    !
+                  </Text>
+                </Heading>
+                <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
+                  We have made a cool music app</Text>
+              </Stack>
               <Box as={'form'} mt={10}>
+
                 <Stack spacing={4}>
                 <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
-                  Log In
+                  Create an Account
                 </Text>
+                  <Input
+                    placeholder="First Name"
+                    bg={'gray.100'}
+                    border={0}
+                    color={'gray.500'}
+                    _placeholder={{
+                      color: 'gray.500',
+                    }}
+                  />
+                  <Input
+                    placeholder="Last Name"
+                    bg={'gray.100'}
+                    border={0}
+                    color={'gray.500'}
+                    _placeholder={{
+                        color: 'gray.500',
+                    }}
+                  />
+                  <Input
+                    placeholder="Email Address"
+                    bg={'gray.100'}
+                    border={0}
+                    color={'gray.500'}
+                    _placeholder={{
+                      color: 'gray.500',
+                    }}
+                  />
                   <Input
                     placeholder="Username"
                     bg={'gray.100'}

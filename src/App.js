@@ -5,6 +5,7 @@ import Profile from "./components/profile";
 import Details from "./components/details";
 import Search from "./components/search";
 import Login from "./components/login";
+import Register from "./components/register";
 
 // import bootstrap,
 import { ChakraProvider } from "@chakra-ui/react"
@@ -20,6 +21,7 @@ function App() {
               <Route path="/details/:did" element={<Details />}/>
               <Route path="/search" element={<Search />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
           </Routes>
         </div>
       </BrowserRouter>
