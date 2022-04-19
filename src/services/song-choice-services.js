@@ -2,7 +2,6 @@ import axios from 'axios';
 import {SEARCH_API} from "../utils/constants";
 
 export const searchSongs = async (query, token) => {
-    console.log(`Search song token: ${token}`)
     const response = await axios.get(
         SEARCH_API + query,
         {
@@ -15,6 +14,5 @@ export const searchSongs = async (query, token) => {
             }
         }
     );
-    console.log(response);
-    return response.data.tracks?.items;
+    return response.data.tracks.items;
 }

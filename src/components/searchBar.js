@@ -1,18 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {searchSongs} from "../actions/song-choice-actions";
 import {useDispatch, useSelector} from "react-redux";
-import {toJSON} from "lodash/seq";
 
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const token = useSelector(state => state.token.token);
     const songChoices = useSelector(state => state.songChoices);
-
     const dispatch = useDispatch();
+
+    // Updates the song choices every time the search query changes.
     useEffect(() => {
         if (searchQuery) {
-            console.log("use effect is run!")
             searchSongs(dispatch, searchQuery, token)
         }
     }, [dispatch, searchQuery, token]);
@@ -21,9 +20,6 @@ const SearchBar = () => {
         e.preventDefault();
         setSearchQuery(e.target.value);
     }
-
-    console.log(`song choices: ${toJSON(songChoices)}`);
-    console.log(`song: ${songChoices?.items}`);
     return(
         <>
             <form action="/" method="get" />
@@ -40,7 +36,7 @@ const SearchBar = () => {
             </label>
             <ul>
                 {
-                    songChoices?.items?.map((song) => (
+                    songChoices?.songChoices?.map((song) => (
                     <li key={song.id}>{song.name}</li>
                 ))}
             </ul>
