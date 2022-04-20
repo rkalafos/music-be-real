@@ -16,78 +16,44 @@ import {
   Icon,
 } from '@chakra-ui/react';
 
-const Login = () => {
+const Register = () => {
     return (
-        <Box position={'relative'}>
-          <Container
-            as={SimpleGrid}
-            maxW={'7xl'}
-            columns={{ base: 1, md: 2 }}
-            spacing={{ base: 10, lg: 32 }}
-            py={{ base: 10, sm: 20, lg: 32 }}>
-            <Stack spacing={{ base: 10, md: 20 }}>
-              <Heading
-                lineHeight={1.1}
-                fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}>
-                BeReal but for Music
-              </Heading>
-
-            </Stack>
-            <Stack
-              bg={'gray.50'}
-              rounded={'xl'}
-              p={{ base: 4, sm: 6, md: 8 }}
-              spacing={{ base: 8 }}
-              maxW={{ lg: 'lg' }}>
-              <Box as={'form'} mt={10}>
-                <Stack spacing={4}>
-                <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
-                  Log In
+        <Stack spacing={4}>
+        <Heading
+            color={'gray.800'}
+            lineHeight={1.1}
+            fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+            Join Us
+            <Text
+                as={'span'}
+                bgGradient="linear(to-r, red.400,pink.400)"
+                bgClip="text">
+                !
                 </Text>
-                  <Input
-                    placeholder="Username"
-                    bg={'gray.100'}
-                    border={0}
-                    color={'gray.500'}
-                    _placeholder={{
-                      color: 'gray.500',
-                    }}
-                  />
-                  <Input
-                    placeholder="Password"
-                    bg={'gray.100'}
-                    border={0}
-                    color={'gray.500'}
-                    _placeholder={{
-                      color: 'gray.500',
-                    }}
-                  />
-                </Stack>
-                <Button
-                  fontFamily={'heading'}
-                  mt={8}
-                  w={'full'}
-                  bgGradient="linear(to-r, red.400,pink.400)"
-                  color={'white'}
-                  _hover={{
-                    bgGradient: 'linear(to-r, red.400,pink.400)',
-                    boxShadow: 'xl',
-                  }}>
-                  Submit
-                </Button>
-              </Box>
-              form
-            </Stack>
-          </Container>
-          <Blur
-            position={'absolute'}
-            top={-10}
-            left={-10}
-            style={{ filter: 'blur(70px)' }}
-          />
-        </Box>
-      );
-};
+        </Heading>
+        <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
+            We have made a cool music app</Text>
+        <Input
+            placeholder="First Name"
+            bg={'gray.100'}
+            border={0}
+            color={'gray.500'}
+            _placeholder={{
+                color: 'gray.500',
+            }}
+        />
+        <Input
+            placeholder="Last Name"
+            bg={'gray.100'}
+            border={0}
+            color={'gray.500'}
+            _placeholder={{
+                color: 'gray.500',
+            }}
+        />
+    </Stack>
+);};
+
 
 export const Blur = (props: IconProps) => {
   return (
@@ -112,5 +78,110 @@ export const Blur = (props: IconProps) => {
     </Icon>
   );
 };
+
+class Login extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      isHidden: true
+    }
+  }
+  toggleHidden () {
+    this.setState({
+      isHidden: !this.state.isHidden
+    })
+  }
+  render () {
+    return (
+        <Box position={'relative'} >
+            <Container
+                as={SimpleGrid}
+                maxW={'7xl'}
+                columns={{ base: 1, md: 2 }}
+                spacing={{ base: 10, lg: 32 }}
+                py={{ base: 10, sm: 20, lg: 32 }}>
+                <Stack spacing={{ base: 10, md: 20 }}>
+                  <Heading
+                    lineHeight={1.1}
+                    fontSize={{ base: '3xl', sm: '4xl', md: '5xl', lg: '6xl' }}>
+                    BeReal but for Music
+                  </Heading>
+                </Stack>
+                <Stack
+                  bg={'gray.50'}
+                  rounded={'xl'}
+                  p={{ base: 4, sm: 6, md: 8 }}
+                  spacing={{ base: 8 }}
+                  maxW={{ lg: 'lg' }}>
+                  <Stack spacing={4}>
+                      <div>
+                        <Button onClick={this.toggleHidden.bind(this)}
+                            fontFamily={'heading'}
+                            mb={4}
+                            w={'half'}
+                            bgGradient="linear(to-r, red.400,pink.400)"
+                            color={'white'}
+                            _hover={{
+                                bgGradient: 'linear(to-r, red.400,pink.400)',
+                                boxShadow: 'xl',
+                            }}>
+                            Click to Sign Up
+                        </Button>
+                        {!this.state.isHidden && <Register />}
+                      </div>
+                    <Heading
+                        color={'gray.800'}
+                        lineHeight={1.1}
+                        fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+                            Log In
+                    </Heading>
+                  </Stack>
+                  <Box as={'form'} mt={10}>
+                    <Stack spacing={4}>
+                      <Input
+                        placeholder="Username"
+                        bg={'gray.100'}
+                        border={0}
+                        color={'gray.500'}
+                        _placeholder={{
+                          color: 'gray.500',
+                        }}
+                      />
+                      <Input
+                        placeholder="Password"
+                        bg={'gray.100'}
+                        border={0}
+                        color={'gray.500'}
+                        _placeholder={{
+                          color: 'gray.500',
+                        }}
+                      />
+                    </Stack>
+                    <Button
+                      fontFamily={'heading'}
+                      mt={8}
+                      w={'full'}
+                      bgGradient="linear(to-r, red.400,pink.400)"
+                      color={'white'}
+                      _hover={{
+                        bgGradient: 'linear(to-r, red.400,pink.400)',
+                        boxShadow: 'xl',
+                      }}>
+                      Submit
+                    </Button>
+                  </Box>
+                  form
+                </Stack>
+              </Container>
+              <Blur
+                position={'absolute'}
+                top={-10}
+                left={-10}
+                style={{ filter: 'blur(70px)' }}
+              />
+            </Box>
+    )
+  }
+}
 
 export default Login;
