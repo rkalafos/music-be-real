@@ -23,7 +23,7 @@ const SearchBar = () => {
     return(
         <>
             <form action="/" method="get" />
-            <label>
+            <label style={{color:'white'}}>
                 Search for a Song:
                 <input
                     type="text"

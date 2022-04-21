@@ -12,10 +12,10 @@ const Home = () => {
     const token = useSelector(state => state.token.token);
     return(
         <>
-            <h1>Home Page</h1>
+            <h1 style={{color:'white'}}>Home Page</h1>
             {!token ?
                 <a href={`${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=${RESPONSE_TYPE}`}>
-                Login to Spotify
+                <h1 style={{color:'white'}}> Login to Spotify </h1>
                 </a> : <div>Logged in!</div>
             }
             <SearchBar/>

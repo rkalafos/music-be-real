@@ -6,8 +6,8 @@ const Profile = () => {
     const { profileId } = useParams();
     return(
         <>
-            <h1>Profile Page</h1>
-            <h2>Profile ID: {profileId}</h2>
+            <h1 style={{color:'white'}}>Profile Page</h1>
+            <h2 style={{color:'white'}}>Profile ID: {profileId}</h2>
         </>
     )
 };
