@@ -6,9 +6,14 @@ import Details from "./components/details";
 import Search from "./components/search";
 import Login from "./components/login";
 import RedirectPage from "./components/RedirectPage";
+import MBRTheme from "./theme";
+
+// import bootstrap,
+import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
   return (
+  <ChakraProvider theme = {MBRTheme}>
       <BrowserRouter>
         <div className="container">
           <Routes>
@@ -21,6 +26,7 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
+  </ChakraProvider>
   );
 }
 
