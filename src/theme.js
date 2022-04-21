@@ -6,12 +6,12 @@ import { mode } from "@chakra-ui/theme-tools";
 const MBRTheme = extendTheme({
     colors: {
         background: "#202329",
-        box: "#81848a"
+        box: "#2c2f36"
     },
     styles: {
         global: (props) => ({
           body: {
-            bg: mode("#2c2f36","#2c2f36")(props),
+            bg: mode("#292828","#2c2f36")(props),
           }
         })
       },
