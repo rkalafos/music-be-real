@@ -7,7 +7,6 @@ import {createUser} from "../actions/user-actions";
 // user anonymous/ not logged in --> a flag
 import {
   Box,
-  Flex,
   Stack,
   Heading,
   Text,
@@ -15,16 +14,13 @@ import {
   Input,
   Button,
   SimpleGrid,
-  Avatar,
-  AvatarGroup,
   useBreakpointValue,
-  IconProps,
   Icon,
 } from '@chakra-ui/react';
 
 const Register = () => {
 // functionaality pulled in from Tuiter proj
-let [firstname, setfirstname] = useState('');
+let [firstname, setFirstName] = useState('');
     const dispatch = useDispatch();
     const userClickHandler = () => {
         dispatch({type: 'create-user',
@@ -64,7 +60,7 @@ let [firstname, setfirstname] = useState('');
             // this should be pulling the data from the input
             onChange={(event) =>
                 {
-                    setfirstname(event.target.value)
+                    setFirstName(event.target.value)
                     setNewUser({...newUser,
                         firstName: event.target.value,
                     })
@@ -170,7 +166,7 @@ const Login = () => {
 };
 
 
-export const Blur = (props: IconProps) => {
+export const Blur = (props) => {
   return (
     <Icon
       width={useBreakpointValue({ base: '100%', md: '40vw', lg: '60vw' })}
