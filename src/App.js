@@ -19,6 +19,8 @@ function App() {
           <Routes>
               <Route index element={<Home/>} />
               <Route path="/redirect" element={<RedirectPage />} />
+              //just for testing
+              <Route path="/profile/" element={<Profile/>} />
               <Route path="/profile/:profileId?" element={<Profile/>} />
               <Route path="/details/:did" element={<Details />}/>
               <Route path="/search" element={<Search />} />
