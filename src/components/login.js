@@ -23,7 +23,7 @@ import {
 } from '@chakra-ui/react';
 
 const Register = () => {
-// functionaality pulled in from Tuiter proj
+// functionality pulled in from Tuiter proj
 let [firstname, setfirstname] = useState('');
     const dispatch = useDispatch();
     const userClickHandler = () => {
