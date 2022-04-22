@@ -1,3 +1,5 @@
+import {CREATE_USER, DELETE_USER, FIND_ALL_USERS, UPDATE_USER} from "../actions/user-actions";
+
 const userReducer = (state = {}, action) => {
     switch (action.type) {
         // find user by id, find all users following another user ?
