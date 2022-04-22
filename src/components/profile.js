@@ -56,6 +56,9 @@ const Profile = () => {
         profileId = user_id
     }
     //error if profile id requested does not exist
+
+    // find the matching user in backend - finduserbyid
+    // pull out fields
     return(
     <Box position={'relative'} >
         <Flex

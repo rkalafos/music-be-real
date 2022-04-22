@@ -20,6 +20,14 @@ export const createUser = async (dispatch, user) => {
  });
 }
 
+export const findUserByID = async (dispatch, id) => {
+ const status = await service.findUserByID(id);
+ dispatch({
+   type: FIND_USER_BY_ID,
+   user
+ });
+}
+
 export const updateUser = async (dispatch, user) => {
  const status = await service.updateUser(user);
  dispatch({
