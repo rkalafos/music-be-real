@@ -51,8 +51,57 @@ const Register = () => {
                 color: 'gray.500',
             }}
         />
+        <Input
+            placeholder="Username"
+            bg={'gray.100'}
+            border={0}
+            color={'gray.500'}
+            _placeholder={{
+                color: 'gray.500',
+            }}
+        />
+        <Input
+            placeholder="Password"
+            bg={'gray.100'}
+            border={0}
+            color={'gray.500'}
+            _placeholder={{
+                color: 'gray.500',
+            }}
+        />
     </Stack>
 );};
+
+const Login = () => {
+    return (
+        <Stack spacing={4}>
+            <Heading
+                color={'gray.800'}
+                lineHeight={1.1}
+                fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+                    Log In
+            </Heading>
+            <Input
+                placeholder="Username"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                    color: 'gray.500',
+                }}
+            />
+            <Input
+                placeholder="Password"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                    color: 'gray.500',
+                }}
+            />
+        </Stack>
+    );
+};
 
 
 export const Blur = (props: IconProps) => {
@@ -79,7 +128,7 @@ export const Blur = (props: IconProps) => {
   );
 };
 
-class Login extends React.Component {
+class LoginRegister extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -128,35 +177,10 @@ class Login extends React.Component {
                             Click to Sign Up
                         </Button>
                         {!this.state.isHidden && <Register />}
+                        {this.state.isHidden && <Login />}
                       </div>
-                    <Heading
-                        color={'gray.800'}
-                        lineHeight={1.1}
-                        fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-                            Log In
-                    </Heading>
                   </Stack>
                   <Box as={'form'} mt={10}>
-                    <Stack spacing={4}>
-                      <Input
-                        placeholder="Username"
-                        bg={'gray.100'}
-                        border={0}
-                        color={'gray.500'}
-                        _placeholder={{
-                          color: 'gray.500',
-                        }}
-                      />
-                      <Input
-                        placeholder="Password"
-                        bg={'gray.100'}
-                        border={0}
-                        color={'gray.500'}
-                        _placeholder={{
-                          color: 'gray.500',
-                        }}
-                      />
-                    </Stack>
                     <Button
                       fontFamily={'heading'}
                       mt={8}
@@ -184,4 +208,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default LoginRegister;
