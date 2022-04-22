@@ -1,6 +1,7 @@
 import * as service from '../services/user-services';
 
 export const FIND_ALL_USERS = 'FIND_ALL_USERS';
+export const FIND_USER_BY_ID = 'FIND_USER_BY_ID';
 export const CREATE_USER = 'CREATE_USER';
 export const UPDATE_USER = 'UPDATE_USER';
 export const DELETE_USER = 'DELETE_USER';
@@ -24,7 +25,7 @@ export const findUserByID = async (dispatch, id) => {
  const status = await service.findUserByID(id);
  dispatch({
    type: FIND_USER_BY_ID,
-   user
+   id
  });
 }
 

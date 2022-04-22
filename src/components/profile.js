@@ -48,13 +48,13 @@ export const Blur = (props: IconProps) => {
 
 const Profile = () => {
     // from my own
-    const user_id = useSelector(state => state.user._id);
-    // from the url
-    // set to this user's id if none is provided
-    const { profileId } = useParams();
-    if (!profileId){
-        profileId = user_id
-    }
+//    const user_id = useSelector(state => state.user._id);
+//    // from the url
+//    // set to this user's id if none is provided
+//    const { profileId } = useParams();
+//    if (!profileId){
+//        profileId = user_id
+//    }
     //error if profile id requested does not exist
 
     // find the matching user in backend - finduserbyid
