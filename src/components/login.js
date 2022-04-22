@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {createUser} from "./../actions/user-actions";
+import {createUser} from "../actions/user-actions";
 
 // add popup with terms and conditions - privacy policy
 // user roles - select role
