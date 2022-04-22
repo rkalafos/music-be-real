@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
+import {createUser} from "./../actions/user-actions";
+
 import {
   Box,
   Flex,
@@ -17,6 +20,17 @@ import {
 } from '@chakra-ui/react';
 
 const Register = () => {
+let [firstname, setfirstname] = useState('');
+    const dispatch = useDispatch();
+    const userClickHandler = () => {
+        dispatch({type: 'create-user',
+            firstName: firstname
+        });
+        createUser(dispatch, newUser)
+    }
+    const [newUser, setNewUser] =
+          useState({user: 'New user'});
+
     return (
         <Stack spacing={4}>
         <Heading
@@ -34,6 +48,7 @@ const Register = () => {
         <Text color={'gray.500'} fontSize={{ base: 'sm', sm: 'md' }}>
             We have made a cool music app</Text>
         <Input
+            name = "firstname"
             placeholder="First Name"
             bg={'gray.100'}
             border={0}
@@ -41,8 +56,15 @@ const Register = () => {
             _placeholder={{
                 color: 'gray.500',
             }}
+                 onChange={(event) => {
+                        setfirstname(event.target.value)
+                        setNewUser({...newUser,
+                            firstName: event.target.value,
+                            })}
+                        }
         />
         <Input
+            name = "lastname"
             placeholder="Last Name"
             bg={'gray.100'}
             border={0}
@@ -51,8 +73,92 @@ const Register = () => {
                 color: 'gray.500',
             }}
         />
+        <Input
+            name = "username"
+            placeholder="Username"
+            bg={'gray.100'}
+            border={0}
+            color={'gray.500'}
+            _placeholder={{
+                color: 'gray.500',
+            }}
+        />
+        <Input
+            name = "password"
+            placeholder="Password"
+            bg={'gray.100'}
+            border={0}
+            color={'gray.500'}
+            _placeholder={{
+                color: 'gray.500',
+            }}
+        />
+                  <Box as={'form'} mt={10}>
+                    <Button
+                      fontFamily={'heading'}
+                      mt={8}
+                      w={'full'}
+                      bgGradient="linear(to-r, red.400,pink.400)"
+                      color={'white'}
+                      _hover={{
+                        bgGradient: 'linear(to-r, red.400,pink.400)',
+                        boxShadow: 'xl',
+                      }}
+                      onClick={userClickHandler}>
+                      Submit
+                    </Button>
+                  </Box>
+                  form
     </Stack>
 );};
+
+const Login = () => {
+    return (
+        <Stack spacing={4}>
+            <Heading
+                color={'gray.800'}
+                lineHeight={1.1}
+                fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
+                    Log In
+            </Heading>
+            <Input
+                name = "login-username"
+                placeholder="Username"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                    color: 'gray.500',
+                }}
+            />
+            <Input
+                name = "login-password"
+                placeholder="Password"
+                bg={'gray.100'}
+                border={0}
+                color={'gray.500'}
+                _placeholder={{
+                    color: 'gray.500',
+                }}
+            />
+                  <Box as={'form'} mt={10}>
+                    <Button
+                      fontFamily={'heading'}
+                      mt={8}
+                      w={'full'}
+                      bgGradient="linear(to-r, red.400,pink.400)"
+                      color={'white'}
+                      _hover={{
+                        bgGradient: 'linear(to-r, red.400,pink.400)',
+                        boxShadow: 'xl',
+                      }}>
+                      Submit
+                    </Button>
+                  </Box>
+                  form
+        </Stack>
+    );
+};
 
 
 export const Blur = (props: IconProps) => {
@@ -79,7 +185,7 @@ export const Blur = (props: IconProps) => {
   );
 };
 
-class Login extends React.Component {
+class LoginRegister extends React.Component {
   constructor () {
     super()
     this.state = {
@@ -128,49 +234,9 @@ class Login extends React.Component {
                             Click to Sign Up
                         </Button>
                         {!this.state.isHidden && <Register />}
+                        {this.state.isHidden && <Login />}
                       </div>
-                    <Heading
-                        color={'gray.800'}
-                        lineHeight={1.1}
-                        fontSize={{ base: '2xl', sm: '3xl', md: '4xl' }}>
-                            Log In
-                    </Heading>
                   </Stack>
-                  <Box as={'form'} mt={10}>
-                    <Stack spacing={4}>
-                      <Input
-                        placeholder="Username"
-                        bg={'gray.100'}
-                        border={0}
-                        color={'gray.500'}
-                        _placeholder={{
-                          color: 'gray.500',
-                        }}
-                      />
-                      <Input
-                        placeholder="Password"
-                        bg={'gray.100'}
-                        border={0}
-                        color={'gray.500'}
-                        _placeholder={{
-                          color: 'gray.500',
-                        }}
-                      />
-                    </Stack>
-                    <Button
-                      fontFamily={'heading'}
-                      mt={8}
-                      w={'full'}
-                      bgGradient="linear(to-r, red.400,pink.400)"
-                      color={'white'}
-                      _hover={{
-                        bgGradient: 'linear(to-r, red.400,pink.400)',
-                        boxShadow: 'xl',
-                      }}>
-                      Submit
-                    </Button>
-                  </Box>
-                  form
                 </Stack>
               </Container>
               <Blur
@@ -184,4 +250,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default LoginRegister;

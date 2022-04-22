@@ -4,7 +4,7 @@ import Home from "./components/home";
 import Profile from "./components/profile";
 import Details from "./components/details";
 import Search from "./components/search";
-import Login from "./components/login";
+import LoginRegister from "./components/login";
 import RedirectPage from "./components/RedirectPage";
 import MBRTheme from "./theme";
 
@@ -22,7 +22,7 @@ function App() {
               <Route path="/profile/:profileId?" element={<Profile/>} />
               <Route path="/details/:did" element={<Details />}/>
               <Route path="/search" element={<Search />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<LoginRegister />} />
           </Routes>
         </div>
       </BrowserRouter>
