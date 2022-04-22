@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {createUser} from "./../actions/user-actions";
 
+// add popup with terms and conditions - privacy policy
+// user roles - select role
+// user anonymous/ not logged in --> a flag
 import {
   Box,
   Flex,
@@ -20,10 +23,12 @@ import {
 } from '@chakra-ui/react';
 
 const Register = () => {
+// functionaality pulled in from Tuiter proj
 let [firstname, setfirstname] = useState('');
     const dispatch = useDispatch();
     const userClickHandler = () => {
         dispatch({type: 'create-user',
+            // need to include lastname, username, and password too
             firstName: firstname
         });
         createUser(dispatch, newUser)
@@ -56,12 +61,15 @@ let [firstname, setfirstname] = useState('');
             _placeholder={{
                 color: 'gray.500',
             }}
-                 onChange={(event) => {
-                        setfirstname(event.target.value)
-                        setNewUser({...newUser,
-                            firstName: event.target.value,
-                            })}
-                        }
+            // this should be pulling the data from the input
+            onChange={(event) =>
+                {
+                    setfirstname(event.target.value)
+                    setNewUser({...newUser,
+                        firstName: event.target.value,
+                    })
+                }
+            }
         />
         <Input
             name = "lastname"
@@ -93,22 +101,23 @@ let [firstname, setfirstname] = useState('');
                 color: 'gray.500',
             }}
         />
-                  <Box as={'form'} mt={10}>
-                    <Button
-                      fontFamily={'heading'}
-                      mt={8}
-                      w={'full'}
-                      bgGradient="linear(to-r, red.400,pink.400)"
-                      color={'white'}
-                      _hover={{
-                        bgGradient: 'linear(to-r, red.400,pink.400)',
-                        boxShadow: 'xl',
-                      }}
-                      onClick={userClickHandler}>
-                      Submit
-                    </Button>
-                  </Box>
-                  form
+        <Box as={'form'} mt={10}>
+            <Button
+                fontFamily={'heading'}
+                mt={8}
+                w={'full'}
+                bgGradient="linear(to-r, red.400,pink.400)"
+                color={'white'}
+                _hover={{
+                    bgGradient: 'linear(to-r, red.400,pink.400)',
+                    boxShadow: 'xl',
+                }}
+                // clicking submit triggers creation of new user
+                onClick={userClickHandler}>
+                Submit
+            </Button>
+        </Box>
+        form
     </Stack>
 );};
 
@@ -141,21 +150,21 @@ const Login = () => {
                     color: 'gray.500',
                 }}
             />
-                  <Box as={'form'} mt={10}>
-                    <Button
-                      fontFamily={'heading'}
-                      mt={8}
-                      w={'full'}
-                      bgGradient="linear(to-r, red.400,pink.400)"
-                      color={'white'}
-                      _hover={{
+            <Box as={'form'} mt={10}>
+                <Button
+                    fontFamily={'heading'}
+                    mt={8}
+                    w={'full'}
+                    bgGradient="linear(to-r, red.400,pink.400)"
+                    color={'white'}
+                    _hover={{
                         bgGradient: 'linear(to-r, red.400,pink.400)',
                         boxShadow: 'xl',
-                      }}>
-                      Submit
-                    </Button>
-                  </Box>
-                  form
+                    }}>
+                    Submit
+                </Button>
+            </Box>
+            form
         </Stack>
     );
 };
@@ -238,14 +247,14 @@ class LoginRegister extends React.Component {
                       </div>
                   </Stack>
                 </Stack>
-              </Container>
+            </Container>
               <Blur
                 position={'absolute'}
                 top={-10}
                 left={-10}
                 style={{ filter: 'blur(70px)' }}
               />
-            </Box>
+        </Box>
     )
   }
 }
