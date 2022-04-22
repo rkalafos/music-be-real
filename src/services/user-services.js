@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USERS_API = "";
+const USERS_API = "http://localhost:8000/api/users/";
 
 
 export const findAllUsers = async () => {
