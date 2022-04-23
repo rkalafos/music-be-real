@@ -1,9 +1,8 @@
-import {SET_TOKEN} from "../utils/constants";
-
+import { SET_TOKEN } from "../utils/constants";
 
 export const setToken = (dispatch, token) => {
-    dispatch({
-        type: SET_TOKEN,
-        token
-    });
-}
+  dispatch({
+    type: SET_TOKEN,
+    token,
+  });
+};
