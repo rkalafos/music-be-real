@@ -37,10 +37,12 @@ export const deleteUser = async (dispatch, user) => {
  })
 }
 
-export const loginUser = async (dispatch, user) => {
-  const user = await service.loginUser(user);
+export const loginUser = async (dispatch, userSend) => {
+  console.log("HI")
+  const userResponse = await service.loginUser(userSend);
+  console.log(userResponse);
   dispatch({
     type: LOGIN_USER,
-    user
+    user: userResponse
   })
 }

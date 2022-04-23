@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const USERS_API = "http://localhost:8000/api/users/";
+const USERS_API = "http://localhost:8000/api/users";
 
 
 export const findAllUsers = async () => {
@@ -26,7 +26,9 @@ export const updateUser = async (user) => {
 }
 
 export const loginUser = async (user) => {
+  console.log(user);
   const response = await axios
-    .get(`${USERS_API}/loginuser`, user);
+    .post(`${USERS_API}login`, user);
+  console.log(response);
   return response.data
 }

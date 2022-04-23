@@ -20,6 +20,7 @@ import {
   Icon,
   color,
 } from '@chakra-ui/react';
+import { deleteUser } from "../services/user-services";
 
 const Register = () => {
 // functionaality pulled in from Tuiter proj
@@ -221,6 +222,8 @@ const Login = () => {
                     
                   alert(JSON.stringify(values));
                   // TODO LOG IN USER
+                  const test = loginUser(dispatch, values);
+                  console.log(test);
                   setSubmitting(false);
                 }, 400);
               }}
