@@ -1,10 +1,9 @@
-import React  from "react";
+import React from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import { Box, Button, Flex, GridItem, Spacer, Grid } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import PostList from "../components/PostList";
-import {useSelector} from "react-redux";
-
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   /*
@@ -33,7 +32,10 @@ const HomePage = () => {
             <Spacer />
             <Box>
               {user?.username ? (
-                <Button onClick={() => navigate(`/profile/${user.username}`)} mr={4}>
+                <Button
+                  onClick={() => navigate(`/profile/${user.username}`)}
+                  mr={4}
+                >
                   View Profile
                 </Button>
               ) : (

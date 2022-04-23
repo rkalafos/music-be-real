@@ -42,7 +42,7 @@ const LoginPage = () => {
             return errors;
           }}
           onSubmit={(values) => {
-              loginUser(dispatch, values).then(() => navigate("/"))
+            loginUser(dispatch, values).then(() => navigate("/"));
           }}
         >
           {({ isSubmitting }) => (
@@ -87,9 +87,9 @@ const LoginPage = () => {
             </Form>
           )}
         </Formik>
-          <Button m={5} onClick={() => navigate("/register")}>
-              Need to register for an account?
-          </Button>
+        <Button m={5} onClick={() => navigate("/register")}>
+          Need to register for an account?
+        </Button>
       </Box>
     </DefaultLayout>
   );
