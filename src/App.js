@@ -21,6 +21,8 @@ function App() {
               <Route path="/redirect" element={<RedirectPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage/>} />
+              //just for testing
+              <Route path="/profile/" element={<Profile/>} />
               <Route path="/profile/:profileId?" element={<Profile/>} />
               <Route path="/details/:did" element={<Details />}/>
               <Route path="/search" element={<Search />} />
