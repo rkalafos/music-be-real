@@ -8,6 +8,13 @@ export const findAllUsers = async () => {
  return response.data;
 }
 
+//Assuming we pass in just an id for a user
+export const findUserByID = async (id) => {
+ const response = await axios.get(`${USERS_API}/${id}`);
+ const user = response.data;
+ return user;
+}
+
 export const createUser = async (user) => {
  const response = await axios.post(USERS_API, user)
  return response.data;

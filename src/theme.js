@@ -11,7 +11,7 @@ const MBRTheme = extendTheme({
     styles: {
         global: (props) => ({
           body: {
-            bg: mode("#292828","#2c2f36")(props),
+            bg: mode("#292828","#292828")(props),
           }
         })
       },
