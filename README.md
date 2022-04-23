@@ -11,6 +11,7 @@ Figma Design Board: [here](https://www.figma.com/file/SmQhPC3ucZxj1Pzso0ONeJ/Mus
 # BEST PRACTICES
 
 ### Prettier
+
 I installed prettier to make the code.... prettier... type `prettier -w .` into console to auto format all the files.
 
 ### Folder organization
