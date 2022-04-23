@@ -2,13 +2,14 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import { useNavigate } from "react-router";
 import { Box, Button, Heading, Input } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import React from "react";
+import React, {useState} from "react";
 import { loginUser } from "../actions/user-actions";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [showLoginError, setLoginError] = useState(false);
   const inputStyle = {
     backgroundColor: "lightgrey",
     lineHeight: "1.1",
@@ -27,6 +28,9 @@ const LoginPage = () => {
         >
           Log In
         </Heading>
+          {showLoginError && (
+              <Box bg={'red.100'}>There was an error logging in. Please try again.</Box>
+          )}
         <Formik
           initialValues={{ username: "", email: "", password: "" }}
           validate={(values) => {
@@ -42,7 +46,7 @@ const LoginPage = () => {
             return errors;
           }}
           onSubmit={(values) => {
-            loginUser(dispatch, values).then(() => navigate("/"));
+            loginUser(dispatch, values).then(() => navigate("/")).catch(() => setLoginError(true));
           }}
         >
           {({ isSubmitting }) => (
