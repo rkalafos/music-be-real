@@ -1,46 +1,56 @@
-import * as service from '../services/user-services';
+import * as service from "../services/user-services";
 
-export const FIND_ALL_USERS = 'FIND_ALL_USERS';
-export const FIND_USER_BY_ID = 'FIND_USER_BY_ID';
-export const CREATE_USER = 'CREATE_USER';
-export const UPDATE_USER = 'UPDATE_USER';
-export const DELETE_USER = 'DELETE_USER';
+export const FIND_ALL_USERS = "FIND_ALL_USERS";
+export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
+export const CREATE_USER = "CREATE_USER";
+export const UPDATE_USER = "UPDATE_USER";
+export const DELETE_USER = "DELETE_USER";
+export const LOGIN_USER = "LOGIN_USER";
 
 export const findAllUsers = async (dispatch) => {
- const users = await service.findAllUsers();
- dispatch({
-   type: FIND_ALL_USERS,
-   users
- });}
+  const users = await service.findAllUsers();
+  dispatch({
+    type: FIND_ALL_USERS,
+    users,
+  });
+};
 
 export const createUser = async (dispatch, user) => {
- const newUser = await service.createUser(user);
- dispatch({
-   type: CREATE_USER,
-   newUser
- });
-}
+  const newUser = await service.createUser(user);
+  dispatch({
+    type: CREATE_USER,
+    newUser,
+  });
+};
 
 export const findUserByID = async (dispatch, id) => {
- const status = await service.findUserByID(id);
- dispatch({
-   type: FIND_USER_BY_ID,
-   id
- });
-}
+  const status = await service.findUserByID(id);
+  dispatch({
+    type: FIND_USER_BY_ID,
+    id,
+  });
+};
 
 export const updateUser = async (dispatch, user) => {
- const status = await service.updateUser(user);
- dispatch({
-   type: UPDATE_USER,
-   user
- });
-}
+  const status = await service.updateUser(user);
+  dispatch({
+    type: UPDATE_USER,
+    user,
+  });
+};
 
 export const deleteUser = async (dispatch, user) => {
- const response = await service.deleteUser(user);
- dispatch({
-   type: DELETE_USER,
-   user
- })
-}
+  const response = await service.deleteUser(user);
+  dispatch({
+    type: DELETE_USER,
+    user,
+  });
+};
+
+export const loginUser = async (dispatch, userSend) => {
+  const userResponse = await service.loginUser(userSend);
+  dispatch({
+    type: LOGIN_USER,
+    user: userResponse,
+  });
+};
