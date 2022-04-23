@@ -1,14 +1,12 @@
 import './App.css';
 import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Home from "./components/home";
+import HomePage from "./pages/HomePage";
 import Profile from "./components/profile";
 import Details from "./components/details";
 import Search from "./components/search";
 import LoginRegister from "./components/login";
-import RedirectPage from "./components/RedirectPage";
+import RedirectPage from "./pages/RedirectPage";
 import MBRTheme from "./theme";
-
-// import bootstrap,
 import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
@@ -17,7 +15,7 @@ function App() {
       <BrowserRouter>
         <div className="container">
           <Routes>
-              <Route index element={<Home/>} />
+              <Route index element={<HomePage/>} />
               <Route path="/redirect" element={<RedirectPage />} />
               <Route path="/profile/:profileId?" element={<Profile/>} />
               <Route path="/details/:did" element={<Details />}/>
