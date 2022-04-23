@@ -1,6 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 
 import {
   Box,
@@ -14,14 +12,11 @@ import {
   useBreakpointValue,
   Stack,
   useColorModeValue,
-  HStack,
   Avatar,
-  AvatarBadge,
-  IconButton,
   Center,
 } from "@chakra-ui/react";
 
-export const Blur = (props: IconProps) => {
+export const Blur = (props) => {
   return (
     <Icon
       width={useBreakpointValue({ base: "100%", md: "40vw", lg: "60vw" })}

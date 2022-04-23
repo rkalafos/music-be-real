@@ -30,5 +30,6 @@ export const updateUser = async (user) => {
 
 export const loginUser = async (user) => {
   const response = await axios.post(`${USERS_API}login`, user);
+  console.log(response.data)
   return response.data;
 };

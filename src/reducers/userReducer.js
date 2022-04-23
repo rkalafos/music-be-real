@@ -23,7 +23,10 @@ const userReducer = (state = {}, action) => {
         user._id === action.user._id ? action.user : user
       );
     case LOGIN_USER:
-      return action.user;
+      return {
+        ...state,
+        ...action.user
+      };
     default:
       return state;
   }

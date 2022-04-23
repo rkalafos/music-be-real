@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React  from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import { Box, Button, Flex, GridItem, Spacer, Grid } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import PostList from "../components/PostList";
+import {useSelector} from "react-redux";
+
 
 const HomePage = () => {
   /*
@@ -15,7 +17,7 @@ const HomePage = () => {
     const token = useSelector(state => state.token.token);
      */
   const navigate = useNavigate();
-  const [userId, setUserId] = useState(undefined);
+  const user = useSelector((state) => state.user);
   return (
     <DefaultLayout>
       <Grid
@@ -24,22 +26,14 @@ const HomePage = () => {
         templateColumns="repeat(3, 1fr)"
         gap={4}
       >
-        <GridItem>
-          <Button
-            onClick={() => {
-              setUserId(userId ? undefined : "rkalafos");
-            }}
-          >
-            TEMPORARY LOGIN TOGGLE
-          </Button>
-        </GridItem>
+        <GridItem></GridItem>
         <GridItem></GridItem>
         <GridItem>
           <Flex w={"100%"}>
             <Spacer />
             <Box>
-              {userId ? (
-                <Button onClick={() => navigate(`/profile/${userId}`)} mr={4}>
+              {user?.username ? (
+                <Button onClick={() => navigate(`/profile/${user.username}`)} mr={4}>
                   View Profile
                 </Button>
               ) : (
@@ -65,7 +59,7 @@ const HomePage = () => {
         </GridItem>
         <GridItem />
         <GridItem bg="white">
-          {userId ? (
+          {user?.username ? (
             <PostList />
           ) : (
             <div>Join MusicBeReal to enjoy all the perks!</div>

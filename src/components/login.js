@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import { useDispatch } from "react-redux";
 import { createUser, loginUser } from "../actions/user-actions";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -17,16 +17,12 @@ import {
   SimpleGrid,
   useBreakpointValue,
   Icon,
-  color,
 } from "@chakra-ui/react";
-import { deleteUser } from "../services/user-services";
 
 const Register = () => {
   // functionaality pulled in from Tuiter proj
 
   const dispatch = useDispatch();
-  const [newUser, setNewUser] = useState({ user: "New user" });
-
   const inputStyle = {
     backgroundColor: "lightgrey",
     lineHeight: "1.1",

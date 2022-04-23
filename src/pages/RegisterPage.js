@@ -1,5 +1,5 @@
 import { DefaultLayout } from "../layouts/DefaultLayout";
-import {Box, Button, Heading, Input, Text} from "@chakra-ui/react";
+import { Box, Button, Heading, Input, Text } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import React from "react";
