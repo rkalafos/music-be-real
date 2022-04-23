@@ -1,7 +1,8 @@
 import React from 'react';
 // import {useSelector} from "react-redux";
 import {DefaultLayout} from "../layouts/DefaultLayout";
-import {Box, Button, HStack} from "@chakra-ui/react";
+import {Box, Button, Flex} from "@chakra-ui/react";
+import {useNavigate} from "react-router";
 
 
 const HomePage = () => {
@@ -14,31 +15,26 @@ const HomePage = () => {
     const RESPONSE_TYPE = "token";
     const token = useSelector(state => state.token.token);
      */
+    const navigate = useNavigate();
     return(
         <DefaultLayout>
-            <Box
-                p={8}
-                m={8}
-                w={"75%"}
-                bg={"white"}
-                rounded={"md"}
-            >
-                <HStack>
+            <Flex align={"center"}>
+                <Box align={"right"}>
                     <Button
+                        mr={4}
                         colorScheme={"red"}
+                        onClick={() => navigate("/register")}
                     >
                         Register
                     </Button>
                     <Button
                         colorScheme={"teal"}
+                        onClick={() => navigate("/login")}
                     >
                         Login
                     </Button>
-                    {}
-                </HStack>
-
-
-            </Box>
+                </Box>
+            </Flex>
             { /*
             !token ?
                 <a href={`${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=${RESPONSE_TYPE}`}>
