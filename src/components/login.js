@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {createUser} from "../actions/user-actions";
+import {createUser, loginUser} from "../actions/user-actions";
 import { Formik, Form, Field, ErrorMessage } from 'formik';
  
 
@@ -72,6 +72,7 @@ const Register = () => {
                   errors.email = 'Invalid email address';
                 }
                 // TODO: check here if a username exists using findUserByID API Route.
+                
                 return errors;
              }}
              onSubmit={(values, { setSubmitting }) => {
@@ -211,6 +212,8 @@ const Login = () => {
                     errors.password = 'Required';
                 }
                 // TODO: check here if a username exists using findUserByID API Route.
+                
+                
                 return errors;
              }}
              onSubmit={(values, { setSubmitting }) => {

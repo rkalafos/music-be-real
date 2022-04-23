@@ -25,3 +25,8 @@ export const updateUser = async (user) => {
  return response.data;
 }
 
+export const loginUser = async (user) => {
+  const response = await axios
+    .get(`${USERS_API}/loginuser`, user);
+  return response.data
+}
