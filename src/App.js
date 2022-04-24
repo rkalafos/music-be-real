@@ -10,6 +10,7 @@ import MBRTheme from "./theme";
 import { ChakraProvider } from "@chakra-ui/react";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -21,14 +22,13 @@ function App() {
             <Route path="/redirect" element={<RedirectPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            //just for testing
-            <Route path="/profile/" element={<Profile />} />
-            <Route path="/profile/:profileId?" element={<Profile />} />
+            <Route path="/profile/:profileId" element={<ProfilePage />} />
             <Route path="/details/:did" element={<Details />} />
             <Route path="/search" element={<Search />} />
           </Routes>
         </div>
       </BrowserRouter>
+      11
     </ChakraProvider>
   );
 }
