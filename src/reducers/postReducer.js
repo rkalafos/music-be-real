@@ -11,7 +11,7 @@ const postReducer = (state = {}, action) => {
         case FIND_ALL_POSTS:
             return action.posts;
         case FIND_POST_BY_ID:
-            // not sure yet
+            return state.filter((post) => post._id === action.post._id);
         case DELETE_POST:
             return state.filter(
                 post => post._id !== action.post._id);
