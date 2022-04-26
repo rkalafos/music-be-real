@@ -5,7 +5,7 @@ import {
   Center,
   FormControl,
   FormLabel,
-  Heading,
+  Heading, HStack,
   Input,
   Stack,
   useColorModeValue,
@@ -100,7 +100,7 @@ const ProfilePage = () => {
                   />
                 )}
               </Field>
-              <Field name="lastName">
+              <Field name="lastName" disabled={!editable}>
                 {({ field, form }) => (
                   <Input
                     style={inputStyle}
@@ -110,7 +110,7 @@ const ProfilePage = () => {
                   />
                 )}
               </Field>
-              <Field name="username">
+              <Field name="username" disabled={!editable}>
                 {({ field, form }) => (
                   <Input
                     style={inputStyle}
@@ -121,7 +121,7 @@ const ProfilePage = () => {
                 )}
               </Field>
               <ErrorMessage name="username" component="div" />
-              <Field name="password">
+              <Field name="password" disabled={!editable}>
                 {({ field, form }) => (
                   <Input
                     style={inputStyle}
@@ -132,21 +132,24 @@ const ProfilePage = () => {
                 )}
               </Field>
               <ErrorMessage name="password" component="div" />
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                fontFamily={"heading"}
-                mt={8}
-                w={"full"}
-                bgGradient="linear(to-r, red.400,pink.400)"
-                color={"white"}
-                _hover={{
-                  bgGradient: "linear(to-r, red.400,pink.400)",
-                  boxShadow: "xl",
-                }}
-              >
-                Submit
-              </Button>
+              <HStack m={3}>
+                <Button onClick={() => setEditable(false)}>Cancel</Button>
+                <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    fontFamily={"heading"}
+                    mt={8}
+                    w={"full"}
+                    bgGradient="linear(to-r, red.400,pink.400)"
+                    color={"white"}
+                    _hover={{
+                      bgGradient: "linear(to-r, red.400,pink.400)",
+                      boxShadow: "xl",
+                    }}
+                >
+                  Save
+                </Button>
+              </HStack>
             </Form>
           )}
         </Formik>

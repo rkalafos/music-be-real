@@ -1,10 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import Profile from "./components/profile";
 import Details from "./components/details";
 import Search from "./components/search";
-import LoginRegister from "./components/login";
 import RedirectPage from "./pages/RedirectPage";
 import MBRTheme from "./theme";
 import { ChakraProvider } from "@chakra-ui/react";
