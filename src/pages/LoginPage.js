@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import {loginUser} from "../actions/current-user-actions";
+import {getAllUsers} from "../actions/user-actions";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -47,10 +48,15 @@ const LoginPage = () => {
 
             return errors;
           }}
-          onSubmit={(values) => {
+          onSubmit={(values, {setSubmitting}) => {
             loginUser(dispatch, values)
+              .then(() => setSubmitting(false))
+              .then(() => getAllUsers(dispatch))
               .then(() => navigate("/"))
-              .catch(() => setLoginError(true));
+              .catch((e) => {
+                setLoginError(true)
+                console.log(e)
+              });
           }}
         >
           {({ isSubmitting }) => (
@@ -79,7 +85,7 @@ const LoginPage = () => {
               <ErrorMessage name="password" component="div" />
               <Button
                 type="submit"
-                disables={isSubmitting}
+                isDisabled={isSubmitting}
                 fontFamily={"heading"}
                 mt={8}
                 w={"full"}

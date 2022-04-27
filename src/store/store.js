@@ -11,7 +11,7 @@ const store = createStore(
     posts: postReducer,
     songChoices: songChoiceReducer,
     token: tokenReducer,
-    user: userReducer,
+    allUsers: userReducer,
       currentUser: currentUserReducer
   }),
   composeEnhancers(applyMiddleware(thunk))

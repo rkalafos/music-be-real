@@ -22,8 +22,8 @@ import { useNavigate } from "react-router";
 const EditProfilePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
-  const userEmpty = Object.keys(user).length === 0;
+  const currentUser = useSelector((state) => state.currentUser);
+  const userEmpty = Object.keys(currentUser).length === 0;
   const [showSaveError, setSaveError] = useState(false);
   const inputStyle = {
     backgroundColor: "lightgrey",
@@ -75,11 +75,11 @@ const EditProfilePage = () => {
             </FormControl>
             <Formik
               initialValues={{
-                firstName: user.firstName,
-                lastName: user.lastName,
-                username: user.username,
-                email: user.email,
-                password: user.password,
+                firstName: currentUser.firstName,
+                lastName: currentUser.lastName,
+                username: currentUser.username,
+                email: currentUser.email,
+                password: currentUser.password,
               }}
               validate={(values) => {
                 const errors = {};

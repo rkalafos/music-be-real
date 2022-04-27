@@ -1,16 +1,15 @@
 import React from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import { useNavigate, useParams } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
-import { findUserByID } from "../actions/user-actions";
+import { useSelector } from "react-redux";
+import {Button, Heading, HStack, Stack, Text, useColorModeValue} from "@chakra-ui/react";
+import {CheckCircleIcon} from "@chakra-ui/icons";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { profileId } = useParams();
   const currentUser = useSelector((state) => state.currentUser);
-  const profileUser = findUserByID(dispatch, profileId);
+  const { profileId } = useParams();
+  const profileUser = useSelector((state) => state.allUsers.find(user => user?._id === profileId));
 
   return (
     <DefaultLayout>
@@ -25,14 +24,17 @@ const ProfilePage = () => {
         p={6}
         my={12}
       >
-        <Heading>User: {currentUser.username}</Heading>
-        <Heading>Profile ID: {profileId}</Heading>
-
-        {currentUser._id === profileUser._id && (
-          <Button onClick={() => navigate("/edit-profile")}>
-            Edit Profile
-          </Button>
-        )}
+        <HStack>
+          <Heading>@{profileUser?.username}</Heading>
+          {profileUser?.verified && <CheckCircleIcon />}
+          <Text>Followers: {profileUser?.stats.followers.length}</Text>
+          <Text>Following: {profileUser?.stats.following.length}</Text>
+          {currentUser?._id === profileUser?._id && (
+            <Button onClick={() => navigate("/edit-profile")}>
+              Edit Profile
+            </Button>
+          )}
+        </HStack>
       </Stack>
     </DefaultLayout>
   );

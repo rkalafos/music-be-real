@@ -1,39 +1,36 @@
 import * as service from "../services/user-services";
+import {ADD_USER, REMOVE_USER, SET_ALL_USERS, UPDATE_USER} from "../reducers/userReducer";
 
-export const FIND_ALL_USERS = "FIND_ALL_USERS";
-export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
-export const CREATE_USER = "CREATE_USER";
-export const UPDATE_USER = "UPDATE_USER";
-export const DELETE_USER = "DELETE_USER";
+
+export const getAllUsers = async (dispatch) => {
+  const allUsers = await service.findAllUsers();
+  dispatch({
+    type: SET_ALL_USERS,
+    allUsers
+  })
+}
+
 
 export const createUser = async (dispatch, user) => {
   const newUser = await service.createUser(user);
   dispatch({
-    type: CREATE_USER,
+    type: ADD_USER,
     newUser,
   });
 };
 
-export const findUserByID = async (dispatch, id) => {
-  const status = await service.findUserByID(id);
-  dispatch({
-    type: FIND_USER_BY_ID,
-    id,
-  });
-};
-
 export const updateUser = async (dispatch, user) => {
-  const status = await service.updateUser(user);
+  const newUser = await service.updateUser(user);
   dispatch({
     type: UPDATE_USER,
-    user,
+    newUser,
   });
 };
 
 export const deleteUser = async (dispatch, user) => {
   const response = await service.deleteUser(user);
   dispatch({
-    type: DELETE_USER,
+    type: REMOVE_USER,
     user,
   });
 };
