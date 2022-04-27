@@ -16,7 +16,7 @@ const HomePage = () => {
     const token = useSelector(state => state.token.token);
      */
   const navigate = useNavigate();
-  const user = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.currentUser);
   return (
     <DefaultLayout>
       <Grid
@@ -31,8 +31,8 @@ const HomePage = () => {
           <Flex w={"100%"}>
             <Spacer />
             <Box>
-              {user?.username ? (
-                <Button onClick={() => navigate(`/profile/${user._id}`)} mr={4}>
+              {currentUser?.username ? (
+                <Button onClick={() => navigate(`/profile/${currentUser._id}`)} mr={4}>
                   View Profile
                 </Button>
               ) : (
@@ -58,7 +58,7 @@ const HomePage = () => {
         </GridItem>
         <GridItem />
         <GridItem bg="white">
-          {user?.username ? (
+          {currentUser?.username ? (
             <PostList />
           ) : (
             <div>Join MusicBeReal to enjoy all the perks!</div>

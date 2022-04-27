@@ -3,11 +3,16 @@ import {
   DELETE_USER,
   FIND_ALL_USERS,
   FIND_USER_BY_ID,
-  UPDATE_USER,
-  LOGIN_USER,
+  UPDATE_USER
 } from "../actions/user-actions";
 
 const userReducer = (state = {}, action) => {
+  // state is retrieved from the store with the "user" keyword
+  // state will look like...
+  // {
+  //      currentUser: Object,
+  //      allUsers: Array[Object]
+  //  }
   switch (action.type) {
     // find user by id, find all users following another user ?
     case FIND_ALL_USERS:
@@ -22,11 +27,6 @@ const userReducer = (state = {}, action) => {
       return state.map((user) =>
         user._id === action.user._id ? action.user : user
       );
-    case LOGIN_USER:
-      return {
-        ...state,
-        ...action.user,
-      };
     default:
       return state;
   }

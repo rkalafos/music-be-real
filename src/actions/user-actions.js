@@ -5,15 +5,6 @@ export const FIND_USER_BY_ID = "FIND_USER_BY_ID";
 export const CREATE_USER = "CREATE_USER";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
-export const LOGIN_USER = "LOGIN_USER";
-
-export const findAllUsers = async (dispatch) => {
-  const users = await service.findAllUsers();
-  dispatch({
-    type: FIND_ALL_USERS,
-    users,
-  });
-};
 
 export const createUser = async (dispatch, user) => {
   const newUser = await service.createUser(user);
@@ -44,13 +35,5 @@ export const deleteUser = async (dispatch, user) => {
   dispatch({
     type: DELETE_USER,
     user,
-  });
-};
-
-export const loginUser = async (dispatch, userSend) => {
-  const userResponse = await service.loginUser(userSend);
-  dispatch({
-    type: LOGIN_USER,
-    user: userResponse,
   });
 };

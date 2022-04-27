@@ -9,7 +9,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { profileId } = useParams();
-  const user = useSelector((state) => state.user);
+  const currentUser = useSelector((state) => state.currentUser);
   const profileUser = findUserByID(dispatch, profileId);
 
   return (
@@ -25,10 +25,10 @@ const ProfilePage = () => {
         p={6}
         my={12}
       >
-        <Heading>User: {user.username}</Heading>
+        <Heading>User: {currentUser.username}</Heading>
         <Heading>Profile ID: {profileId}</Heading>
 
-        {user._id === profileUser._id && (
+        {currentUser._id === profileUser._id && (
           <Button onClick={() => navigate("/edit-profile")}>
             Edit Profile
           </Button>

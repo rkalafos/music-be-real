@@ -4,6 +4,7 @@ import postReducer from "../reducers/postReducer.js";
 import songChoiceReducer from "../reducers/songChoiceReducer.js";
 import tokenReducer from "../reducers/tokenReducer";
 import userReducer from "../reducers/userReducer";
+import currentUserReducer from "../reducers/currentUserReducer";
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   combineReducers({
@@ -11,6 +12,7 @@ const store = createStore(
     songChoices: songChoiceReducer,
     token: tokenReducer,
     user: userReducer,
+      currentUser: currentUserReducer
   }),
   composeEnhancers(applyMiddleware(thunk))
 );

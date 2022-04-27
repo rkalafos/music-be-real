@@ -28,7 +28,6 @@ function App() {
           </Routes>
         </div>
       </BrowserRouter>
-      11
     </ChakraProvider>
   );
 }

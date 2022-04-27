@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { Box, Button, Heading, Input } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
-import { loginUser } from "../actions/user-actions";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import {loginUser} from "../actions/current-user-actions";
 
 const LoginPage = () => {
   const navigate = useNavigate();
