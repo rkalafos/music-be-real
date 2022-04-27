@@ -9,7 +9,7 @@ const PostList = () => {
     // TODO: filter usertype & page
     const posts = useSelector((state) => state.posts);
     const dispatch = useDispatch();
-    useEffect(() => findAllPosts(dispatch) , [dispatch]);
+    useEffect(() => { findAllPosts(dispatch) }, [dispatch]);
 
     return (
         <Stack
