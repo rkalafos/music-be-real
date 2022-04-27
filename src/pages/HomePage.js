@@ -32,10 +32,7 @@ const HomePage = () => {
             <Spacer />
             <Box>
               {user?.username ? (
-                <Button
-                  onClick={() => navigate(`/profile/${user.username}`)}
-                  mr={4}
-                >
+                <Button onClick={() => navigate(`/profile/${user._id}`)} mr={4}>
                   View Profile
                 </Button>
               ) : (
