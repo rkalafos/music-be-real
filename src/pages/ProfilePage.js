@@ -1,158 +1,38 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Center,
-  FormControl,
-  FormLabel,
-  Heading, HStack,
-  Input,
-  Stack,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import { updateUser } from "../actions/user-actions";
+import { useNavigate, useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
+import { findUserByID } from "../actions/user-actions";
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { profileId } = useParams();
   const user = useSelector((state) => state.user);
-  console.log(user);
-  const [editable, setEditable] = useState(false);
-  const [showSaveError, setSaveError] = useState(false);
-  const inputStyle = {
-    backgroundColor: "lightgrey",
-    lineHeight: "1.1",
-    color: "grey.500",
-    _placeholder: "gray.500",
-    border: "0",
-    marginTop: "10px",
-  };
+  const profileUser = findUserByID(dispatch, profileId);
+
   return (
     <DefaultLayout>
       <Stack
         align={"center"}
         justify={"center"}
         spacing={4}
-        w={"full"}
-        maxW={"md"}
+        w={"80%"}
         bg={useColorModeValue("white", "gray.700")}
         rounded={"xl"}
         boxShadow={"lg"}
         p={6}
         my={12}
       >
-        <Heading lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
-          Profile
-        </Heading>
-        {showSaveError && (
-          <Box bg={"red.100"}>
-            There was an error saving your data. Please try again.
-          </Box>
+        <Heading>User: {user.username}</Heading>
+        <Heading>Profile ID: {profileId}</Heading>
+
+        {user._id === profileUser._id && (
+          <Button onClick={() => navigate("/edit-profile")}>
+            Edit Profile
+          </Button>
         )}
-        {!editable && <Button onClick={() => setEditable(true)}>Edit Profile</Button>}
-        <FormControl id="userName">
-          <FormLabel>User Icon</FormLabel>
-          <Stack direction={["column", "row"]} spacing={6}>
-            <Center>
-              <Avatar size="xl"></Avatar>
-            </Center>
-            <Center w="full">
-              <Button w="full">Change Icon</Button>
-            </Center>
-          </Stack>
-        </FormControl>
-        <Formik
-          initialValues={{
-            firstName: user.firstName,
-            lastName: user.lastName,
-            username: user.username,
-            email: user.email,
-            password: user.password,
-          }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.username) {
-              errors.username = "Required";
-            }
-            if (!values.password) {
-              errors.password = "Required";
-            }
-            return errors;
-          }}
-          onSubmit={(values) => {
-            updateUser(dispatch, values)
-                .then(() => setEditable(false))
-                .catch(() => setSaveError(true));
-          }}
-        >
-          {({ isSubmitting }) => (
-            <Form>
-              <Field name="firstName" disabled={!editable}>
-                {({ field, form }) => (
-                  <Input
-                    style={inputStyle}
-                    {...field}
-                    type="text"
-                    placeholder="First Name"
-                  />
-                )}
-              </Field>
-              <Field name="lastName" disabled={!editable}>
-                {({ field, form }) => (
-                  <Input
-                    style={inputStyle}
-                    {...field}
-                    type="text"
-                    placeholder="Last name"
-                  />
-                )}
-              </Field>
-              <Field name="username" disabled={!editable}>
-                {({ field, form }) => (
-                  <Input
-                    style={inputStyle}
-                    {...field}
-                    type="text"
-                    placeholder="Username"
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="username" component="div" />
-              <Field name="password" disabled={!editable}>
-                {({ field, form }) => (
-                  <Input
-                    style={inputStyle}
-                    {...field}
-                    type="password"
-                    placeholder="Password"
-                  />
-                )}
-              </Field>
-              <ErrorMessage name="password" component="div" />
-              <HStack m={3}>
-                <Button onClick={() => setEditable(false)}>Cancel</Button>
-                <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    fontFamily={"heading"}
-                    mt={8}
-                    w={"full"}
-                    bgGradient="linear(to-r, red.400,pink.400)"
-                    color={"white"}
-                    _hover={{
-                      bgGradient: "linear(to-r, red.400,pink.400)",
-                      boxShadow: "xl",
-                    }}
-                >
-                  Save
-                </Button>
-              </HStack>
-            </Form>
-          )}
-        </Formik>
       </Stack>
     </DefaultLayout>
   );
