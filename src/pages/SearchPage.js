@@ -1,7 +1,7 @@
 import React from "react";
-import SearchBar from "./searchBar";
+import SearchBar from "../components/searchBar";
 
-const Search = () => {
+const SearchPage = () => {
   return (
     <>
       <h1 style={{ color: "white" }}>Search Page</h1>
@@ -9,4 +9,4 @@ const Search = () => {
     </>
   );
 };
-export default Search;
+export default SearchPage;

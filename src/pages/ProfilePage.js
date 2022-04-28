@@ -21,7 +21,8 @@ const ProfilePage = () => {
   );
 
   return (
-    <DefaultLayout>
+  <>
+    <DefaultLayout />
       <Stack
         align={"center"}
         justify={"center"}
@@ -45,7 +46,7 @@ const ProfilePage = () => {
           )}
         </HStack>
       </Stack>
-    </DefaultLayout>
+    </>
   );
 };
 export default ProfilePage;

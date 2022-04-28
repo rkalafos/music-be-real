@@ -105,7 +105,7 @@ const LoginPage = () => {
           Need to register for an account?
         </Button>
       </Box>
-    </DefaultLayout>
+</DefaultLayout>
   );
 };
 export default LoginPage;

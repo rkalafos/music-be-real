@@ -2,13 +2,13 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Details from "./components/details";
-import Search from "./components/search";
 import MBRTheme from "./theme";
 import { ChakraProvider } from "@chakra-ui/react";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import SearchPage from "./pages/SearchPage";
 import './vendors/bootstrap/css/bootstrap.min.css';
 import './vendors/bootstrap/bootstrap.min.css';
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <Route path="/edit-profile" element={<EditProfilePage />} />
             <Route path="/profile/:profileId" element={<ProfilePage />} />
             <Route path="/details/:did" element={<Details />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
         </div>
       </BrowserRouter>

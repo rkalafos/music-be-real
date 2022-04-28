@@ -23,10 +23,6 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 
-const Links = () => {
-
-}
-
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
     const navigate = useNavigate();
@@ -58,7 +54,7 @@ export default function NavBar() {
                       textDecoration: 'none',
                       bg: 'gray.200'
                     }}
-                    href= ''>
+                    href= '/'>
                     Home
                   </Link>
                   <Link
@@ -70,7 +66,7 @@ export default function NavBar() {
                       textDecoration: 'none',
                       bg: 'gray.200'
                     }}
-                    href= ''>
+                    href={`/profile/${currentUser._id}`}>
                     Profile
                   </Link>
                   <Link
@@ -143,7 +139,7 @@ export default function NavBar() {
                                         textDecoration: 'none',
                                         bg: 'gray.200'
                                       }}
-                                      href= ''>
+                                      href= '/'>
                                       Home
                                     </Link>
                                     <Link
@@ -155,7 +151,7 @@ export default function NavBar() {
                                         textDecoration: 'none',
                                         bg: 'gray.200'
                                       }}
-                                      href= ''>
+                                      href= {`/profile/${currentUser._id}`}>
                                       Profile
                                     </Link>
                                     <Link
