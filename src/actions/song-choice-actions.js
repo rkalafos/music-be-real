@@ -1,5 +1,5 @@
 import * as service from "../services/song-choice-services";
-import { SEARCH_SONGS } from "../utils/constants";
+import {GET_SONG_BY_ID, SEARCH_SONGS} from "../utils/constants";
 
 export const searchSongs = async (dispatch, query, token) => {
   const songChoices = await service.searchSongs(query, token);
@@ -8,3 +8,12 @@ export const searchSongs = async (dispatch, query, token) => {
     songChoices,
   });
 };
+
+export const getSongById = async (dispatch, id) => {
+  const songChoices = await service.getSongById(id);
+  dispatch({
+    type: GET_SONG_BY_ID,
+    songChoices,
+  });
+};
+
