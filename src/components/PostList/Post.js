@@ -1,59 +1,63 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import { deletePost } from '../../actions/post-actions';
-import { getSongById } from '../../actions/song-choice-actions';
+import {deletePost} from '../../actions/post-actions';
 
 import {
-    Box, Heading,
-    IconButton, Text
+    Box,
+    IconButton, Text, Avatar, Center, Stack, HStack, Spacer
 } from "@chakra-ui/react";
 import {BiTrash} from "react-icons/bi";
+import {useNavigate} from "react-router";
 
 const Post = ({post}) => {
+    const navigate = useNavigate();
     const currentUser = useSelector((state) => state.currentUser);
     const dispatch = useDispatch();
     const postedBy = useSelector((state) => state.allUsers.find(user => user?._id === post.userId));
-    const track = getSongById(dispatch, post.trackId);
-    console.log(post);
+
     return (
         <>
             <Box
-                borderRadius="sm"
+                borderWidth="2px"
                 background="#C4C4C4"
                 boxShadow="md"
             >
                 <div className="d-flex">
-                    <div className="col-1 ">
-                        {/*{*/}
-                        {/*    postedBy.avatarImage &&*/}
-                        {/*    <img className="img img-responsive rounded-circle" width="100%"*/}
-                        {/*         src={postedBy.avatarImage} alt={post.postedBy.username}/>*/}
-                        {/*}*/}
-                    </div>
-                    <Heading>
-                        {post.postedBy.username}
-                    </Heading>
-                    <Text style={{color: "white"}}>
-                        {post.caption}
-                    </Text>
                     {
-                        track &&
-                        <div>
-                            <p style={{color: "white"}}> Song: {track.title} By: {track.artist.name} </p>
-                            <img src={track.album.cover_small} alt="albumcover"/>
-                        </div>
+                        postedBy &&
+                        <Stack direction={["column", "row"]} spacing={6} margin={6}>
+                            <Center>
+                                <img src={post.album_cover} alt="albumcover"/>
+                            </Center>
+                            <Stack direction={["row", "column"]} spacing={6}>
+                                <Stack direction={["column", "row"]} spacing={6}>
+                                    <HStack spacing={4}
+                                         alignItems="center"
+                                         onClick={() => navigate(`/profile/${postedBy._id}`)}
+                                    >
+                                        <Avatar size="md" src={postedBy.avatarImage} alt={postedBy.username}/>
+                                        <Text>{postedBy.username}</Text>
+                                    </HStack>
+                                    <Spacer />
+                                    {(currentUser?._id === postedBy?._id || currentUser?.userType === "admin") && (
+                                        <Center>
+                                            <IconButton
+                                                onClick={() => deletePost(dispatch, post)}
+                                                aria-label='Delete post'
+                                                variant='outline'
+                                                colorScheme='teal'
+                                                size='sm'
+                                                icon={<BiTrash/>}
+                                            />
+                                        </Center>
+                                    )}
+                                </Stack>
+                                <p style={{color: "white"}}> Song: {post.song_title} By: {post.artist_name} </p>
+                                <Text style={{color: "white"}}>{post.caption}</Text>
+                            </Stack>
+
+                        </Stack>
                     }
-
-
-                    {(currentUser._id === postedBy._id  || currentUser.type == "admin") && (
-                        <IconButton
-                            onClick={() => deletePost(dispatch, post)}
-                            aria-label='Delete post'
-                            variant='outline'
-                            colorScheme='teal'
-                            icon={<BiTrash/>}
-                        />
-                    )}
                 </div>
             </Box>
         </>

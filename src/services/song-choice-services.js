@@ -16,14 +16,9 @@ export const searchSongs = async (query, token) => {
 };
 
 export const getSongById = async (tid) => {
-  const options = {
-    method: 'GET',
-    url: `https://deezerdevs-deezer.p.rapidapi.com/track/${tid}`,
-    headers: {
-      'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-      'X-RapidAPI-Key': '9e7ec89eeamsh369e290f825803dp11db61jsn9fc863111477'
-    }
-  };
-  const response = await axios.request(options);
+  const response = await axios.get(`https://deezerdevs-deezer.p.rapidapi.com/track/${tid}`, {
+    'X-RapidAPI-Key': '9e7ec89eeamsh369e290f825803dp11db61jsn9fc863111477'
+  });
+  console.log(response);
   return response.data.data;
 }
