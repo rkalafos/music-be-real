@@ -4,8 +4,8 @@ import { Box, Button, Heading, Input } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import {loginUser} from "../actions/current-user-actions";
-import {getAllUsers} from "../actions/user-actions";
+import { loginUser } from "../actions/current-user-actions";
+import { getAllUsers } from "../actions/user-actions";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -48,14 +48,14 @@ const LoginPage = () => {
 
             return errors;
           }}
-          onSubmit={(values, {setSubmitting}) => {
+          onSubmit={(values, { setSubmitting }) => {
             loginUser(dispatch, values)
               .then(() => setSubmitting(false))
               .then(() => getAllUsers(dispatch))
               .then(() => navigate("/"))
               .catch((e) => {
-                setLoginError(true)
-                console.log(e)
+                setLoginError(true);
+                console.log(e);
               });
           }}
         >

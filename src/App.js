@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Details from "./components/details";
 import Search from "./components/search";
-import RedirectPage from "./pages/RedirectPage";
 import MBRTheme from "./theme";
 import { ChakraProvider } from "@chakra-ui/react";
 import LoginPage from "./pages/LoginPage";
@@ -18,7 +17,6 @@ function App() {
         <div className="container">
           <Routes>
             <Route index element={<HomePage />} />
-            <Route path="/redirect" element={<RedirectPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/edit-profile" element={<EditProfilePage />} />
