@@ -20,7 +20,6 @@ const Post = ({post}) => {
             <Box
                 borderWidth="2px"
                 background="#C4C4C4"
-                boxShadow="md"
             >
                 <div className="d-flex">
                     {
@@ -52,8 +51,10 @@ const Post = ({post}) => {
                                         </Center>
                                     )}
                                 </Stack>
-                                <p style={{color: "white"}}> Song: {post.song_title} By: {post.artist_name} </p>
-                                <Text style={{color: "white"}}>{post.caption}</Text>
+                                <Box>
+                                    <p style={{color: "white"}}> Song: {post.song_title} By: {post.artist_name} </p>
+                                    <Text style={{color: "white"}}>{post.caption}</Text>
+                                </Box>
                             </Stack>
 
                         </Stack>
