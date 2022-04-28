@@ -25,7 +25,7 @@ const Post = ({post}) => {
                     {
                         postedBy &&
                         <Stack direction={["column", "row"]} spacing={6} margin={6}>
-                            <Center>
+                            <Center w={"50%"}>
                                 <img src={post.album_cover} alt="albumcover"/>
                             </Center>
                             <Stack direction={["row", "column"]} spacing={6}>
@@ -52,8 +52,8 @@ const Post = ({post}) => {
                                     )}
                                 </Stack>
                                 <Box>
-                                    <p style={{color: "white"}}> Song: {post.song_title} By: {post.artist_name} </p>
-                                    <Text style={{color: "white"}}>{post.caption}</Text>
+                                    <p style={{color: "black"}}> <b>{post.song_title}</b> {post.artist_name} </p>
+                                    <Text style={{color: "black"}}>{post.caption}</Text>
                                 </Box>
                             </Stack>
 
