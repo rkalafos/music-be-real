@@ -7,6 +7,19 @@ const SearchBar = () => {
   const token = useSelector((state) => state.token.token);
   const songChoices = useSelector((state) => state.songChoices);
   const dispatch = useDispatch();
+  let songsToDisplay = [];
+  if (songChoices.songChoices) {
+    songsToDisplay = [];
+    songChoices.songChoices.forEach(element => {
+      console.log(element);
+      songsToDisplay.push( 
+      <div key={element.id}>
+        <p style={{color: "white"}}> Song: {element.title} By: {element.artist.name} </p>
+        <img src={element.album.cover_small} alt="albumcover"/>
+      </div>);
+    });
+  }
+
 
   // Updates the song choices every time the search query changes.
   useEffect(() => {
@@ -27,17 +40,14 @@ const SearchBar = () => {
         <input
           type="text"
           id="song-search"
+          color="black"
           placeholder="Search for a song..."
           name="s"
           onChange={handleSearchChange}
           value={searchQuery}
         />
       </label>
-      <ul>
-        {songChoices?.songChoices?.map((song) => (
-          <li key={song.id}>{song.name}</li>
-        ))}
-      </ul>
+      {songsToDisplay}
     </>
   );
 };
