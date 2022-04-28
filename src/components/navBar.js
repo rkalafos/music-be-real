@@ -44,6 +44,8 @@ export default function NavBar() {
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
+              {currentUser?.username ? (
+              <div>
                   <Link
                     px={3}
                     py={2}
@@ -56,6 +58,35 @@ export default function NavBar() {
                     onClick={() => navigate("/search")}>
                     Search
                   </Link>
+                  <Link
+                    px={3}
+                    py={2}
+                    rounded={'md'}
+                    color= 'white'
+                    _hover={{
+                      textDecoration: 'none',
+                      bg: 'gray.200'
+                    }}
+                    onClick={() => navigate(`/profile/${currentUser._id}`)}>
+                    Profile
+                  </Link>
+                  </div>
+              ) : (
+              <div>
+                <Link
+                    px={3}
+                    py={2}
+                    rounded={'md'}
+                    color= 'white'
+                    _hover={{
+                      textDecoration: 'none',
+                      bg: 'gray.200'
+                    }}
+                    onClick={() => navigate("/search")}>
+                    Search
+                  </Link>
+                  </div>
+               )}
             </HStack>
 
           </HStack>
@@ -63,36 +94,6 @@ export default function NavBar() {
             <Box>
               {currentUser?.username ? (
               <div>
-
-
-
-
-
-                <Button
-                  onClick={() => navigate(`/profile/${currentUser._id}`)}
-                  mr={4}
-                  mb={2}
-                >
-                  View Profile
-                </Button>
-                <Button
-                    mr={4}
-                    mb={2}
-                    colorScheme={"red"}
-                    onClick={() => navigate("/register")}
-                    width='100px'
-                  >
-                    Register
-                  </Button>
-                  <Button
-                    mr={4}
-                    mb={2}
-                    colorScheme={"teal"}
-                    onClick={() => navigate("/login")}
-                    width='100px'
-                  >
-                    Login
-                  </Button>
               </div>
               ) : (
                 <div>
