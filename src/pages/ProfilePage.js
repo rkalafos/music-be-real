@@ -2,14 +2,23 @@ import React from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
-import {Button, Heading, HStack, Stack, Text, useColorModeValue} from "@chakra-ui/react";
-import {CheckCircleIcon} from "@chakra-ui/icons";
+import {
+  Button,
+  Heading,
+  HStack,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { CheckCircleIcon } from "@chakra-ui/icons";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser);
   const { profileId } = useParams();
-  const profileUser = useSelector((state) => state.allUsers.find(user => user?._id === profileId));
+  const profileUser = useSelector((state) =>
+    state.allUsers.find((user) => user?._id === profileId)
+  );
 
   return (
     <DefaultLayout>

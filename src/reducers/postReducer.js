@@ -4,7 +4,7 @@ import {
   FIND_ALL_POSTS,
   FIND_POST_BY_ID,
   UPDATE_POST,
-} from "../actions/post-actions";
+} from "../utils/constants";
 
 const postReducer = (state = {}, action) => {
   switch (action.type) {

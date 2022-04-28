@@ -1,18 +1,16 @@
 import * as service from "../services/user-services";
-
-export const LOGIN = "LOGIN";
-export const LOGOUT = "LOGOUT";
+import { LOGIN, LOGOUT } from "../utils/constants";
 
 export const loginUser = async (dispatch, userSend) => {
-    const userResponse = await service.loginUser(userSend);
-    dispatch({
-        type: LOGIN,
-        user: userResponse,
-    });
+  const userResponse = await service.loginUser(userSend);
+  dispatch({
+    type: LOGIN,
+    user: userResponse,
+  });
 };
 
 export const logoutUser = (dispatch) => {
-    dispatch({
-        type: LOGOUT
-    })
-}
+  dispatch({
+    type: LOGOUT,
+  });
+};

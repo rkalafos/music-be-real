@@ -1,15 +1,18 @@
 import * as service from "../services/user-services";
-import {ADD_USER, REMOVE_USER, SET_ALL_USERS, UPDATE_USER} from "../reducers/userReducer";
-
+import {
+  ADD_USER,
+  REMOVE_USER,
+  SET_ALL_USERS,
+  UPDATE_USER,
+} from "../utils/constants";
 
 export const getAllUsers = async (dispatch) => {
   const allUsers = await service.findAllUsers();
   dispatch({
     type: SET_ALL_USERS,
-    allUsers
-  })
-}
-
+    allUsers,
+  });
+};
 
 export const createUser = async (dispatch, user) => {
   const newUser = await service.createUser(user);

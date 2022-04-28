@@ -6,15 +6,6 @@ import PostList from "../components/PostList";
 import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  /*
-    const {
-        REACT_APP_CLIENT_ID,
-        REACT_APP_AUTHORIZE_URL,
-        REACT_APP_REDIRECT_URL
-    } = process.env;
-    const RESPONSE_TYPE = "token";
-    const token = useSelector(state => state.token.token);
-     */
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser);
   return (
@@ -32,7 +23,10 @@ const HomePage = () => {
             <Spacer />
             <Box>
               {currentUser?.username ? (
-                <Button onClick={() => navigate(`/profile/${currentUser._id}`)} mr={4}>
+                <Button
+                  onClick={() => navigate(`/profile/${currentUser._id}`)}
+                  mr={4}
+                >
                   View Profile
                 </Button>
               ) : (
