@@ -5,7 +5,7 @@ import {Stack, HStack, VStack, useColorModeValue, Heading} from '@chakra-ui/reac
 import Post from'./Post';
 
 const PostList = () => {
-    const user = useSelector((state) => state.user);
+    const currentUser = useSelector((state) => state.currentUser);
     // TODO: filter usertype & page
     const posts = useSelector((state) => state.posts);
     const dispatch = useDispatch();
@@ -23,7 +23,7 @@ const PostList = () => {
             my={12}
         >
             <Heading lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
-                Welcome back <b>{user.username}! </b>
+                Welcome back <b>{currentUser.username}! </b>
             </Heading>
             <div>
                 {

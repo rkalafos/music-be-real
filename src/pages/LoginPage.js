@@ -2,9 +2,10 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import { useNavigate } from "react-router";
 import { Box, Button, Heading, Input } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import React, {useState} from "react";
-import { loginUser } from "../actions/user-actions";
+import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import {loginUser} from "../actions/current-user-actions";
+import {getAllUsers} from "../actions/user-actions";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -28,9 +29,11 @@ const LoginPage = () => {
         >
           Log In
         </Heading>
-          {showLoginError && (
-              <Box bg={'red.100'}>There was an error logging in. Please try again.</Box>
-          )}
+        {showLoginError && (
+          <Box bg={"red.100"}>
+            There was an error logging in. Please try again.
+          </Box>
+        )}
         <Formik
           initialValues={{ username: "", email: "", password: "" }}
           validate={(values) => {
@@ -45,8 +48,15 @@ const LoginPage = () => {
 
             return errors;
           }}
-          onSubmit={(values) => {
-            loginUser(dispatch, values).then(() => navigate("/")).catch(() => setLoginError(true));
+          onSubmit={(values, {setSubmitting}) => {
+            loginUser(dispatch, values)
+              .then(() => setSubmitting(false))
+              .then(() => getAllUsers(dispatch))
+              .then(() => navigate("/"))
+              .catch((e) => {
+                setLoginError(true)
+                console.log(e)
+              });
           }}
         >
           {({ isSubmitting }) => (
@@ -75,7 +85,7 @@ const LoginPage = () => {
               <ErrorMessage name="password" component="div" />
               <Button
                 type="submit"
-                disables={isSubmitting}
+                isDisabled={isSubmitting}
                 fontFamily={"heading"}
                 mt={8}
                 w={"full"}

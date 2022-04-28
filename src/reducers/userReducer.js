@@ -1,32 +1,19 @@
-import {
-  CREATE_USER,
-  DELETE_USER,
-  FIND_ALL_USERS,
-  FIND_USER_BY_ID,
-  UPDATE_USER,
-  LOGIN_USER,
-} from "../actions/user-actions";
+export const SET_ALL_USERS = "SET_ALL_USERS";
+export const ADD_USER = "ADD_USER";
+export const REMOVE_USER = "REMOVE_USER";
+export const UPDATE_USER = "UPDATE_USER";
 
-const userReducer = (state = {}, action) => {
+const userReducer = (state = [], action) => {
+  // state is going to be a list of all users
   switch (action.type) {
-    // find user by id, find all users following another user ?
-    case FIND_ALL_USERS:
-      return action.users;
-    case FIND_USER_BY_ID:
-      return state.filter((user) => user._id === action.user._id);
-    case DELETE_USER:
-      return state.filter((user) => user._id !== action.user._id);
-    case CREATE_USER:
-      return [...state, action.newUser];
+    case SET_ALL_USERS:
+      return action.allUsers;
+    case ADD_USER:
+      return [...state, action.newUser]
+    case REMOVE_USER:
+      return state.filter(value => value._id !== action.userId)
     case UPDATE_USER:
-      return state.map((user) =>
-        user._id === action.user._id ? action.user : user
-      );
-    case LOGIN_USER:
-      return {
-        ...state,
-        ...action.user,
-      };
+      return [...state.filter(value => value._id !== action.newUser._id), action.newUser]
     default:
       return state;
   }
