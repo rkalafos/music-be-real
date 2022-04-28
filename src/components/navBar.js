@@ -78,7 +78,7 @@ export default function NavBar() {
                       textDecoration: 'none',
                       bg: 'gray.200'
                     }}
-                    href= 'search'>
+                    href= '/search'>
                     Search
                   </Link>
             </HStack>
