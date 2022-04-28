@@ -1,6 +1,5 @@
-import axios from 'axios';
-const API_BASE = 'http://localhost:8000/api';
-const POSTS_API = `${API_BASE}/posts`;
+import axios from "axios";
+import { POSTS_API } from "../utils/constants";
 
 export const createPost = async (post) => {
   const response = await axios.post(POSTS_API, post);

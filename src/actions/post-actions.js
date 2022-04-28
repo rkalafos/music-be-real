@@ -1,10 +1,11 @@
 import * as service from "../services/post-service";
-
-export const CREATE_POST = "CREATE_POST";
-export const FIND_ALL_POSTS = "FIND_ALL_POSTS";
-export const FIND_POST_BY_ID = "FIND_POST_BY_ID";
-export const UPDATE_POST = "UPDATE_POST";
-export const DELETE_POST = "DELETE_POST";
+import {
+  CREATE_POST,
+  DELETE_POST,
+  FIND_ALL_POSTS,
+  FIND_POST_BY_ID,
+  UPDATE_POST,
+} from "../utils/constants";
 
 export const createPost = async (dispatch, post) => {
   const newPost = await service.createPost(post);
