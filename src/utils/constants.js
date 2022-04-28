@@ -18,4 +18,3 @@ export const USERS_API = "http://localhost:8000/api/users";
 export const API_BASE =
   process.env.REACT_APP_API_BASE || "http://localhost:8000/api";
 export const POSTS_API = `${API_BASE}/posts`;
->>>>>>> e3f60e01e3769918c6dd2588a12b8068a78f60a7
