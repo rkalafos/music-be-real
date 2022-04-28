@@ -21,8 +21,7 @@ const ProfilePage = () => {
   );
 
   return (
-  <>
-    <DefaultLayout />
+    <DefaultLayout>
       <Stack
         align={"center"}
         justify={"center"}
@@ -35,10 +34,10 @@ const ProfilePage = () => {
         my={12}
       >
         <HStack>
-          <Heading>@{profileUser?.username}</Heading>
+          <Heading color="black">@{profileUser?.username}</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
-          <Text>Followers: {profileUser?.stats.followers.length}</Text>
-          <Text>Following: {profileUser?.stats.following.length}</Text>
+          <Text>Followers: {profileUser?.followers.length}</Text>
+          <Text>Following: {profileUser?.following.length}</Text>
           {currentUser?._id === profileUser?._id && (
             <Button onClick={() => navigate("/edit-profile")}>
               Edit Profile
@@ -46,7 +45,7 @@ const ProfilePage = () => {
           )}
         </HStack>
       </Stack>
-    </>
+    </DefaultLayout>
   );
 };
 export default ProfilePage;

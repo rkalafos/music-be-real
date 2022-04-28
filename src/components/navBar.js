@@ -40,7 +40,6 @@ export default function NavBar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack mr= '20px' spacing={8} alignItems={'center'}>
-
             <HStack
               as={'nav'}
               spacing={4}
@@ -54,31 +53,7 @@ export default function NavBar() {
                       textDecoration: 'none',
                       bg: 'gray.200'
                     }}
-                    href= '/'>
-                    Home
-                  </Link>
-                  <Link
-                    px={3}
-                    py={2}
-                    rounded={'md'}
-                    color= 'white'
-                    _hover={{
-                      textDecoration: 'none',
-                      bg: 'gray.200'
-                    }}
-                    href={`/profile/${currentUser._id}`}>
-                    Profile
-                  </Link>
-                  <Link
-                    px={3}
-                    py={2}
-                    rounded={'md'}
-                    color= 'white'
-                    _hover={{
-                      textDecoration: 'none',
-                      bg: 'gray.200'
-                    }}
-                    href= '/search'>
+                    onClick={() => navigate("/search")}>
                     Search
                   </Link>
             </HStack>
@@ -87,12 +62,38 @@ export default function NavBar() {
           <Flex alignItems={'center'}>
             <Box>
               {currentUser?.username ? (
+              <div>
+
+
+
+
+
                 <Button
                   onClick={() => navigate(`/profile/${currentUser._id}`)}
                   mr={4}
+                  mb={2}
                 >
                   View Profile
                 </Button>
+                <Button
+                    mr={4}
+                    mb={2}
+                    colorScheme={"red"}
+                    onClick={() => navigate("/register")}
+                    width='100px'
+                  >
+                    Register
+                  </Button>
+                  <Button
+                    mr={4}
+                    mb={2}
+                    colorScheme={"teal"}
+                    onClick={() => navigate("/login")}
+                    width='100px'
+                  >
+                    Login
+                  </Button>
+              </div>
               ) : (
                 <div>
                   <Button
@@ -130,30 +131,7 @@ export default function NavBar() {
         {isOpen ? (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} width='100px' mt={2} spacing={4}>
-                   <Link
-                                      px={3}
-                                      py={2}
-                                      rounded={'md'}
-                                      color= 'white'
-                                      _hover={{
-                                        textDecoration: 'none',
-                                        bg: 'gray.200'
-                                      }}
-                                      href= '/'>
-                                      Home
-                                    </Link>
-                                    <Link
-                                      px={3}
-                                      py={2}
-                                      rounded={'md'}
-                                      color= 'white'
-                                      _hover={{
-                                        textDecoration: 'none',
-                                        bg: 'gray.200'
-                                      }}
-                                      href= {`/profile/${currentUser._id}`}>
-                                      Profile
-                                    </Link>
+
                                     <Link
                                       px={3}
                                       py={2}
