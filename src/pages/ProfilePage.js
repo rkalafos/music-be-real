@@ -36,13 +36,16 @@ const ProfilePage = () => {
         <HStack>
           <Heading>@{profileUser?.username}</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
-          <Text>Followers: {profileUser?.stats.followers.length}</Text>
-          <Text>Following: {profileUser?.stats.following.length}</Text>
+          <Text>Followers: {profileUser?.followers.length}</Text>
+          <Text>Following: {profileUser?.following.length}</Text>
           {currentUser?._id === profileUser?._id && (
             <Button onClick={() => navigate("/edit-profile")}>
               Edit Profile
             </Button>
           )}
+          <Button onClick={() => navigate("/admin")}>
+            Admin Page
+          </Button>
         </HStack>
       </Stack>
     </DefaultLayout>

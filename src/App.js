@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import AdminPage from "./pages/AdminPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/profile/:profileId" element={<ProfilePage />} />
             <Route path="/details/:did" element={<Details />} />
             <Route path="/search" element={<Search />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </div>
       </BrowserRouter>
