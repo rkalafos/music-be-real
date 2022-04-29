@@ -44,21 +44,22 @@ const Post = ({post}) => {
                                             src={postedBy.avatarImage}
                                             alt={postedBy.username}
                                         />
-                                        <Text>{postedBy.username}</Text>
+                                        <Text color={"teal"}><b>{postedBy.username}</b></Text>
+                                        <Text>{new Date(post.date).toLocaleString()}</Text>
                                     </HStack>
                                     <Spacer/>
                                     {(currentUser?._id === postedBy?._id ||
                                         currentUser?.userType === "admin") && (
-                                        <Center>
-                                            <IconButton
-                                                onClick={() => deletePost(dispatch, post)}
-                                                aria-label="Delete post"
-                                                variant="outline"
-                                                colorScheme="teal"
-                                                size="sm"
-                                                icon={<BiTrash/>}
-                                            />
-                                        </Center>
+                                            <Center>
+                                                <IconButton
+                                                    onClick={() => deletePost(dispatch, post)}
+                                                    aria-label="Delete post"
+                                                    variant="outline"
+                                                    colorScheme="teal"
+                                                    size="sm"
+                                                    icon={<BiTrash/>}
+                                                />
+                                            </Center>
                                     )}
                                 </Stack>
                                 <Box>
