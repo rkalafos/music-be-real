@@ -8,19 +8,42 @@ import {
   HStack,
   Link,
   IconButton,
-  Button,
-  Menu,
-  MenuList,
-  MenuItem,
   useDisclosure,
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
+function navLink (name, url, nav) {
+  return(
+    <Link
+      px={3}
+      py={2}
+      rounded={"md"}
+      color="white"
+      _hover={{
+        textDecoration: "none",
+        bg: "gray.200",
+      }}
+      onClick={() => nav(url)}
+    >
+      {name}
+    </Link>
+  )
+}
+
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser);
+
+  // If you want to add a nav tab, just add the name and link here, then add to the navtab logic below
+  // to determine when it should be seen
+  const searchTab = {name: "Songs", link: "/search"}
+  const profileTab = {name: "Profile", link: `/profile/${currentUser._id}`}
+  const registerTab = {name: "Register", link: "/register"}
+  const loginTab = {name: "Login", link: "/login"}
+
+  const navTabData = Object.keys(currentUser).length === 0 ? [registerTab, loginTab] : [searchTab, profileTab]
 
   return (
     <>
@@ -39,108 +62,15 @@ export default function NavBar() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {currentUser?.username ? (
-                <div>
-                  <Link
-                    px={3}
-                    py={2}
-                    rounded={"md"}
-                    color="white"
-                    _hover={{
-                      textDecoration: "none",
-                      bg: "gray.200",
-                    }}
-                    onClick={() => navigate("/search")}
-                  >
-                    Search
-                  </Link>
-                  <Link
-                    px={3}
-                    py={2}
-                    rounded={"md"}
-                    color="white"
-                    _hover={{
-                      textDecoration: "none",
-                      bg: "gray.200",
-                    }}
-                    onClick={() => navigate(`/profile/${currentUser._id}`)}
-                  >
-                    Profile
-                  </Link>
-                </div>
-              ) : (
-                <div>
-                  <Link
-                    px={3}
-                    py={2}
-                    rounded={"md"}
-                    color="white"
-                    _hover={{
-                      textDecoration: "none",
-                      bg: "gray.200",
-                    }}
-                    onClick={() => navigate("/search")}
-                  >
-                    Search
-                  </Link>
-                </div>
-              )}
+              {navTabData.map((tab) => navLink(tab.name, tab.link, navigate))}
             </HStack>
           </HStack>
-          <Flex alignItems={"center"}>
-            <Box>
-              {currentUser?.username ? (
-                <div></div>
-              ) : (
-                <div>
-                  <Button
-                    mr={4}
-                    mb={2}
-                    colorScheme={"red"}
-                    onClick={() => navigate("/register")}
-                    width="100px"
-                  >
-                    Register
-                  </Button>
-                  <Button
-                    mr={4}
-                    mb={2}
-                    colorScheme={"teal"}
-                    onClick={() => navigate("/login")}
-                    width="100px"
-                  >
-                    Login
-                  </Button>
-                </div>
-              )}
-            </Box>
-
-            <Menu>
-              <MenuList>
-                <MenuItem> </MenuItem>
-                <MenuItem></MenuItem>
-                <MenuItem> </MenuItem>
-              </MenuList>
-            </Menu>
-          </Flex>
         </Flex>
 
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} width="100px" mt={2} spacing={4}>
-              <Link
-                px={3}
-                py={2}
-                rounded={"md"}
-                color="white"
-                _hover={{
-                  textDecoration: "none",
-                  bg: "gray.200",
-                }}
-                href="/search"
-              >
-                Search
-              </Link>
+              {navTabData.map((tab) => navLink(tab.name, tab.link, navigate))}
             </Stack>
           </Box>
         ) : null}
