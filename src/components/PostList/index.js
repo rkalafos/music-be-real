@@ -7,7 +7,6 @@ import Post from "./Post";
 const PostList = () => {
   const currentUser = useSelector((state) => state.currentUser);
   const posts = useSelector((state) => state.posts);
-
   const dispatch = useDispatch();
   useEffect(() => {
     findAllPosts(dispatch);

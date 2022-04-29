@@ -6,7 +6,6 @@ const SongChoice = ({ song }) => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser);
 
-
   return (
     <Box key={song.id} border={"1px"} borderColor={"gray.200"}>
       <Grid templateRows="repeat(1, 1fr)" templateColumns="repeat(5, 1fr)">

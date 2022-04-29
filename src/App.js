@@ -21,7 +21,7 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/edit-profile" element={<EditProfilePage />} />
             <Route path="/profile/:profileId" element={<ProfilePage />} />
-            <Route path="/details/:did" element={<DetailsPage />} />
+            <Route path="/details/:songId" element={<DetailsPage />} />
             <Route path="/search" element={<SearchPage />} />
           </Routes>
         </div>

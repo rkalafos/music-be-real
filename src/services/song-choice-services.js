@@ -22,6 +22,5 @@ export const getSongById = async (songId) => {
             },
         }
     );
-    console.log(response);
-    return response.data.data;
+    return response.data;
 };
