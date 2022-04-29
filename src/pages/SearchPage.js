@@ -38,7 +38,7 @@ const SearchPage = () => {
 
   const onClickSongDetails = (e, song) => {
     e.preventDefault();
-    console.log(song);
+    navigate(`/details/${song.id}`);
   };
 
   const onClickPostSong = (e, song) => {

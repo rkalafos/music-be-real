@@ -10,9 +10,9 @@ export const searchSongs = async (dispatch, query) => {
 };
 
 export const getSongById = async (dispatch, id) => {
-  const songChoices = await service.getSongById(id);
+  const song = await service.getSongById(id);
   dispatch({
     type: GET_SONG_BY_ID,
-    songChoices,
+    song,
   });
 };
