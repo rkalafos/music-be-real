@@ -1,5 +1,5 @@
 import {DefaultLayout} from "../layouts/DefaultLayout";
-import {Box, Button, Heading, Text, useColorModeValue} from "@chakra-ui/react";
+import {Box, Button, Grid, GridItem, Heading, Image, Text, useColorModeValue} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
 import {getSongById} from "../actions/song-choice-actions";
@@ -31,19 +31,31 @@ const DetailsPage = () => {
                     songDetails?.title &&
                     <div>
                         <Heading color={"teal"}>{songDetails.title}</Heading>
-                        <Text>{songDetails.artist.name}</Text>
-                        <img src={songDetails.artist.picture} alt={songDetails.artist.name}/>
-                        <Text>{songDetails.album.title}</Text>
-                        <img src={songDetails.album.cover} alt={songDetails.album.title}/>
-                        <Text>{Math.floor(songDetails.duration / 60)}:{(songDetails.duration % 60).toString().padStart(2, '0')}</Text>
-
-                        <audio controls>
-                            <source src={songDetails.preview} type="audio/mpeg"/>
-                            Preview the song
-                        </audio>
+                        <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={4}>
+                            <GridItem>
+                                <Text><b>Artist</b></Text>
+                                <Text>{songDetails.artist.name}</Text>
+                                <Image src={songDetails.artist.picture} alt={songDetails.artist.name}/>
+                            </GridItem>
+                            <GridItem>
+                                <Text><b>Album</b></Text>
+                                <Text>{songDetails.album.title}</Text>
+                                <Image src={songDetails.album.cover} alt={songDetails.album.title}/>
+                            </GridItem>
+                            <GridItem>
+                                <Text><b>Song Preview</b></Text>
+                                <Text>Total duration: {Math.floor(songDetails.duration / 60)}:{(songDetails.duration % 60).toString().padStart(2, '0')}</Text>
+                                <audio controls>
+                                    <source src={songDetails.preview} type="audio/mpeg"/>
+                                    Browser does not support audio playback
+                                </audio>
+                            </GridItem>
+                            <GridItem>
+                                <Button>Create post</Button>
+                            </GridItem>
+                        </Grid>
                     </div>
                 }
-                <Button>Create post</Button>
             </Box>
         </DefaultLayout>
     );
