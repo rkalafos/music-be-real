@@ -13,3 +13,11 @@ export const searchSongs = async (query) => {
   const response = await axios.request(options);
   return response.data.data;
 };
+
+export const getSongById = async (tid) => {
+  const response = await axios.get(`https://deezerdevs-deezer.p.rapidapi.com/track/${tid}`, {
+    'X-RapidAPI-Key': '9e7ec89eeamsh369e290f825803dp11db61jsn9fc863111477'
+  });
+  console.log(response);
+  return response.data.data;
+}
