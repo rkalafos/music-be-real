@@ -29,7 +29,7 @@ const SongChoice = ({ song, onClickSongDetails, onClickPostSong }) => {
         </GridItem>
         {loggedIn ? (
           <GridItem>
-            <Button m={2} onClick={(e) => onClickPostSong(e, song)}>
+            <Button m={2} onClick={(e, ) => onClickPostSong(e, song)}>
               Post Song
             </Button>
           </GridItem>

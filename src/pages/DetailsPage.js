@@ -1,12 +1,17 @@
 import {DefaultLayout} from "../layouts/DefaultLayout";
-import {Box, Button, Grid, GridItem, Heading, Image, Text, useColorModeValue} from "@chakra-ui/react";
+import {Box, Button, Grid, GridItem, Heading, Image, Text, useColorModeValue, useDisclosure} from "@chakra-ui/react";
 import {useDispatch, useSelector} from "react-redux";
-import {useParams} from "react-router";
+import {useNavigate, useParams} from "react-router";
 import {getSongById} from "../actions/song-choice-actions";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
+import {createPost} from "../actions/post-actions";
+import PostSongModal from "../components/postSongModal";
 
 const DetailsPage = () => {
     const currentUser = useSelector((state) => state.currentUser);
+    const [songToPost, setSongToPost] = useState({});
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const navigate = useNavigate();
     const {songId} = useParams();
     const dispatch = useDispatch();
     const songDetails = useSelector((state) => state.songChoices.track);
@@ -14,8 +19,34 @@ const DetailsPage = () => {
         getSongById(dispatch, songId);
     }, [dispatch, songId]);
 
+    const onClickPostSong = (e, songDetails) => {
+        e.preventDefault();
+        setSongToPost(songDetails);
+        onOpen();
+    };
+
+    const onPostSong = (caption) => {
+        const post = {
+            userId: currentUser._id,
+            caption: caption,
+            song_title: songToPost.title,
+            track_id: songToPost.id,
+            artist_name: songToPost.artist.name,
+            album_cover: songToPost.album.cover_medium,
+            album_name: songToPost.album.title,
+        };
+        createPost(dispatch, post).then(() => navigate("/"));
+    };
+
     return (
         <DefaultLayout>
+            <PostSongModal
+                onOpen={onOpen}
+                onClose={onClose}
+                isOpen={isOpen}
+                song={songToPost}
+                onPost={onPostSong}
+            />
             <Box
                 align={"center"}
                 justify={"center"}
@@ -62,7 +93,7 @@ const DetailsPage = () => {
                                 <Text>{songDetails.explicit_lyrics ? "Explicit lyrics!!! (be safe)" : "No explicit lyrics"}</Text>
                                 {
                                     currentUser?.username ? (
-                                        <Button m={2}>Post Song</Button>
+                                        <Button m={2} onClick={(e, ) => onClickPostSong(e, songDetails)}>Post Song</Button>
                                     ) : (
                                         <Text m={2}><b>Join to post!</b></Text>
                                     )
