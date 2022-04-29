@@ -20,16 +20,16 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/profile/:profileId" element={<ProfilePage />} />
             <Route path="/edit-profile" element={<EditProfilePage />} />
-            <Route path="/details/:did" element={<Details />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/details/:did" element={<DetailsPage />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/admin" element={<AdminPage />} />
-
           </Routes>
         </div>
       </BrowserRouter>
     </ChakraProvider>
-  );1
+  );
 }
 
 export default App;

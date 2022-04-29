@@ -13,8 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
-function navLink (name, url, nav) {
-  return(
+function navLink(name, url, nav) {
+  return (
     <Link
       px={3}
       py={2}
@@ -28,7 +28,7 @@ function navLink (name, url, nav) {
     >
       {name}
     </Link>
-  )
+  );
 }
 
 export default function NavBar() {
@@ -38,12 +38,15 @@ export default function NavBar() {
 
   // If you want to add a nav tab, just add the name and link here, then add to the navtab logic below
   // to determine when it should be seen
-  const searchTab = {name: "Songs", link: "/search"}
-  const profileTab = {name: "Profile", link: `/profile/${currentUser._id}`}
-  const registerTab = {name: "Register", link: "/register"}
-  const loginTab = {name: "Login", link: "/login"}
+  const searchTab = { name: "Songs", link: "/search" };
+  const profileTab = { name: "Profile", link: `/profile/${currentUser._id}` };
+  const registerTab = { name: "Register", link: "/register" };
+  const loginTab = { name: "Login", link: "/login" };
 
-  const navTabData = Object.keys(currentUser).length === 0 ? [registerTab, loginTab] : [searchTab, profileTab]
+  const navTabData =
+    Object.keys(currentUser).length === 0
+      ? [registerTab, loginTab]
+      : [searchTab, profileTab];
 
   return (
     <>
