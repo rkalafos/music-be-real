@@ -36,7 +36,7 @@ const ProfilePage = () => {
         my={12}
       >
         <HStack>
-          <Heading>@{profileUser?.username}</Heading>
+          <Heading color="black">@{profileUser?.username}</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
           <Text>Followers: {profileUser?.followers.length}</Text>
           <Text>Following: {profileUser?.following.length}</Text>

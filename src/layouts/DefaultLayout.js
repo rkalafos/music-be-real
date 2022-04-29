@@ -1,25 +1,13 @@
 import React from "react";
-import { Box, Center, Stack, VStack } from "@chakra-ui/react";
 import { Header } from "../components/Header";
 import { Blur } from "../components/Blur";
-
+import { Nav, Navbar, Container } from 'react-bootstrap';
+import { Box, VStack, Stack, Center } from "@chakra-ui/react";
 export const DefaultLayout = ({ children }) => {
   return (
+
     <Box position={"relative"}>
-      <VStack
-        w={"full"}
-        h={"100%"}
-        align={"center"}
-        position={"fixed"}
-        overflowY={"auto"}
-        sx={{
-          "::-webkit-scrollbar": {
-            display: "none",
-          },
-          webkitOverflowScrolling: "touch",
-        }}
-        pb={"1$"}
-      >
+      <VStack>
         <Header />
         <Stack as={Center} direction={"row"} w={"100%"}>
           {children}
