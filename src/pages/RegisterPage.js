@@ -53,9 +53,9 @@ const RegisterPage = () => {
           }}
           onSubmit={(values, { setSubmitting }) => {
             setTimeout(() => {
-              alert(JSON.stringify(values));
               createUser(dispatch, values);
               setSubmitting(false);
+              navigate("/login");
             }, 400);
           }}
         >
@@ -72,7 +72,6 @@ const RegisterPage = () => {
                 )}
               </Field>
               <ErrorMessage name="username" component="div" />
-
               <Field name="firstname">
                 {({ field, form }) => (
                   <Input
@@ -84,7 +83,6 @@ const RegisterPage = () => {
                 )}
               </Field>
               <ErrorMessage name="firstname" component="div" />
-
               <Field name="lastname">
                 {({ field, form }) => (
                   <Input
@@ -96,7 +94,6 @@ const RegisterPage = () => {
                 )}
               </Field>
               <ErrorMessage name="lastname" component="div" />
-
               <Field name="email">
                 {({ field, form }) => (
                   <Input

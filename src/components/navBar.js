@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import {
@@ -12,11 +12,12 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
+import { logoutUser } from "../actions/current-user-actions";
 
-function navLink(name, url, nav) {
+function NavLink(tab) {
   return (
     <Link
-      key={name}
+      key={tab.name}
       px={3}
       py={2}
       rounded={"md"}
@@ -25,9 +26,9 @@ function navLink(name, url, nav) {
         textDecoration: "none",
         bg: "gray.200",
       }}
-      onClick={() => nav(url)}
+      onClick={tab.onClick}
     >
-      {name}
+      {tab.name}
     </Link>
   );
 }
@@ -36,18 +37,32 @@ export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser);
+  const dispatch = useDispatch();
 
   // If you want to add a nav tab, just add the name and link here, then add to the navtab logic below
   // to determine when it should be seen
-  const searchTab = { name: "Songs", link: "/search" };
-  const profileTab = { name: "Profile", link: `/profile/${currentUser._id}` };
-  const registerTab = { name: "Register", link: "/register" };
-  const loginTab = { name: "Login", link: "/login" };
+  const searchTab = { name: "Songs", onClick: () => navigate("/search") };
+  const profileTab = {
+    name: "Profile",
+    onClick: () => navigate(`/profile/${currentUser._id}`),
+  };
+  const registerTab = {
+    name: "Register",
+    onClick: () => navigate("/register"),
+  };
+  const loginTab = { name: "Login", onClick: () => navigate("/login") };
+  const logoutTab = {
+    name: "Log out",
+    onClick: () => {
+      logoutUser(dispatch);
+      navigate("/");
+    },
+  };
 
   const navTabData =
     Object.keys(currentUser).length === 0
       ? [registerTab, loginTab]
-      : [searchTab, profileTab];
+      : [searchTab, profileTab, logoutTab];
 
   return (
     <>
@@ -66,15 +81,14 @@ export default function NavBar() {
               spacing={4}
               display={{ base: "none", md: "flex" }}
             >
-              {navTabData.map((tab) => navLink(tab.name, tab.link, navigate))}
+              {navTabData.map((tab) => NavLink(tab))}
             </HStack>
           </HStack>
         </Flex>
-
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} width="100px" mt={2} spacing={4}>
-              {navTabData.map((tab) => navLink(tab.name, tab.link, navigate))}
+              {navTabData.map((tab) => NavLink(tab))}
             </Stack>
           </Box>
         ) : null}
