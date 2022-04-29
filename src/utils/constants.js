@@ -15,6 +15,5 @@ export const REMOVE_USER = "REMOVE_USER";
 export const UPDATE_USER = "UPDATE_USER";
 
 export const USERS_API = "http://localhost:8000/api/users";
-export const API_BASE =
-  process.env.REACT_APP_API_BASE || "http://localhost:8000/api";
+export const API_BASE ="http://localhost:8000/api";
 export const POSTS_API = `${API_BASE}/posts`;
