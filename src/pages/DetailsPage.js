@@ -31,7 +31,7 @@ const DetailsPage = () => {
                     songDetails?.title &&
                     <div>
                         <Heading color={"teal"}>{songDetails.title}</Heading>
-                        <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={4}>
+                        <Grid templateRows="repeat(2, 1fr)" templateColumns="repeat(2, 1fr)" gap={6}>
                             <GridItem>
                                 <Text><b>Artist</b></Text>
                                 <Text>{songDetails.artist.name}</Text>
@@ -51,7 +51,21 @@ const DetailsPage = () => {
                                 </audio>
                             </GridItem>
                             <GridItem>
-                                <Button>Create post</Button>
+                                <Text><b>Song Details</b></Text>
+                                <Text> Released {new Date(songDetails.release_date).toDateString()}</Text>
+                                {/*some issues of missing bpm for newer songs*/}
+                                {songDetails.bpm !== 0 &&
+                                    <Text>This song has a BPM
+                                        of {songDetails.bpm}{songDetails.bpm > 100 ? "! Get dancin'!" : ". This might be a downer."}</Text>
+                                }
+                                <Text>{songDetails.explicit_lyrics ? "Explicit lyrics!!! (be safe)" : "No explicit lyrics"}</Text>
+                                {
+                                    currentUser?.username ? (
+                                        <Button m={2}>Post Song</Button>
+                                    ) : (
+                                        <Text m={2}><b>Join to post!</b></Text>
+                                    )
+                                }
                             </GridItem>
                         </Grid>
                     </div>
