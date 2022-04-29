@@ -4,7 +4,6 @@ import { Blur } from "../components/Blur";
 import { Box, VStack, Stack, Center } from "@chakra-ui/react";
 export const DefaultLayout = ({ children }) => {
   return (
-
     <Box position={"relative"}>
       <VStack>
         <Header />

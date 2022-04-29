@@ -1,9 +1,10 @@
-import React from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
+import { Heading } from "@chakra-ui/react";
+
 const DetailsPage = () => {
   return (
     <DefaultLayout>
-      <h1 style={{ color: "white" }}>Details Page</h1>
+      <Heading>Details Page</Heading>
     </DefaultLayout>
   );
 };
