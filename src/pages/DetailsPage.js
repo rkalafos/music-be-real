@@ -44,7 +44,8 @@ const DetailsPage = () => {
                             </GridItem>
                             <GridItem>
                                 <Text><b>Song Preview</b></Text>
-                                <Text>Total duration: {Math.floor(songDetails.duration / 60)}:{(songDetails.duration % 60).toString().padStart(2, '0')}</Text>
+                                <Text>Total
+                                    duration: {Math.floor(songDetails.duration / 60)}:{(songDetails.duration % 60).toString().padStart(2, '0')}</Text>
                                 <audio controls>
                                     <source src={songDetails.preview} type="audio/mpeg"/>
                                     Browser does not support audio playback
