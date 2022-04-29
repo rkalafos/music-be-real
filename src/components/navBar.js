@@ -41,7 +41,10 @@ export default function NavBar() {
 
   // If you want to add a nav tab, just add the name and link here, then add to the navtab logic below
   // to determine when it should be seen
-  const searchTab = { name: "Songs", onClick: () => navigate("/search") };
+  const searchTab = {
+    name: "Songs",
+    onClick: () => navigate("/search")
+  };
   const profileTab = {
     name: "Profile",
     onClick: () => navigate(`/profile/${currentUser._id}`),
@@ -50,7 +53,10 @@ export default function NavBar() {
     name: "Register",
     onClick: () => navigate("/register"),
   };
-  const loginTab = { name: "Login", onClick: () => navigate("/login") };
+  const loginTab = {
+    name: "Login",
+    onClick: () => navigate("/login")
+  };
   const logoutTab = {
     name: "Log out",
     onClick: () => {
@@ -61,7 +67,7 @@ export default function NavBar() {
 
   const navTabData =
     Object.keys(currentUser).length === 0
-      ? [registerTab, loginTab]
+      ? [searchTab, registerTab, loginTab]
       : [searchTab, profileTab, logoutTab];
 
   return (
