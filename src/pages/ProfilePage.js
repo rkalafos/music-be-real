@@ -11,6 +11,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
+import PostList from "../components/PostList";
 
 const ProfilePage = () => {
   const navigate = useNavigate();
@@ -34,7 +35,7 @@ const ProfilePage = () => {
         my={12}
       >
         <HStack>
-          <Heading>@{profileUser?.username}</Heading>
+          <Heading color="black">@{profileUser?.username}</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
           <Text>Followers: {profileUser?.followers.length}</Text>
           <Text>Following: {profileUser?.following.length}</Text>
@@ -47,6 +48,7 @@ const ProfilePage = () => {
             Admin Page
           </Button>
         </HStack>
+        <PostList />
       </Stack>
     </DefaultLayout>
   );

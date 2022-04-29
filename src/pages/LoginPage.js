@@ -8,6 +8,8 @@ import { loginUser } from "../actions/current-user-actions";
 import { getAllUsers } from "../actions/user-actions";
 
 const LoginPage = () => {
+  // TODO: Re-enable button after failed login attempt
+  // To recreate: put in fake username and password
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [showLoginError, setLoginError] = useState(false);
