@@ -92,7 +92,7 @@ const EditProfilePage = () => {
                 return errors;
               }}
               onSubmit={(values) => {
-                updateUser(dispatch, values).catch(() => setSaveError(true));
+                updateUser(dispatch, {...values, "_id": currentUser._id }).catch(() => setSaveError(true));
               }}
             >
               {({ isSubmitting }) => (
