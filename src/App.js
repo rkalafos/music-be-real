@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
+import AdminPage from "./pages/AdminPage";
 import SearchPage from "./pages/SearchPage";
 import DetailsPage from "./pages/DetailsPage";
 
@@ -19,10 +20,11 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/edit-profile" element={<EditProfilePage />} />
             <Route path="/profile/:profileId" element={<ProfilePage />} />
+            <Route path="/edit-profile" element={<EditProfilePage />} />
             <Route path="/details/:songId" element={<DetailsPage />} />
             <Route path="/search" element={<SearchPage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </div>
       </BrowserRouter>
