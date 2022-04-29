@@ -1,4 +1,4 @@
-import { Heading, HStack, Grid, GridItem } from "@chakra-ui/react";
+import { Heading, Grid, GridItem } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import NavBar from "./navBar";
 

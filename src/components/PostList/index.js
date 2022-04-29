@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllPosts} from '../../actions/post-actions';
-import {Stack, Heading} from '@chakra-ui/react'
+import {Stack} from '@chakra-ui/react'
 import Post from './Post';
 
 const PostList = () => {

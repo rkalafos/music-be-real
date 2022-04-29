@@ -1,7 +1,6 @@
 import React from "react";
 import { Header } from "../components/Header";
 import { Blur } from "../components/Blur";
-import { Nav, Navbar, Container } from 'react-bootstrap';
 import { Box, VStack, Stack, Center } from "@chakra-ui/react";
 export const DefaultLayout = ({ children }) => {
   return (
