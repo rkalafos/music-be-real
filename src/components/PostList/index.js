@@ -26,7 +26,6 @@ function filterPosts(posts, user) {
 const PostList = () => {
   const currentUser = useSelector((state) => state.currentUser);
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
   const filteredPosts = filterPosts(posts, currentUser);
   const dispatch = useDispatch();
   useEffect(() => {

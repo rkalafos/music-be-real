@@ -1,8 +1,11 @@
 import { Grid, GridItem, Text, Image, Box, Button } from "@chakra-ui/react";
+import { useSelector } from "react-redux";
 
-const SongChoice = ({ song }) => {
+const SongChoice = ({ song, onClickSongDetails, onClickPostSong }) => {
+  const currentUser = useSelector((state) => state.currentUser);
+  const loggedIn = Object.keys(currentUser).length > 0;
   return (
-    <Box key={song.id} border={"1px"} borderColor={"gray.200"}>
+    <Box border={"1px"} borderColor={"gray.200"}>
       <Grid templateRows="repeat(1, 1fr)" templateColumns="repeat(5, 1fr)">
         <GridItem>
           <Image
@@ -20,11 +23,17 @@ const SongChoice = ({ song }) => {
           <Text m={2}>{song.artist.name}</Text>
         </GridItem>
         <GridItem>
-          <Button m={2}>Song Details</Button>
+          <Button m={2} onClick={(e) => onClickSongDetails(e, song)}>
+            Song Details
+          </Button>
         </GridItem>
-        <GridItem>
-          <Button m={2}>Post Song</Button>
-        </GridItem>
+        {loggedIn && (
+          <GridItem>
+            <Button m={2} onClick={(e) => onClickPostSong(e, song)}>
+              Post Song
+            </Button>
+          </GridItem>
+        )}
       </Grid>
     </Box>
   );

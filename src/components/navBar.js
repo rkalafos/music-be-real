@@ -16,6 +16,7 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 function navLink(name, url, nav) {
   return (
     <Link
+      key={name}
       px={3}
       py={2}
       rounded={"md"}
