@@ -9,8 +9,7 @@ import ProfilePage from "./pages/ProfilePage";
 import EditProfilePage from "./pages/EditProfilePage";
 import SearchPage from "./pages/SearchPage";
 import DetailsPage from "./pages/DetailsPage";
-import './vendors/bootstrap/css/bootstrap.min.css';
-import './vendors/bootstrap/bootstrap.min.css';
+
 function App() {
   return (
     <ChakraProvider theme={MBRTheme}>
