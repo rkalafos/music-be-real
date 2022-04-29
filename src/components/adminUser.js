@@ -8,6 +8,7 @@ const AdminUser = (props) => {
     const dispatch = useDispatch();
 
     const handleMakeAdmin = () => {
+        // TODO: Need to make update suer work
         updateUser(dispatch, {"_id": props.user._id, "userType": "admin"})
     }
 
