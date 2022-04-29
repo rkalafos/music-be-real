@@ -6,28 +6,27 @@ import React from "react";
 export const Header = () => {
   const navigate = useNavigate();
   return (
-  <Grid
-    h='200px'
-    templateRows='repeat(2, 1fr)'
-    templateColumns='repeat(5, 1fr)'
-    gap={4}
-  >
-    <GridItem colSpan={1}>
-              <Heading
-                onClick={() => navigate("/")}
-                color={"white"}
-                fontWeight={600}
-                fontSize={{ base: "4xl", sm: "4xl", md: "4xl" }}
-                lineHeight={1.2}
-                opacity={"100%"}
-                mt= {10}
-              >
-                MusicBeReal.
-              </Heading>
-    </GridItem>
-    <GridItem colSpan={4}>
-         <NavBar />
-    </GridItem>
-  </Grid>
+    <Grid
+      templateRows="repeat(1, 1fr)"
+      templateColumns="repeat(5, 1fr)"
+      gap={4}
+    >
+      <GridItem colSpan={1}>
+        <Heading
+          onClick={() => navigate("/")}
+          color={"white"}
+          fontWeight={600}
+          fontSize={{ base: "5xl", sm: "5xl", md: "5xl" }}
+          lineHeight={1.5}
+          opacity={"100%"}
+          mt={10}
+        >
+          MusicBeReal.
+        </Heading>
+      </GridItem>
+      <GridItem colSpan={4}>
+        <NavBar />
+      </GridItem>
+    </Grid>
   );
 };

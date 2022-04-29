@@ -11,8 +11,6 @@ import PostList from "../components/PostList";
 import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  // TODO: Make responsive
-  // TODO: Change content based on logged in or not
   const currentUser = useSelector((state) => state.currentUser);
   return (
     <DefaultLayout>
@@ -38,9 +36,7 @@ const HomePage = () => {
           spacing={4}
           p={6}
           m={4}
-        >
-          <PostList />
-        </VStack>
+        ></VStack>
       </HStack>
     </DefaultLayout>
   );

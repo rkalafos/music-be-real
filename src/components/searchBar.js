@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { searchSongs } from "../actions/song-choice-actions";
 import { useDispatch, useSelector } from "react-redux";
-import { Input, UnorderedList } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import SongChoice from "./songChoice";
 
 const SearchBar = () => {

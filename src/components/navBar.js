@@ -1,100 +1,96 @@
-import React, { useEffect, useState, ReactNode } from "react";
-import { searchSongs } from "../actions/song-choice-actions";
-import { useDispatch, useSelector } from "react-redux";
-import { Nav, Navbar, Container } from 'react-bootstrap';
+import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
 import {
   Box,
   Flex,
-  Avatar,
   HStack,
   Link,
   IconButton,
   Button,
   Menu,
-  MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
   useDisclosure,
-  useColorModeValue,
   Stack,
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
+} from "@chakra-ui/react";
+import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-    const navigate = useNavigate();
-    const currentUser = useSelector((state) => state.currentUser);
+  const navigate = useNavigate();
+  const currentUser = useSelector((state) => state.currentUser);
 
   return (
     <>
       <Box mt={8} px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <IconButton
-            size={'md'}
+            size={"md"}
             icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
+            aria-label={"Open Menu"}
+            display={{ md: "none" }}
             onClick={isOpen ? onClose : onOpen}
           />
-          <HStack mr= '20px' spacing={8} alignItems={'center'}>
+          <HStack mr="20px" spacing={8} alignItems={"center"}>
             <HStack
-              as={'nav'}
+              as={"nav"}
               spacing={4}
-              display={{ base: 'none', md: 'flex' }}>
+              display={{ base: "none", md: "flex" }}
+            >
               {currentUser?.username ? (
-              <div>
+                <div>
                   <Link
                     px={3}
                     py={2}
-                    rounded={'md'}
-                    color= 'white'
+                    rounded={"md"}
+                    color="white"
                     _hover={{
-                      textDecoration: 'none',
-                      bg: 'gray.200'
+                      textDecoration: "none",
+                      bg: "gray.200",
                     }}
-                    onClick={() => navigate("/search")}>
+                    onClick={() => navigate("/search")}
+                  >
                     Search
                   </Link>
                   <Link
                     px={3}
                     py={2}
-                    rounded={'md'}
-                    color= 'white'
+                    rounded={"md"}
+                    color="white"
                     _hover={{
-                      textDecoration: 'none',
-                      bg: 'gray.200'
+                      textDecoration: "none",
+                      bg: "gray.200",
                     }}
-                    onClick={() => navigate(`/profile/${currentUser._id}`)}>
+                    onClick={() => navigate(`/profile/${currentUser._id}`)}
+                  >
                     Profile
                   </Link>
-                  </div>
+                </div>
               ) : (
-              <div>
-                <Link
+                <div>
+                  <Link
                     px={3}
                     py={2}
-                    rounded={'md'}
-                    color= 'white'
+                    rounded={"md"}
+                    color="white"
                     _hover={{
-                      textDecoration: 'none',
-                      bg: 'gray.200'
+                      textDecoration: "none",
+                      bg: "gray.200",
                     }}
-                    onClick={() => navigate("/search")}>
+                    onClick={() => navigate("/search")}
+                  >
                     Search
                   </Link>
-                  </div>
-               )}
+                </div>
+              )}
             </HStack>
-
           </HStack>
-          <Flex alignItems={'center'}>
+          <Flex alignItems={"center"}>
             <Box>
               {currentUser?.username ? (
-              <div>
-              </div>
+                <div></div>
               ) : (
                 <div>
                   <Button
@@ -102,7 +98,7 @@ export default function NavBar() {
                     mb={2}
                     colorScheme={"red"}
                     onClick={() => navigate("/register")}
-                    width='100px'
+                    width="100px"
                   >
                     Register
                   </Button>
@@ -111,7 +107,7 @@ export default function NavBar() {
                     mb={2}
                     colorScheme={"teal"}
                     onClick={() => navigate("/login")}
-                    width='100px'
+                    width="100px"
                   >
                     Login
                   </Button>
@@ -130,21 +126,21 @@ export default function NavBar() {
         </Flex>
 
         {isOpen ? (
-          <Box pb={4} display={{ md: 'none' }}>
-            <Stack as={'nav'} width='100px' mt={2} spacing={4}>
-
-                                    <Link
-                                      px={3}
-                                      py={2}
-                                      rounded={'md'}
-                                      color= 'white'
-                                      _hover={{
-                                        textDecoration: 'none',
-                                        bg: 'gray.200'
-                                      }}
-                                      href= 'search'>
-                                      Search
-                                    </Link>
+          <Box pb={4} display={{ md: "none" }}>
+            <Stack as={"nav"} width="100px" mt={2} spacing={4}>
+              <Link
+                px={3}
+                py={2}
+                rounded={"md"}
+                color="white"
+                _hover={{
+                  textDecoration: "none",
+                  bg: "gray.200",
+                }}
+                href="/search"
+              >
+                Search
+              </Link>
             </Stack>
           </Box>
         ) : null}

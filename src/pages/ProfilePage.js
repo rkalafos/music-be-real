@@ -13,7 +13,6 @@ import {
 import { CheckCircleIcon } from "@chakra-ui/icons";
 import PostList from "../components/PostList";
 
-
 const ProfilePage = () => {
   const navigate = useNavigate();
   const currentUser = useSelector((state) => state.currentUser);
