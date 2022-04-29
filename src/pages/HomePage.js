@@ -1,42 +1,49 @@
 import React from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
-import { Heading, HStack, Grid, GridItem } from "@chakra-ui/react";
-import { useNavigate } from "react-router";
+import {
+  Button,
+  HStack,
+  VStack,
+  useColorModeValue,
+  Heading,
+} from "@chakra-ui/react";
 import PostList from "../components/PostList";
 import { useSelector } from "react-redux";
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  // TODO: Make responsive
+  // TODO: Change content based on logged in or not
   const currentUser = useSelector((state) => state.currentUser);
   return (
-  <DefaultLayout>
-  <Grid
-    h='200px'
-    templateRows='repeat(2, 1fr)'
-    templateColumns='repeat(5, 1fr)'
-    gap={4}
-  >
-    <GridItem colSpan={6} bg="white">
-          {currentUser?.username ? (
-            <PostList />
-          ) : (
-            <div>Join MusicBeReal to enjoy all the perks!</div>
-          )}
-    </GridItem>
-  </Grid>
-</ DefaultLayout>
+    <DefaultLayout>
+      <HStack w={"full"}>
+        <VStack
+          w={"35%"}
+          bg={useColorModeValue("white", "gray.700")}
+          rounded={"xl"}
+          boxShadow={"lg"}
+          spacing={4}
+          p={6}
+          m={4}
+        >
+          <Heading>@{currentUser.username}</Heading>
+          <Button>Edit Profile</Button>
+          <Button>Create Post</Button>
+        </VStack>
+        <VStack
+          w={"60%"}
+          bg={useColorModeValue("white", "gray.700")}
+          rounded={"xl"}
+          boxShadow={"lg"}
+          spacing={4}
+          p={6}
+          m={4}
+        >
+          <PostList />
+        </VStack>
+      </HStack>
+    </DefaultLayout>
   );
 };
 
 export default HomePage;
-
-
-//
-//      {/*
-//            !token ?
-//                <a href={`${REACT_APP_AUTHORIZE_URL}?client_id=${REACT_APP_CLIENT_ID}&redirect_uri=${REACT_APP_REDIRECT_URL}&response_type=${RESPONSE_TYPE}`}>
-//                    <h1 style={{color:'white'}}> Login to Spotify </h1>
-//                </a> : <div>Logged in!</div>
-//                */}
-
-// export default HomePage;
