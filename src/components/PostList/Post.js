@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {deletePost} from "../../actions/post-actions";
+import {updateUser} from "../../actions/user-actions";
 
 import {
     Box,
@@ -49,11 +50,30 @@ const Post = ({post}) => {
                                         {(currentUser?._id !== postedBy?._id) && (
                                             <div>
                                                 {currentUser?.following?.indexOf(postedBy?._id) > -1 ? (
-                                                    <Button>
+                                                    <Button onClick={() => {
+                                                     updateUser(dispatch, {
+                                                        ...currentUser,
+                                                        following: currentUser.following.push(postedBy?._id)
+                                                      })
+
+                                                     updateUser(dispatch, {
+                                                        ...postedBy,
+                                                        followers: postedBy.followers.push(currentUser?._id)
+                                                      })
+                                                      }}>
                                                         Follow
                                                     </Button>
                                                 ):(
-                                                    <Button>
+                                                    <Button onClick={() => {
+                                                     updateUser(dispatch, {
+                                                        ...currentUser,
+                                                        following: currentUser.following.filter(id => id !== postedBy?._id)
+                                                      })
+                                                     updateUser(dispatch, {
+                                                        ...postedBy,
+                                                        followers: postedBy.followers.filter(id => id !== currentUser?._id)
+                                                      })
+                                                      }}>
                                                         Unfollow
                                                     </Button>
                                                 )}
