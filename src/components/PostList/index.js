@@ -6,9 +6,14 @@ import Post from "./Post";
 
 function filterPosts(posts, user) {
   const currentRoute = window.location.pathname.split("/");
+  // If there are no posts, return an empty array
   if (Object.keys(posts).length === 0) {
     return [];
-  } else {
+  } // If the user is not logged in, return the 5 latest posts
+  else if (Object.keys(user).length === 0) {
+    return posts.slice(0, 5);
+  } // Otherwise, return the posts based on the user
+  else {
     return posts?.filter((post) => {
       if (currentRoute[1] === "profile") {
         return post.userId === currentRoute[2];
