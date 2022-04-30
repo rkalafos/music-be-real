@@ -1,6 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deletePost} from "../../actions/post-actions";
+import {deletePost, updatePost} from "../../actions/post-actions";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
+
 
 import {
     Box,
@@ -22,6 +25,41 @@ const Post = ({post}) => {
     const postedBy = useSelector((state) =>
         state.allUsers.find((user) => user?._id === post.userId)
     );
+    const [liked, setLiked] = useState(post.liked.includes(currentUser?._id));
+    const [disliked, setDisliked] = useState(post.disliked.includes(currentUser?._id));
+
+
+    const onClickLikeSong = (e) => {
+        e.preventDefault();
+        setLiked(!liked);
+        if (liked) {
+            updatePost(dispatch, {
+                ...post,
+                liked: [...post.liked, currentUser._id]
+            });
+        } else {
+            updatePost(dispatch, {
+                ...post,
+                liked: post.liked.filter((value) => value._id !== currentUser._id)
+            });
+        }
+    }
+
+    const onClickDislikeSong = (e) => {
+        e.preventDefault();
+        setDisliked(!disliked);
+        if (disliked) {
+            updatePost(dispatch, {
+                ...post,
+                disliked: [...post.disliked, currentUser._id]
+            });
+        } else {
+            updatePost(dispatch, {
+                ...post,
+                disliked: post.disliked.filter((value) => value._id !== currentUser._id)
+            });
+        }
+    }
 
     return (
         <>
@@ -68,6 +106,16 @@ const Post = ({post}) => {
                                         <b>{post.song_title}</b> {post.artist_name}{" "}
                                     </p>
                                     <Text style={{color: "black"}}>{post.caption}</Text>
+                                    <HStack spacing={4} alignItems="center">
+                                        <span onClick={(e) => onClickLikeSong(e)}>
+                                            <FontAwesomeIcon icon={faThumbsUp} color={liked ? 'teal' : 'black'} />
+                                            <Text>{post.liked.length}</Text>
+                                        </span>
+                                        <span onClick={(e) => onClickDislikeSong(e)}>
+                                            <FontAwesomeIcon icon={faThumbsDown} color={disliked ? 'teal' : 'black'} />
+                                            <Text>{post.disliked.length}</Text>
+                                        </span>
+                                    </HStack>
                                 </Box>
                             </Stack>
                         </Stack>

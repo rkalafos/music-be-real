@@ -12,6 +12,8 @@ function filterPosts(posts, user) {
     return posts?.filter((post) => {
       if (currentRoute[1] === "profile") {
         return post.userId === currentRoute[2];
+      } else if (currentRoute[1] === "details") {
+        return post.track_id.toString() === currentRoute[2];
       } else {
         return !!(
           user.userType === "admin" ||
@@ -31,6 +33,7 @@ const PostList = () => {
   useEffect(() => {
     findAllPosts(dispatch);
   }, [dispatch, posts]);
+  console.log(filteredPosts);
 
   return (
     <Stack spacing={4} w={"full"} p={6} my={12}>
@@ -39,8 +42,7 @@ const PostList = () => {
           filteredPosts.map((post) => <Post key={post._id} post={post} />)
         ) : (
           <Text>
-            No available posts. Follow users to see their posts or create your
-            own!
+            No available posts.
           </Text>
         )}
       </div>

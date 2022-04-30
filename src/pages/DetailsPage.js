@@ -6,6 +6,7 @@ import {getSongById} from "../actions/song-choice-actions";
 import React, {useEffect, useState} from "react";
 import {createPost} from "../actions/post-actions";
 import PostSongModal from "../components/postSongModal";
+import PostList from "../components/PostList";
 
 const DetailsPage = () => {
     const currentUser = useSelector((state) => state.currentUser);
@@ -100,6 +101,7 @@ const DetailsPage = () => {
                                 }
                             </GridItem>
                         </Grid>
+                        <PostList/>
                     </div>
                 }
             </Box>
