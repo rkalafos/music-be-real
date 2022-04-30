@@ -5,6 +5,7 @@ import {deletePost} from "../../actions/post-actions";
 import {
     Box,
     IconButton,
+    Button,
     Text,
     Avatar,
     Center,
@@ -45,6 +46,20 @@ const Post = ({post}) => {
                                             alt={postedBy.username}
                                         />
                                         <Text>{postedBy.username}</Text>
+                                        {(currentUser?._id !== postedBy?._id) && (
+                                            <div>
+                                                {currentUser?.following?.indexOf(postedBy?._id) > -1 ? (
+                                                    <Button>
+                                                        Follow
+                                                    </Button>
+                                                ):(
+                                                    <Button>
+                                                        Unfollow
+                                                    </Button>
+                                                )}
+                                            </div>
+                                        )}
+
                                     </HStack>
                                     <Spacer/>
                                     {(currentUser?._id === postedBy?._id ||
