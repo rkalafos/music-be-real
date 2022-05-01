@@ -23,7 +23,7 @@ import {
 function UserInfo(follower, navigate) {
     const dispatch = useDispatch();
     // followers undefined?
-    user = getUserById(dispatch, follower);
+    const user = getUserById(dispatch, follower);
   return (
                                     <HStack
                                         spacing={4}
