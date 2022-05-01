@@ -1,9 +1,22 @@
-import {Avatar, Button, Grid, GridItem, VStack, Text, SimpleGrid} from "@chakra-ui/react";
+import {Avatar, Button, GridItem, Text, SimpleGrid} from "@chakra-ui/react";
 import {useNavigate} from "react-router";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUser} from "../../actions/user-actions";
+import {loginUser} from "../../actions/current-user-actions";
+
+
+const followUser = (dispatch, firstUser, secondUser) => {
+  firstUser.following.push(secondUser._id);
+  secondUser.followers.push(firstUser._id);
+  updateUser(dispatch, firstUser);
+  updateUser(dispatch, secondUser);
+  loginUser(firstUser);
+}
+
 
 const SingleUserFollow = ({user}) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
   const isLoggedIn = !!currentUser?.username;
   const isFollowing = currentUser?.following?.includes(user._id);
@@ -30,7 +43,13 @@ const SingleUserFollow = ({user}) => {
           {isFollowing ? (
             <Button bgColor={"gray.200"}>Following</Button>
             ) : (
-              <Button bgColor={"teal.400"} color={"white"}>Follow</Button>
+              <Button
+                bgColor={"teal.400"}
+                color={"white"}
+                onClick={() => followUser(dispatch, currentUser, user)}
+              >
+                Follow
+              </Button>
             )
           }
         </GridItem>
