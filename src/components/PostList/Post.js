@@ -1,9 +1,8 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {deletePost, updatePost} from "../../actions/post-actions";
+import { deletePost, updatePost} from "../../actions/post-actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbsUp, faThumbsDown } from '@fortawesome/free-solid-svg-icons'
-
+import { faThumbsUp, faThumbsDown, faComment } from '@fortawesome/free-solid-svg-icons'
 
 import {
     Box,
@@ -13,15 +12,17 @@ import {
     Center,
     Stack,
     HStack,
-    Spacer,
+    Spacer, useDisclosure,
 } from "@chakra-ui/react";
 import {BiTrash} from "react-icons/bi";
 import {useNavigate} from "react-router";
+import CommentModal from "../CommentModal";
 
 const Post = ({post}) => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.currentUser);
     const dispatch = useDispatch();
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const postedBy = useSelector((state) =>
         state.allUsers.find((user) => user?._id === post.userId)
     );
@@ -29,7 +30,7 @@ const Post = ({post}) => {
     const [disliked, setDisliked] = useState(post.disliked.includes(currentUser?._id));
 
 
-    const onClickLikeSong = (e) => {
+    const onClickLikePost = (e) => {
         e.preventDefault();
         setLiked(!liked);
         if (liked) {
@@ -45,7 +46,7 @@ const Post = ({post}) => {
         }
     }
 
-    const onClickDislikeSong = (e) => {
+    const onClickDislikePost = (e) => {
         e.preventDefault();
         setDisliked(!disliked);
         if (disliked) {
@@ -61,8 +62,28 @@ const Post = ({post}) => {
         }
     }
 
+    const onClickComment = (e) => {
+        e.preventDefault();
+        onOpen();
+    };
+
+    const onComment = (comment) => {
+        const updatedPost = {
+            ...post,
+            comment: [...post.comments, comment]
+        };
+        updatePost(dispatch, updatedPost).then(() => navigate("/"));
+    };
+
     return (
         <>
+            <CommentModal
+                onOpen={onOpen}
+                onClose={onClose}
+                isOpen={isOpen}
+                post={post}
+                onComment={onComment}
+            />
             <Box borderWidth="2px" background="#C4C4C4">
                 <div className="d-flex">
                     {postedBy && (
@@ -106,16 +127,23 @@ const Post = ({post}) => {
                                         <b>{post.song_title}</b> {post.artist_name}{" "}
                                     </p>
                                     <Text style={{color: "black"}}>{post.caption}</Text>
-                                    <HStack spacing={4} alignItems="center">
-                                        <span onClick={(e) => onClickLikeSong(e)}>
-                                            <FontAwesomeIcon icon={faThumbsUp} color={liked ? 'teal' : 'black'} />
-                                            <Text>{post.liked.length}</Text>
+                                    {currentUser?.username &&
+                                        (<HStack spacing={4} alignItems="center">
+                                        <span onClick={(e) => onClickLikePost(e)}>
+                                            <FontAwesomeIcon icon={faThumbsUp} color={liked ? 'teal' : 'black'}/>
+                                            {post.liked.length}
                                         </span>
-                                        <span onClick={(e) => onClickDislikeSong(e)}>
-                                            <FontAwesomeIcon icon={faThumbsDown} color={disliked ? 'teal' : 'black'} />
-                                            <Text>{post.disliked.length}</Text>
+                                            <span onClick={(e) => onClickDislikePost(e)}>
+                                            <FontAwesomeIcon icon={faThumbsDown} color={disliked ? 'teal' : 'black'}/>
+                                                {post.disliked.length}
                                         </span>
-                                    </HStack>
+                                            <span
+                                                onClick={(e) => onClickComment(e)}
+                                            >
+                                            <FontAwesomeIcon icon={faComment} color={'black'}/>
+                                        </span>
+                                        </HStack>)
+                                    }
                                 </Box>
                             </Stack>
                         </Stack>

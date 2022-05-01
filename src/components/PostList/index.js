@@ -10,9 +10,10 @@ function filterPosts(posts, user) {
   if (Object.keys(posts).length === 0) {
     return [];
   } // If the user is not logged in, return the 5 latest posts
-  else if (Object.keys(user).length === 0) {
+  else if (currentRoute[1] === '' && Object.keys(user).length === 0) {
     return posts.slice(0, 5);
-  } // Otherwise, return the posts based on the user
+  }
+  // Otherwise, filter the posts based on the user
   else {
     return posts?.filter((post) => {
       if (currentRoute[1] === "profile") {
@@ -38,7 +39,6 @@ const PostList = () => {
   useEffect(() => {
     findAllPosts(dispatch);
   }, [dispatch, posts]);
-  console.log(filteredPosts);
 
   return (
     <Stack spacing={4} w={"full"} p={6} my={12}>
