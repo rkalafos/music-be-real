@@ -18,6 +18,7 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { updateUser } from "../actions/user-actions";
 import { useNavigate } from "react-router";
+import { loginUser } from "../actions/current-user-actions";
 
 const EditProfilePage = () => {
   const dispatch = useDispatch();
@@ -92,9 +93,10 @@ const EditProfilePage = () => {
                 return errors;
               }}
               onSubmit={(values) => {
-                updateUser(dispatch, { ...values, _id: currentUser._id }).catch(
-                  () => setSaveError(true)
-                );
+                updateUser(dispatch, { ...values, _id: currentUser._id })
+                  .then(() => loginUser(dispatch, currentUser))
+                  .then(() => navigate(`/profile/${currentUser._id}`))
+                  .catch(() => setSaveError(true));
               }}
             >
               {({ isSubmitting }) => (
