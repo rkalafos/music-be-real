@@ -16,12 +16,27 @@ const AdminUser = (props) => {
 
   console.log(props.user);
   return (
-    <div style={{ margin: "10px", borderRadius: "10px", backgroundColor: "#E0E0E0"}}>
+    <div
+      style={{
+        margin: "10px",
+        borderRadius: "10px",
+        backgroundColor: "#E0E0E0",
+      }}
+    >
       <h1 style={{ color: "black" }}> username: {props.user.username} </h1>
       <h1 style={{ color: "black" }}> ID: {props.user._id} </h1>
-        <h1 style={{ color: "black" }}> Current Status: {props.user.userType} </h1>
-      <Button style={{margin: "5px"}} onClick={() => handleMakeAdmin()}>Make Admin</Button>
-      <Button style={{margin: "5px"}} colorScheme="red" onClick={() => handleDelete()}>
+      <h1 style={{ color: "black" }}>
+        {" "}
+        Current Status: {props.user.userType}{" "}
+      </h1>
+      <Button style={{ margin: "5px" }} onClick={() => handleMakeAdmin()}>
+        Make Admin
+      </Button>
+      <Button
+        style={{ margin: "5px" }}
+        colorScheme="red"
+        onClick={() => handleDelete()}
+      >
         Delete User
       </Button>
     </div>
