@@ -2,10 +2,8 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import {
   Box,
   Button,
-  Grid,
-  GridItem,
   Heading,
-  Image,
+  Image, SimpleGrid,
   Text,
   useColorModeValue,
   useDisclosure,
@@ -72,12 +70,11 @@ const DetailsPage = () => {
         {songDetails?.title && (
           <div>
             <Heading color={"teal"}>{songDetails.title}</Heading>
-            <Grid
-              templateRows="repeat(2, 1fr)"
-              templateColumns="repeat(2, 1fr)"
-              gap={6}
+            <SimpleGrid
+              columns={[1, null, 2]}
+              spacing={6}
             >
-              <GridItem>
+              <Box>
                 <Text>
                   <b>Artist</b>
                 </Text>
@@ -86,8 +83,8 @@ const DetailsPage = () => {
                   src={songDetails.artist.picture}
                   alt={songDetails.artist.name}
                 />
-              </GridItem>
-              <GridItem>
+              </Box>
+              <Box>
                 <Text>
                   <b>Album</b>
                 </Text>
@@ -96,8 +93,8 @@ const DetailsPage = () => {
                   src={songDetails.album.cover}
                   alt={songDetails.album.title}
                 />
-              </GridItem>
-              <GridItem>
+              </Box>
+              <Box>
                 <Text>
                   <b>Song Preview</b>
                 </Text>
@@ -109,8 +106,8 @@ const DetailsPage = () => {
                   <source src={songDetails.preview} type="audio/mpeg" />
                   Browser does not support audio playback
                 </audio>
-              </GridItem>
-              <GridItem>
+              </Box>
+              <Box>
                 <Text>
                   <b>Song Details</b>
                 </Text>
@@ -144,8 +141,8 @@ const DetailsPage = () => {
                     <b>Join to post!</b>
                   </Text>
                 )}
-              </GridItem>
-            </Grid>
+              </Box>
+            </SimpleGrid>
             <PostList />
           </div>
         )}
