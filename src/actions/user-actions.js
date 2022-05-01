@@ -30,6 +30,7 @@ export const updateUser = async (dispatch, user) => {
   });
 };
 
+
 export const deleteUser = async (dispatch, user) => {
   const response = await service.deleteUser(user);
   dispatch({

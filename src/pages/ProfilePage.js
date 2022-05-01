@@ -43,7 +43,7 @@ const ProfilePage = () => {
               <Center>
                 <Avatar
                     size="md"
-                    name={currentUser?.username}
+                    name={profileUser?.username}
                     src={profileUser?.avatarImage}
                 ></Avatar>
                 <Heading>
