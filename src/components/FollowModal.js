@@ -23,20 +23,20 @@ import {
 function UserInfo(follower, navigate) {
     const dispatch = useDispatch();
     // followers undefined?
-    getUserById(dispatch, follower);
+    user = getUserById(dispatch, follower);
   return (
                                     <HStack
                                         spacing={4}
                                         alignItems="center"
-                                        onClick={() => navigate(`/profile/${follower._id}`)}
+                                        onClick={() => navigate(`/profile/${user._id}`)}
                                     >
                                         <Avatar
                                             size="md"
 
-                                            src={follower.avatarImage}
-                                            alt={follower.username}
+                                            src={user.avatarImage}
+                                            alt={user.username}
                                         />
-                                        <Text>{follower.username}</Text>
+                                        <Text>{user.username}</Text>
                                     </HStack>
   );
 }
