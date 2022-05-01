@@ -30,24 +30,6 @@ export const updateUser = async (dispatch, user) => {
   });
 };
 
-export const followUser = async (dispatch, follower, followee) => {
-  const newFollower = {
-    ...follower,
-    following: [...follower.following, followee]
-  }
-  const newFollowee = {
-    ...followee,
-    followers: [...follower.followers, follower]
-  }
-  dispatch({
-    type: UPDATE_USER,
-    newFollower
-  })
-  dispatch({
-    type: UPDATE_USER,
-    newFollowee
-  })
-}
 
 export const deleteUser = async (dispatch, user) => {
   const response = await service.deleteUser(user);
