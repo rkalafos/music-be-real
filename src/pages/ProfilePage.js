@@ -5,10 +5,13 @@ import { useSelector } from "react-redux";
 import {
   Avatar,
   Button,
+  Center,
   Heading,
   HStack,
   Stack,
   Text,
+  Wrap,
+  WrapItem,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
@@ -35,26 +38,38 @@ const ProfilePage = () => {
         p={6}
         my={12}
       >
-        <HStack>
-          <Avatar
-            size="xl"
-            name={currentUser?.username}
-            src={profileUser?.avatarImage}
-          ></Avatar>
-          <Heading>
-            {profileUser?.firstName + " " + profileUser?.lastName}
-          </Heading>
-          <Heading color="black">( @{profileUser?.username} )</Heading>
-          {profileUser?.verified && <CheckCircleIcon />}
-          {currentUser?._id === profileUser?._id && (
-            <Button onClick={() => navigate("/edit-profile")}>
-              Edit Profile
-            </Button>
-          )}
-          {currentUser?.userType === "admin" && (
-            <Button onClick={() => navigate("/admin")}>Admin Page</Button>
-          )}
-        </HStack>
+        <Wrap spacing='4px'>
+            <WrapItem>
+              <Center>
+                <Avatar
+                    size="md"
+                    name={currentUser?.username}
+                    src={profileUser?.avatarImage}
+                ></Avatar>
+                <Heading>
+                  {profileUser?.firstName + " " + profileUser?.lastName}
+                </Heading>
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center>
+                <Heading color="black">(@{profileUser?.username})</Heading>
+                {profileUser?.verified && <CheckCircleIcon />}
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center>
+                {currentUser?._id === profileUser?._id && (
+                    <Button onClick={() => navigate("/edit-profile")}>
+                      Edit Profile
+                    </Button>
+                )}
+                {currentUser?.userType === "admin" && (
+                    <Button onClick={() => navigate("/admin")}>Admin Page</Button>
+                )}
+              </Center>
+            </WrapItem>
+        </Wrap>
         <HStack>
           <Text>Followers: {profileUser?.followers.length}</Text>
           <Text>Following: {profileUser?.following.length}</Text>
