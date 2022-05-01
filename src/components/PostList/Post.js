@@ -26,29 +26,28 @@ const Post = ({post}) => {
     const postedBy = useSelector((state) =>
         state.allUsers.find((user) => user?._id === post.userId)
     );
-    const [liked, setLiked] = useState(post.liked.includes(currentUser?._id));
-    const [disliked, setDisliked] = useState(post.disliked.includes(currentUser?._id));
-
+    let liked = post.liked.includes(currentUser?._id);
+    let disliked = post.disliked.includes(currentUser?._id);
 
     const onClickLikePost = (e) => {
         e.preventDefault();
-        setLiked(!liked);
+        liked = !liked;
         if (liked) {
             updatePost(dispatch, {
-                ...post,
+                _id: post._id,
                 liked: [...post.liked, currentUser._id]
             });
         } else {
             updatePost(dispatch, {
-                ...post,
-                liked: post.liked.filter((value) => value._id !== currentUser._id)
+                _id: post._id,
+                liked: post.liked.filter((id) => id !== currentUser._id)
             });
         }
     }
 
     const onClickDislikePost = (e) => {
         e.preventDefault();
-        setDisliked(!disliked);
+        disliked = !disliked;
         if (disliked) {
             updatePost(dispatch, {
                 ...post,
@@ -57,7 +56,7 @@ const Post = ({post}) => {
         } else {
             updatePost(dispatch, {
                 ...post,
-                disliked: post.disliked.filter((value) => value._id !== currentUser._id)
+                disliked: post.disliked.filter((id) => id !== currentUser._id)
             });
         }
     }
@@ -68,11 +67,10 @@ const Post = ({post}) => {
     };
 
     const onComment = (comment) => {
-        const updatedPost = {
+        updatePost(dispatch, {
             ...post,
             comment: [...post.comments, comment]
-        };
-        updatePost(dispatch, updatedPost).then(() => navigate("/"));
+        }).then(() => navigate("/"));
     };
 
     return (
