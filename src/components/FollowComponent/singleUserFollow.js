@@ -30,7 +30,7 @@ const SingleUserFollow = ({user}) => {
       borderColor={"gray.200"}
     >
       <GridItem>
-        <Avatar src={user.avatarImage} />
+        <Avatar src={user.avatarImage} name={user.username} />
       </GridItem>
       <GridItem>
         <Text>@{user.username}</Text>
