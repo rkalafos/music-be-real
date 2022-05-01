@@ -32,33 +32,29 @@ const CommentModal = ({ isOpen, onOpen, onClose, post, onComment }) => {
         closeOnOverlayClick={false}
         isOpen={isOpen}
         onClose={onClose}
-        size={"4xl"}
+        size={"xl"}
       >
         <ModalOverlay />
         <ModalContent align={"center"}>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <Heading size={"xl"}>{post.song_title}</Heading>
+            <Heading size={"xl"} color={"teal"}>{post.song_title}</Heading>
             <Heading size={"l"}>Comments</Heading>
             {post.comments.map((comment) =>
                 <Comment comment={comment}/>
             )}
           </ModalBody>
-          <ModalFooter spacing={2}>
-            <FormControl>
+          <ModalFooter>
+            <FormControl pr={4}>
               <Input
                   id="comment"
                   type="text"
                   value={comment}
-                  placeholder="comment"
+                  placeholder="Leave a comment"
                   onChange={onChange}
               />
               <FormHelperText>{charLeft} characters remaining.</FormHelperText>
             </FormControl>
-            <Spacer/>
-            <Button onClick={onClose} mr={3}>
-              Cancel
-            </Button>
             <Button colorScheme="teal" onClick={() => onComment(comment)}>
               Comment
             </Button>
