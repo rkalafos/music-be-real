@@ -10,21 +10,32 @@ import {
     Stack,
     Text,
     useColorModeValue,
+    useDisclosure,
 } from "@chakra-ui/react";
 import {CheckCircleIcon} from "@chakra-ui/icons";
 import PostList from "../components/PostList";
+import FollowModal from "../components/FollowModal";
+
 
 const ProfilePage = () => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.currentUser);
     const {profileId} = useParams();
     const dispatch = useDispatch();
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const profileUser = useSelector((state) =>
         state.allUsers.find((user) => user?._id === profileId)
     );
 
   return (
     <DefaultLayout>
+                <FollowModal
+                    onOpen={onOpen}
+                    onClose={onClose}
+                    isOpen={isOpen}
+                    followers={profileUser?.followers}
+                />
+
       <Stack
         align={"center"}
         justify={"center"}
@@ -39,7 +50,7 @@ const ProfilePage = () => {
         <HStack>
           <Heading color="black">@{profileUser?.username}</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
-          <Text>Followers: {profileUser?.followers.length}</Text>
+          <Text onClick={(e, ) => onOpen()}>Followers: {profileUser?.followers.length}</Text>
           <Text>Following: {profileUser?.following.length}</Text>
           {currentUser?._id === profileUser?._id && (
             <Button onClick={() => navigate("/edit-profile")}>
@@ -89,3 +100,12 @@ const ProfilePage = () => {
   );
 };
 export default ProfilePage;
+
+// onClick={(e, ) => onOpen()}
+
+//                <FollowModal
+//                    onOpen={onOpen}
+//                    onClose={onClose}
+//                    isOpen={isOpen}
+//                    user={profileUser?.followers}
+//                />
