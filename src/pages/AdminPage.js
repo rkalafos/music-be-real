@@ -1,12 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import AdminUser from "../components/adminUser";
+import { DefaultLayout } from "../layouts/DefaultLayout";
 
 const AdminPage = () => {
-  const navigate = useNavigate();
-  const currentUser = useSelector((state) => state.currentUser);
   const users = useSelector((state) => state.allUsers);
 
   const userDivs = [];
@@ -19,17 +17,12 @@ const AdminPage = () => {
     );
   });
   return (
-    <>
-      <Button
-        onClick={() => {
-          navigate(`/profile/${currentUser["_id"]}`);
-        }}
-      >
-        To Profile
-      </Button>
-      <h1 style={{ color: "white" }}> Welcome to Admin Page </h1>
-      {userDivs}
-    </>
+    <DefaultLayout>
+      <Box w={"80%"} align={"center"}>
+        <h1 style={{ color: "white" }}> Welcome to Admin Page </h1>
+        {userDivs}
+      </Box>
+    </DefaultLayout>
   );
 };
 

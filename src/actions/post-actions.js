@@ -32,10 +32,10 @@ export const findPostById = async (dispatch, id) => {
 };
 
 export const updatePost = async (dispatch, post) => {
-  await service.updatePost(post);
+  const newPost = await service.updatePost(post);
   dispatch({
     type: UPDATE_POST,
-    post,
+    newPost,
   });
 };
 export const deletePost = async (dispatch, post) => {

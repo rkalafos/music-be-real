@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../actions/user-actions";
 import {
+  Avatar,
   Button,
   Heading,
   HStack,
@@ -46,7 +47,15 @@ const ProfilePage = () => {
         my={12}
       >
         <HStack>
-          <Heading color="black">@{profileUser?.username}</Heading>
+          <Avatar
+            size="xl"
+            name={currentUser?.username}
+            src={profileUser?.avatarImage}
+          ></Avatar>
+          <Heading>
+            {profileUser?.firstName + " " + profileUser?.lastName}
+          </Heading>
+          <Heading color="black">( @{profileUser?.username} )</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
           <Text onClick={(e) => onOpen()}>
             Followers: {profileUser?.followers.length}

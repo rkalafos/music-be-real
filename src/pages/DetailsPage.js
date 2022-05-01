@@ -2,10 +2,9 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import {
   Box,
   Button,
-  Grid,
-  GridItem,
   Heading,
   Image,
+  SimpleGrid,
   Text,
   useColorModeValue,
   useDisclosure,
@@ -16,6 +15,7 @@ import { getSongById } from "../actions/song-choice-actions";
 import React, { useEffect, useState } from "react";
 import { createPost } from "../actions/post-actions";
 import PostSongModal from "../components/postSongModal";
+import PostList from "../components/PostList";
 
 const DetailsPage = () => {
   const currentUser = useSelector((state) => state.currentUser);
@@ -30,9 +30,13 @@ const DetailsPage = () => {
   }, [dispatch, songId]);
 
   const onClickPostSong = (e, songDetails) => {
-    e.preventDefault();
-    setSongToPost(songDetails);
-    onOpen();
+    if (currentUser._id) {
+      e.preventDefault();
+      setSongToPost(songDetails);
+      onOpen();
+    } else {
+      navigate('/register');
+    }
   };
 
   const onPostSong = (caption) => {
@@ -71,12 +75,8 @@ const DetailsPage = () => {
         {songDetails?.title && (
           <div>
             <Heading color={"teal"}>{songDetails.title}</Heading>
-            <Grid
-              templateRows="repeat(2, 1fr)"
-              templateColumns="repeat(2, 1fr)"
-              gap={6}
-            >
-              <GridItem>
+            <SimpleGrid columns={[1, null, 2]} spacing={6}>
+              <Box>
                 <Text>
                   <b>Artist</b>
                 </Text>
@@ -85,8 +85,8 @@ const DetailsPage = () => {
                   src={songDetails.artist.picture}
                   alt={songDetails.artist.name}
                 />
-              </GridItem>
-              <GridItem>
+              </Box>
+              <Box>
                 <Text>
                   <b>Album</b>
                 </Text>
@@ -95,8 +95,8 @@ const DetailsPage = () => {
                   src={songDetails.album.cover}
                   alt={songDetails.album.title}
                 />
-              </GridItem>
-              <GridItem>
+              </Box>
+              <Box>
                 <Text>
                   <b>Song Preview</b>
                 </Text>
@@ -108,8 +108,8 @@ const DetailsPage = () => {
                   <source src={songDetails.preview} type="audio/mpeg" />
                   Browser does not support audio playback
                 </audio>
-              </GridItem>
-              <GridItem>
+              </Box>
+              <Box>
                 <Text>
                   <b>Song Details</b>
                 </Text>
@@ -131,20 +131,16 @@ const DetailsPage = () => {
                     ? "Explicit lyrics!!! (be safe)"
                     : "No explicit lyrics"}
                 </Text>
-                {currentUser?.username ? (
                   <Button
                     m={2}
                     onClick={(e) => onClickPostSong(e, songDetails)}
                   >
                     Post Song
                   </Button>
-                ) : (
-                  <Text m={2}>
-                    <b>Join to post!</b>
-                  </Text>
-                )}
-              </GridItem>
-            </Grid>
+
+              </Box>
+            </SimpleGrid>
+            <PostList />
           </div>
         )}
       </Box>

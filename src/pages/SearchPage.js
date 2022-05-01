@@ -42,9 +42,13 @@ const SearchPage = () => {
   };
 
   const onClickPostSong = (e, song) => {
-    e.preventDefault();
-    setSongToPost(song);
-    onOpen();
+    if (currentUser._id) {
+      e.preventDefault();
+      setSongToPost(song);
+      onOpen();
+    } else {
+      navigate('/register');
+    }
   };
 
   const onPostSong = (caption) => {
