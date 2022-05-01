@@ -3,6 +3,7 @@ import { DefaultLayout } from "../layouts/DefaultLayout";
 import { useNavigate, useParams } from "react-router";
 import { useSelector } from "react-redux";
 import {
+  Avatar,
   Button,
   Heading,
   HStack,
@@ -35,10 +36,16 @@ const ProfilePage = () => {
         my={12}
       >
         <HStack>
-          <Heading color="black">@{profileUser?.username}</Heading>
+          <Avatar
+            size="xl"
+            name={currentUser?.username}
+            src={profileUser?.avatarImage}
+          ></Avatar>
+          <Heading>
+            {profileUser?.firstName + " " + profileUser?.lastName}
+          </Heading>
+          <Heading color="black">( @{profileUser?.username} )</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
-          <Text>Followers: {profileUser?.followers.length}</Text>
-          <Text>Following: {profileUser?.following.length}</Text>
           {currentUser?._id === profileUser?._id && (
             <Button onClick={() => navigate("/edit-profile")}>
               Edit Profile
@@ -47,6 +54,10 @@ const ProfilePage = () => {
           {currentUser?.userType === "admin" && (
             <Button onClick={() => navigate("/admin")}>Admin Page</Button>
           )}
+        </HStack>
+        <HStack>
+          <Text>Followers: {profileUser?.followers.length}</Text>
+          <Text>Following: {profileUser?.following.length}</Text>
         </HStack>
         <PostList />
       </Stack>

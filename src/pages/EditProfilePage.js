@@ -26,27 +26,27 @@ const EditProfilePage = () => {
   const currentUser = useSelector((state) => state.currentUser);
   const userEmpty = Object.keys(currentUser).length === 0;
   const [showSaveError, setSaveError] = useState(false);
+  const avatar =
+    currentUser?.avatarImage?.length > 0 ? currentUser.avatarImage : "";
   const inputStyle = {
     backgroundColor: "lightgrey",
     lineHeight: "1.1",
     color: "grey.500",
     _placeholder: "gray.500",
     border: "0",
-    marginTop: "10px",
+    margin: "10px",
   };
   return (
     <DefaultLayout>
       <Stack
         align={"center"}
         justify={"center"}
-        spacing={4}
-        w={"full"}
-        maxW={"md"}
+        spacing={2}
+        w={"70%"}
         bg={useColorModeValue("white", "gray.700")}
         rounded={"xl"}
         boxShadow={"lg"}
         p={6}
-        my={12}
       >
         <Heading lineHeight={1.1} fontSize={{ base: "2xl", sm: "3xl" }}>
           Profile
@@ -62,20 +62,17 @@ const EditProfilePage = () => {
             <Button onClick={() => navigate("/login")}>Go to Login</Button>
           </VStack>
         ) : (
-          <div>
-            <FormControl id="userName">
-              <FormLabel>User Icon</FormLabel>
-              <Stack direction={["column", "row"]} spacing={6}>
-                <Center>
-                  <Avatar size="xl"></Avatar>
-                </Center>
-                <Center w="full">
-                  <Button w="full">Change Icon</Button>
-                </Center>
-              </Stack>
-            </FormControl>
+          <Box w={"80%"}>
+            <Center>
+              <Avatar
+                size="xl"
+                name={currentUser?.username}
+                src={avatar}
+              ></Avatar>
+            </Center>
             <Formik
               initialValues={{
+                avatarImage: currentUser.avatarImage,
                 firstName: currentUser.firstName,
                 lastName: currentUser.lastName,
                 username: currentUser.username,
@@ -100,7 +97,19 @@ const EditProfilePage = () => {
               }}
             >
               {({ isSubmitting }) => (
-                <Form>
+                <Form w={"100%"}>
+                  <FormLabel htmlFor="avatarImage">Avatar Image</FormLabel>
+                  <Field name="avatarImage">
+                    {({ field, form }) => (
+                      <Input
+                        style={inputStyle}
+                        {...field}
+                        type="text"
+                        placeholder="Insert a weblink to your avatar image"
+                      />
+                    )}
+                  </Field>
+                  <FormLabel>First Name</FormLabel>
                   <Field name="firstName">
                     {({ field, form }) => (
                       <Input
@@ -111,6 +120,7 @@ const EditProfilePage = () => {
                       />
                     )}
                   </Field>
+                  <FormLabel>Last Name</FormLabel>
                   <Field name="lastName">
                     {({ field, form }) => (
                       <Input
@@ -121,6 +131,7 @@ const EditProfilePage = () => {
                       />
                     )}
                   </Field>
+                  <FormLabel>Username</FormLabel>
                   <Field name="username">
                     {({ field, form }) => (
                       <Input
@@ -132,6 +143,7 @@ const EditProfilePage = () => {
                     )}
                   </Field>
                   <ErrorMessage name="username" component="div" />
+                  <FormLabel>Password</FormLabel>
                   <Field name="password">
                     {({ field, form }) => (
                       <Input
@@ -163,7 +175,7 @@ const EditProfilePage = () => {
                 </Form>
               )}
             </Formik>
-          </div>
+          </Box>
         )}
       </Stack>
     </DefaultLayout>
