@@ -10,7 +10,7 @@ function filterPosts(posts, user) {
   if (Object.keys(posts).length === 0) {
     return [];
   } // If the user is not logged in, return the 5 latest posts
-  else if (currentRoute[1] === '' && Object.keys(user).length === 0) {
+  else if (currentRoute[1] === "" && Object.keys(user).length === 0) {
     return posts.slice(0, 5);
   }
   // Otherwise, filter the posts based on the user
@@ -46,9 +46,7 @@ const PostList = () => {
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => <Post key={post._id} post={post} />)
         ) : (
-          <Text>
-            No available posts.
-          </Text>
+          <Text>No available posts.</Text>
         )}
       </div>
     </Stack>

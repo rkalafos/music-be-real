@@ -38,20 +38,22 @@ const CommentModal = ({ isOpen, onOpen, onClose, post, onComment }) => {
         <ModalContent align={"center"}>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <Heading size={"xl"} color={"teal"}>{post.song_title}</Heading>
+            <Heading size={"xl"} color={"teal"}>
+              {post.song_title}
+            </Heading>
             <Heading size={"l"}>Comments</Heading>
-            {post.comments.map((comment) =>
-                <Comment comment={comment}/>
-            )}
+            {post.comments.map((comment) => (
+              <Comment comment={comment} />
+            ))}
           </ModalBody>
           <ModalFooter>
             <FormControl pr={4}>
               <Input
-                  id="comment"
-                  type="text"
-                  value={comment}
-                  placeholder="Leave a comment"
-                  onChange={onChange}
+                id="comment"
+                type="text"
+                value={comment}
+                placeholder="Leave a comment"
+                onChange={onChange}
               />
               <FormHelperText>{charLeft} characters remaining.</FormHelperText>
             </FormControl>
