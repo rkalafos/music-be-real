@@ -102,6 +102,7 @@ const EditProfilePage = () => {
                   <Field name="avatarImage">
                     {({ field, form }) => (
                       <Input
+                        id="avatarImage"
                         style={inputStyle}
                         {...field}
                         type="text"
@@ -109,21 +110,23 @@ const EditProfilePage = () => {
                       />
                     )}
                   </Field>
-                  <FormLabel>First Name</FormLabel>
+                  <FormLabel htmlFor="firstName">First Name</FormLabel>
                   <Field name="firstName">
                     {({ field, form }) => (
                       <Input
                         style={inputStyle}
+                        id="firstName"
                         {...field}
                         type="text"
                         placeholder="First Name"
                       />
                     )}
                   </Field>
-                  <FormLabel>Last Name</FormLabel>
+                  <FormLabel htmlFor="lastName">Last Name</FormLabel>
                   <Field name="lastName">
                     {({ field, form }) => (
                       <Input
+                        id="lastName"
                         style={inputStyle}
                         {...field}
                         type="text"
@@ -131,10 +134,11 @@ const EditProfilePage = () => {
                       />
                     )}
                   </Field>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel htmlFor="username">Username</FormLabel>
                   <Field name="username">
                     {({ field, form }) => (
                       <Input
+                        id="username"
                         style={inputStyle}
                         {...field}
                         type="text"
@@ -143,10 +147,11 @@ const EditProfilePage = () => {
                     )}
                   </Field>
                   <ErrorMessage name="username" component="div" />
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel htmlFor="email">Email</FormLabel>
                   <Field name="email">
                     {({ field, form }) => (
                       <Input
+                        id="email"
                         style={inputStyle}
                         {...field}
                         type="text"
@@ -155,10 +160,11 @@ const EditProfilePage = () => {
                     )}
                   </Field>
                   <ErrorMessage name="email" component="div" />
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel htmlFor="password">Password</FormLabel>
                   <Field name="password">
                     {({ field, form }) => (
                       <Input
+                        id="password"
                         style={inputStyle}
                         {...field}
                         type="password"
