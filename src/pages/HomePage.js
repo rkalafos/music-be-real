@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
-import { Box, Heading, Text } from "@chakra-ui/react";
+import {Box, Heading, SimpleGrid, Stack, Text} from "@chakra-ui/react";
 import PostList from "../components/PostList";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../actions/user-actions";
+import FollowComponent from "../components/FollowComponent";
 
 const HomePage = () => {
   const currentUser = useSelector((state) => state.currentUser);
@@ -14,18 +15,23 @@ const HomePage = () => {
   }, [dispatch]);
   return (
     <DefaultLayout>
-      <Box bg={"white"} w={"80%"} align={"center"}>
-        {currentUser?.username ? (
-          <Heading size={"xl"} p={6}>
-            Your Feed
-          </Heading>
-        ) : (
-          <Text mt={3}>
-            Here are the latest posts. Create an account to see more content!
-          </Text>
-        )}
-        <PostList />
-      </Box>
+      <Stack direction={{md: "column", lg: "row"}} spacing={10} m={10}>
+        <Box bg={"white"} align={"center"}>
+          {currentUser?.username ? (
+            <Heading size={"xl"} p={6}>
+              Your Feed
+            </Heading>
+          ) : (
+            <Text mt={3}>
+              Here are the latest posts. Create an account to see more content!
+            </Text>
+          )}
+          <PostList />
+        </Box>
+        <Box bg={"white"}>
+          <FollowComponent />
+        </Box>
+      </Stack>
     </DefaultLayout>
   );
 };
