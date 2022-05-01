@@ -1,7 +1,8 @@
 import React from "react";
 import {DefaultLayout} from "../layouts/DefaultLayout";
 import {useNavigate, useParams} from "react-router";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import { updateUser } from "../actions/user-actions";
 import {
     Button,
     Heading,
@@ -17,6 +18,7 @@ const ProfilePage = () => {
     const navigate = useNavigate();
     const currentUser = useSelector((state) => state.currentUser);
     const {profileId} = useParams();
+    const dispatch = useDispatch();
     const profileUser = useSelector((state) =>
         state.allUsers.find((user) => user?._id === profileId)
     );
@@ -44,6 +46,39 @@ const ProfilePage = () => {
               Edit Profile
             </Button>
           )}
+                                        {(currentUser?._id !== profileUser?._id) && (
+                                            <div>
+                                                {currentUser?.following?.indexOf(profileUser?._id) === -1 ? (
+                                                    <Button onClick={() => {
+                                                     updateUser(dispatch, {
+                                                        ...currentUser,
+                                                        following: [...currentUser.following, profileUser?._id]
+                                                      })
+
+                                                     updateUser(dispatch, {
+                                                        ...profileUser,
+                                                        followers: [...profileUser.followers, currentUser?._id]
+                                                      })
+                                                      }}>
+                                                        Follow
+                                                    </Button>
+                                                ):(
+                                                    <Button onClick={() => {
+                                                     updateUser(dispatch, {
+                                                        ...currentUser,
+                                                        following: currentUser.following.filter(id => id !== profileUser?._id)
+                                                      })
+                                                     updateUser(dispatch, {
+                                                        ...profileUser,
+                                                        followers: profileUser.followers.filter(id => id !== currentUser?._id)
+                                                      })
+                                                      }}>
+                                                        Unfollow
+                                                    </Button>
+                                                )}
+                                            </div>
+                                        )}
+
           {currentUser?.userType === "admin" && (
           <Button onClick={() => navigate("/admin")}>Admin Page</Button>
            )}

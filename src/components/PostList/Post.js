@@ -47,38 +47,6 @@ const Post = ({post}) => {
                                             alt={postedBy.username}
                                         />
                                         <Text>{postedBy.username}</Text>
-                                        {(currentUser?._id !== postedBy?._id) && (
-                                            <div>
-                                                {currentUser?.following?.indexOf(postedBy?._id) > -1 ? (
-                                                    <Button onClick={() => {
-                                                     updateUser(dispatch, {
-                                                        ...currentUser,
-                                                        following: currentUser.following.push(postedBy?._id)
-                                                      })
-
-                                                     updateUser(dispatch, {
-                                                        ...postedBy,
-                                                        followers: postedBy.followers.push(currentUser?._id)
-                                                      })
-                                                      }}>
-                                                        Follow
-                                                    </Button>
-                                                ):(
-                                                    <Button onClick={() => {
-                                                     updateUser(dispatch, {
-                                                        ...currentUser,
-                                                        following: currentUser.following.filter(id => id !== postedBy?._id)
-                                                      })
-                                                     updateUser(dispatch, {
-                                                        ...postedBy,
-                                                        followers: postedBy.followers.filter(id => id !== currentUser?._id)
-                                                      })
-                                                      }}>
-                                                        Unfollow
-                                                    </Button>
-                                                )}
-                                            </div>
-                                        )}
 
                                     </HStack>
                                     <Spacer/>
