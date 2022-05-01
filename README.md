@@ -8,6 +8,8 @@ Planning Document: [here](https://docs.google.com/document/d/18W28yWstCxFbI7fHY6
 
 Figma Design Board: [here](https://www.figma.com/file/SmQhPC3ucZxj1Pzso0ONeJ/MusicBeReal?node-id=0%3A1)
 
+runs at `http://localhost:3000/`
+
 # BEST PRACTICES
 
 ### Prettier
