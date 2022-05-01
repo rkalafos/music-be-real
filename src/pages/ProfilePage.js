@@ -44,7 +44,9 @@ const ProfilePage = () => {
               Edit Profile
             </Button>
           )}
+          {currentUser?.userType === "admin" && (
           <Button onClick={() => navigate("/admin")}>Admin Page</Button>
+           )}
         </HStack>
         <PostList />
       </Stack>

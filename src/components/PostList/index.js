@@ -41,7 +41,7 @@ const PostList = () => {
   }, [dispatch, posts]);
 
   return (
-    <Stack spacing={4} w={"full"} p={6} my={12}>
+    <Stack spacing={4} w={"full"} p={6}>
       <div>
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => <Post key={post._id} post={post} />)

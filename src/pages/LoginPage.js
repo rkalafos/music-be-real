@@ -5,7 +5,6 @@ import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { loginUser } from "../actions/current-user-actions";
-import { getAllUsers } from "../actions/user-actions";
 
 const LoginPage = () => {
   // TODO: Re-enable button after failed login attempt
@@ -53,7 +52,6 @@ const LoginPage = () => {
           onSubmit={(values, { setSubmitting }) => {
             loginUser(dispatch, values)
               .then(() => setSubmitting(false))
-              .then(() => getAllUsers(dispatch))
               .then(() => navigate("/"))
               .catch((e) => {
                 setLoginError(true);
