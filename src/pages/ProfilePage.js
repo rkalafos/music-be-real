@@ -34,7 +34,6 @@ const ProfilePage = () => {
         isOpen={isOpen}
         followers={profileUser?.followers}
       />
-
       <Stack
         align={"center"}
         justify={"center"}
@@ -109,12 +108,3 @@ const ProfilePage = () => {
   );
 };
 export default ProfilePage;
-
-// onClick={(e, ) => onOpen()}
-
-//                <FollowModal
-//                    onOpen={onOpen}
-//                    onClose={onClose}
-//                    isOpen={isOpen}
-//                    user={profileUser?.followers}
-//                />

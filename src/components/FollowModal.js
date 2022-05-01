@@ -54,6 +54,7 @@ const FollowModal = ({ isOpen, onOpen, onClose, followers }) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <Heading size={"m"}>Followers</Heading>
+
             {followers?.map((follower) => (
               <UserInfo
                 key={follower}
@@ -68,18 +69,3 @@ const FollowModal = ({ isOpen, onOpen, onClose, followers }) => {
   );
 };
 export default FollowModal;
-
-//            for follower in user?.followers {
-//                                    <HStack
-//                                        spacing={4}
-//                                        alignItems="center"
-//                                        onClick={() => navigate(`/profile/${follower._id}`)}
-//                                    >
-//                                        <Avatar
-//                                            size="md"
-//                                            src={follower.avatarImage}
-//                                            alt={follower.username}
-//                                        />
-//                                        <Text>{follower.username}</Text>
-//                                    </HStack>
-//            }
