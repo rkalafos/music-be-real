@@ -26,6 +26,8 @@ const ProfilePage = () => {
     const profileUser = useSelector((state) =>
         state.allUsers.find((user) => user?._id === profileId)
     );
+    const followers= profileUser?.followers;
+    // console.log("Followers: " + followers)
 
   return (
     <DefaultLayout>
@@ -33,7 +35,7 @@ const ProfilePage = () => {
                     onOpen={onOpen}
                     onClose={onClose}
                     isOpen={isOpen}
-                    followers={profileUser?.followers}
+                    followers = {followers}
                 />
 
       <Stack

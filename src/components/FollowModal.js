@@ -9,21 +9,18 @@ import {
   ModalContent,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
   Heading,
   HStack,
   Avatar,
   Text,
-  FormControl,
-  FormLabel,
   Input,
-  FormHelperText,
 } from "@chakra-ui/react";
 
 function UserInfo(follower, navigate) {
     const dispatch = useDispatch();
     // followers undefined?
     const user = getUserById(dispatch, follower);
+    console.log(user);
   return (
                                     <HStack
                                         spacing={4}
@@ -67,7 +64,7 @@ const FollowModal = ({ isOpen, onOpen, onClose, followers}) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <Heading size={"m"}>Followers</Heading>
-            {console.log("Followers: " + followers)}
+            {console.log("Followers in Modal: " + followers)}
              {followers.map((follower) => <UserInfo key={follower}  follower={follower} navigate={navigate} />)}
 
           </ModalBody>
