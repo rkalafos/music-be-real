@@ -10,13 +10,16 @@ function filterPosts(posts, user) {
   if (Object.keys(posts).length === 0) {
     return [];
   } // If the user is not logged in, return the 5 latest posts
-  else if (Object.keys(user).length === 0) {
+  else if (currentRoute[1] === "" && Object.keys(user).length === 0) {
     return posts.slice(0, 5);
-  } // Otherwise, return the posts based on the user
+  }
+  // Otherwise, filter the posts based on the user
   else {
     return posts?.filter((post) => {
       if (currentRoute[1] === "profile") {
         return post.userId === currentRoute[2];
+      } else if (currentRoute[1] === "details") {
+        return post.track_id.toString() === currentRoute[2];
       } else {
         return !!(
           user.userType === "admin" ||
@@ -43,10 +46,7 @@ const PostList = () => {
         {filteredPosts.length > 0 ? (
           filteredPosts.map((post) => <Post key={post._id} post={post} />)
         ) : (
-          <Text>
-            No available posts. Follow users to see their posts or create your
-            own!
-          </Text>
+          <Text>No available posts.</Text>
         )}
       </div>
     </Stack>

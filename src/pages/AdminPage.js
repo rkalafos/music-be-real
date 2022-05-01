@@ -1,13 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { Box, Button } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import AdminUser from "../components/adminUser";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 
 const AdminPage = () => {
-  const navigate = useNavigate();
-  const currentUser = useSelector((state) => state.currentUser);
   const users = useSelector((state) => state.allUsers);
 
   const userDivs = [];

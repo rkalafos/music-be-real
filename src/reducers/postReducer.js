@@ -17,9 +17,10 @@ const postReducer = (state = {}, action) => {
     case CREATE_POST:
       return [...state, action.newPost];
     case UPDATE_POST:
-      return state.map((post) =>
-        post._id === action.post._id ? action.post : post
-      );
+      return [
+        ...state.filter((post) => post._id !== action.newPost._id),
+        action.newPost,
+      ];
     default:
       return state;
   }
