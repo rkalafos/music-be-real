@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import SingleUserFollow from "./singleUserFollow";
 import {Box} from "@chakra-ui/react";
 
-const FollowPage = () => {
+const FollowComponent = () => {
   const allUsers = useSelector((state) => state.allUsers);
   return(
     <Box>
@@ -11,4 +11,4 @@ const FollowPage = () => {
     </Box>
   )
 }
-export default FollowPage;
+export default FollowComponent;
