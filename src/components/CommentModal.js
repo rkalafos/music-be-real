@@ -11,7 +11,6 @@ import {
   FormControl,
   Input,
   FormHelperText,
-  Spacer,
 } from "@chakra-ui/react";
 import Comment from "./Comment";
 
