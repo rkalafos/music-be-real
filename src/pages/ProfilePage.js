@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +26,15 @@ const ProfilePage = () => {
   const profileUser = useSelector((state) =>
     state.allUsers.find((user) => user?._id === profileId)
   );
+  const [modalList, setModalList] = useState([]);
+  const [header, setHeader] = useState("");
+
+  const openModal = (modalHeader, desiredList) => {
+    setModalList(desiredList);
+    setHeader(modalHeader)
+    onOpen();
+  }
+
 
   return (
     <DefaultLayout>
@@ -33,7 +42,8 @@ const ProfilePage = () => {
         onOpen={onOpen}
         onClose={onClose}
         isOpen={isOpen}
-        followers={profileUser?.followers}
+        followers={modalList}
+        header={header}
       />
       <Stack
         align={"center"}
@@ -57,10 +67,10 @@ const ProfilePage = () => {
           </Heading>
           <Heading color="black">( @{profileUser?.username} )</Heading>
           {profileUser?.verified && <CheckCircleIcon />}
-          <Text onClick={(e) => onOpen()}>
+          <Text onClick={(e) => {openModal("Followers", profileUser?.followers)}}>
             Followers: {profileUser?.followers.length}
           </Text>
-          <Text>Following: {profileUser?.following.length}</Text>
+          <Text onClick={(e) => {openModal("Following", profileUser?.following)}}>Following: {profileUser?.following.length}</Text>
           {currentUser?._id === profileUser?._id && (
             <Button onClick={() => navigate("/edit-profile")}>
               Edit Profile

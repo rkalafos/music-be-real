@@ -29,7 +29,7 @@ function UserInfo({ follower, navigate }) {
   );
 }
 
-const FollowModal = ({ isOpen, onOpen, onClose, followers }) => {
+const FollowModal = ({ isOpen, onOpen, onClose, followers, header }) => {
   const [caption, setCaption] = useState("");
   const charLeft = 250 - caption.length;
   const navigate = useNavigate();
@@ -53,7 +53,7 @@ const FollowModal = ({ isOpen, onOpen, onClose, followers }) => {
         <ModalContent align={"center"}>
           <ModalCloseButton />
           <ModalBody pb={6}>
-            <Heading size={"m"}>Followers</Heading>
+            <Heading size={"m"}>{header}</Heading>
 
             {followers?.map((follower) => (
               <UserInfo
