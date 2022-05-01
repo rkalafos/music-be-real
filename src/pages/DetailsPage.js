@@ -3,7 +3,8 @@ import {
   Box,
   Button,
   Heading,
-  Image, SimpleGrid,
+  Image,
+  SimpleGrid,
   Text,
   useColorModeValue,
   useDisclosure,
@@ -29,9 +30,13 @@ const DetailsPage = () => {
   }, [dispatch, songId]);
 
   const onClickPostSong = (e, songDetails) => {
-    e.preventDefault();
-    setSongToPost(songDetails);
-    onOpen();
+    if (currentUser._id) {
+      e.preventDefault();
+      setSongToPost(songDetails);
+      onOpen();
+    } else {
+      navigate('/register');
+    }
   };
 
   const onPostSong = (caption) => {
@@ -70,10 +75,7 @@ const DetailsPage = () => {
         {songDetails?.title && (
           <div>
             <Heading color={"teal"}>{songDetails.title}</Heading>
-            <SimpleGrid
-              columns={[1, null, 2]}
-              spacing={6}
-            >
+            <SimpleGrid columns={[1, null, 2]} spacing={6}>
               <Box>
                 <Text>
                   <b>Artist</b>
@@ -129,18 +131,13 @@ const DetailsPage = () => {
                     ? "Explicit lyrics!!! (be safe)"
                     : "No explicit lyrics"}
                 </Text>
-                {currentUser?.username ? (
                   <Button
                     m={2}
                     onClick={(e) => onClickPostSong(e, songDetails)}
                   >
                     Post Song
                   </Button>
-                ) : (
-                  <Text m={2}>
-                    <b>Join to post!</b>
-                  </Text>
-                )}
+
               </Box>
             </SimpleGrid>
             <PostList />
