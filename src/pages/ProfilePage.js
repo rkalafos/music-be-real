@@ -6,10 +6,13 @@ import { updateUser } from "../actions/user-actions";
 import {
   Avatar,
   Button,
+  Center,
   Heading,
   HStack,
   Stack,
   Text,
+  Wrap,
+  WrapItem,
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -56,26 +59,32 @@ const ProfilePage = () => {
         p={6}
         my={12}
       >
-        <HStack>
-          <Avatar
-            size="xl"
-            name={currentUser?.username}
-            src={profileUser?.avatarImage}
-          ></Avatar>
-          <Heading>
-            {profileUser?.firstName + " " + profileUser?.lastName}
-          </Heading>
-          <Heading color="black">( @{profileUser?.username} )</Heading>
-          {profileUser?.verified && <CheckCircleIcon />}
-          <Text onClick={(e) => {openModal("Followers", profileUser?.followers)}}>
-            Followers: {profileUser?.followers.length}
-          </Text>
-          <Text onClick={(e) => {openModal("Following", profileUser?.following)}}>Following: {profileUser?.following.length}</Text>
-          {currentUser?._id === profileUser?._id && (
-            <Button onClick={() => navigate("/edit-profile")}>
-              Edit Profile
-            </Button>
-          )}
+        <Wrap spacing='4px'>
+            <WrapItem>
+              <Center>
+                <Avatar
+                    size="md"
+                    name={currentUser?.username}
+                    src={profileUser?.avatarImage}
+                ></Avatar>
+                <Heading>
+                  {profileUser?.firstName + " " + profileUser?.lastName}
+                </Heading>
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center>
+                <Heading color="black">(@{profileUser?.username})</Heading>
+                {profileUser?.verified && <CheckCircleIcon />}
+              </Center>
+            </WrapItem>
+            <WrapItem>
+              <Center>
+                {currentUser?._id === profileUser?._id && (
+                    <Button onClick={() => navigate("/edit-profile")}>
+                      Edit Profile
+                    </Button>
+                )}
           {currentUser?._id !== profileUser?._id && (
             <div>
               {currentUser?.following?.indexOf(profileUser?._id) === -1 ? (
@@ -116,10 +125,18 @@ const ProfilePage = () => {
               )}
             </div>
           )}
-
-          {currentUser?.userType === "admin" && (
-            <Button onClick={() => navigate("/admin")}>Admin Page</Button>
-          )}
+                {currentUser?.userType === "admin" && (
+                    <Button onClick={() => navigate("/admin")}>Admin Page</Button>
+                )}
+              </Center>
+            </WrapItem>
+        </Wrap>
+        <HStack>
+          <Text onClick={(e) => {openModal("Followers", profileUser?.followers)}}>
+            Followers: {profileUser?.followers.length}
+          </Text>
+          <Text onClick={(e) => {openModal("Following", profileUser?.following)}}>Following: {profileUser?.following.length}</Text>
+          
         </HStack>
         <PostList />
       </Stack>
