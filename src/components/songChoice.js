@@ -27,15 +27,11 @@ const SongChoice = ({ song, onClickSongDetails, onClickPostSong }) => {
             Song Details
           </Button>
         </GridItem>
-        {loggedIn ? (
           <GridItem>
             <Button m={2} onClick={(e) => onClickPostSong(e, song)}>
               Post Song
             </Button>
           </GridItem>
-        ) : (
-          <Text m={2}>Join to post!</Text>
-        )}
       </Grid>
     </Box>
   );

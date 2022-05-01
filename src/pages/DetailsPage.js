@@ -30,9 +30,13 @@ const DetailsPage = () => {
   }, [dispatch, songId]);
 
   const onClickPostSong = (e, songDetails) => {
-    e.preventDefault();
-    setSongToPost(songDetails);
-    onOpen();
+    if (currentUser._id) {
+      e.preventDefault();
+      setSongToPost(songDetails);
+      onOpen();
+    } else {
+      navigate('/register');
+    }
   };
 
   const onPostSong = (caption) => {
@@ -127,18 +131,13 @@ const DetailsPage = () => {
                     ? "Explicit lyrics!!! (be safe)"
                     : "No explicit lyrics"}
                 </Text>
-                {currentUser?.username ? (
                   <Button
                     m={2}
                     onClick={(e) => onClickPostSong(e, songDetails)}
                   >
                     Post Song
                   </Button>
-                ) : (
-                  <Text m={2}>
-                    <b>Join to post!</b>
-                  </Text>
-                )}
+
               </Box>
             </SimpleGrid>
             <PostList />
