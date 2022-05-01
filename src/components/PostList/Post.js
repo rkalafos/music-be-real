@@ -16,7 +16,6 @@ import {
   Center,
   Stack,
   HStack,
-  Spacer,
   useDisclosure,
   SimpleGrid,
 } from "@chakra-ui/react";

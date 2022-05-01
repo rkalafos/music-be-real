@@ -17,7 +17,7 @@ const HomePage = () => {
       <Box bg={"white"} w={"80%"} align={"center"}>
         {currentUser?.username ? (
           <Heading size={"xl"} p={6}>
-            Your Feed
+            {currentUser?.username}'s Feed
           </Heading>
         ) : (
           <Text mt={3}>
