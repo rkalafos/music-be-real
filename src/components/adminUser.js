@@ -7,7 +7,6 @@ const AdminUser = (props) => {
   const dispatch = useDispatch();
 
   const handleMakeAdmin = () => {
-    // TODO: Need to make update suer work
     updateUser(dispatch, { _id: props.user._id, userType: "admin" });
   };
 
@@ -16,11 +15,11 @@ const AdminUser = (props) => {
   };
 
   return (
-    <div style={{ margin: "10px" }}>
-      <h1 style={{ color: "white" }}> username: {props.user.username} </h1>
-      <h1 style={{ color: "white" }}> ID: {props.user._id} </h1>
-      <Button onClick={() => handleMakeAdmin()}>Make Admin</Button>
-      <Button colorScheme="red" onClick={() => handleDelete()}>
+    <div style={{ margin: "10px", borderRadius: "10px", backgroundColor: "#E0E0E0"}}>
+      <h1 style={{ color: "black" }}> username: {props.user.username} </h1>
+      <h1 style={{ color: "black" }}> ID: {props.user._id} </h1>
+      <Button style={{margin: "5px"}} onClick={() => handleMakeAdmin()}>Make Admin</Button>
+      <Button style={{margin: "5px"}} colorScheme="red" onClick={() => handleDelete()}>
         Delete User
       </Button>
     </div>
