@@ -143,6 +143,18 @@ const EditProfilePage = () => {
                     )}
                   </Field>
                   <ErrorMessage name="username" component="div" />
+                  <FormLabel>Email</FormLabel>
+                  <Field name="email">
+                    {({ field, form }) => (
+                      <Input
+                        style={inputStyle}
+                        {...field}
+                        type="text"
+                        placeholder="Email"
+                      />
+                    )}
+                  </Field>
+                  <ErrorMessage name="email" component="div" />
                   <FormLabel>Password</FormLabel>
                   <Field name="password">
                     {({ field, form }) => (

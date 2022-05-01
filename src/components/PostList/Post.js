@@ -80,8 +80,7 @@ const Post = ({ post }) => {
     updatePost(dispatch, {
       ...post,
       comments: [...post.comments, newComment],
-    })
-      .then(() => onClose());
+    }).then(() => onClose());
   };
 
   return (

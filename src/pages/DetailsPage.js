@@ -3,7 +3,8 @@ import {
   Box,
   Button,
   Heading,
-  Image, SimpleGrid,
+  Image,
+  SimpleGrid,
   Text,
   useColorModeValue,
   useDisclosure,
@@ -70,10 +71,7 @@ const DetailsPage = () => {
         {songDetails?.title && (
           <div>
             <Heading color={"teal"}>{songDetails.title}</Heading>
-            <SimpleGrid
-              columns={[1, null, 2]}
-              spacing={6}
-            >
+            <SimpleGrid columns={[1, null, 2]} spacing={6}>
               <Box>
                 <Text>
                   <b>Artist</b>
