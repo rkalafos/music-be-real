@@ -39,6 +39,6 @@ export const deleteUser = async (dispatch, user) => {
 };
 
 export const getUserById = async (dispatch, userId) => {
-    const user = await service.findUserByID(userId);
-    return user;
-}
+  const user = await service.findUserByID(userId);
+  return user;
+};

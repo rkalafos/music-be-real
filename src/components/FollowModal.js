@@ -1,48 +1,35 @@
 import React, { useState } from "react";
-import {useNavigate} from "react-router";
-import {useDispatch} from "react-redux";
-import { getUserById } from "../actions/user-actions";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 import {
-  Button,
   Modal,
   ModalOverlay,
   ModalContent,
   ModalCloseButton,
   ModalBody,
-  ModalFooter,
   Heading,
   HStack,
   Avatar,
   Text,
-  FormControl,
-  FormLabel,
-  Input,
-  FormHelperText,
 } from "@chakra-ui/react";
 
-function UserInfo(follower, navigate) {
-    const dispatch = useDispatch();
-    // followers undefined?
-    const user = getUserById(dispatch, follower);
+function UserInfo({ follower, navigate }) {
+  const user = useSelector((state) =>
+    state.allUsers.find((u) => u?._id === follower)
+  );
   return (
-                                    <HStack
-                                        spacing={4}
-                                        alignItems="center"
-                                        onClick={() => navigate(`/profile/${user._id}`)}
-                                    >
-                                        <Avatar
-                                            size="md"
-
-                                            src={user.avatarImage}
-                                            alt={user.username}
-                                        />
-                                        <Text>{user.username}</Text>
-                                    </HStack>
+    <HStack
+      spacing={4}
+      alignItems="center"
+      onClick={() => navigate(`/profile/${user._id}`)}
+    >
+      <Avatar size="md" src={user?.avatarImage} alt={user?.username} />
+      <Text>{user?.username}</Text>
+    </HStack>
   );
 }
 
-
-const FollowModal = ({ isOpen, onOpen, onClose, followers}) => {
+const FollowModal = ({ isOpen, onOpen, onClose, followers }) => {
   const [caption, setCaption] = useState("");
   const charLeft = 250 - caption.length;
   const navigate = useNavigate();
@@ -67,9 +54,13 @@ const FollowModal = ({ isOpen, onOpen, onClose, followers}) => {
           <ModalCloseButton />
           <ModalBody pb={6}>
             <Heading size={"m"}>Followers</Heading>
-            {console.log("Followers: " + followers)}
-             {followers.map((follower) => <UserInfo key={follower}  follower={follower} navigate={navigate} />)}
-
+            {followers?.map((follower) => (
+              <UserInfo
+                key={follower}
+                follower={follower}
+                navigate={navigate}
+              />
+            ))}
           </ModalBody>
         </ModalContent>
       </Modal>
@@ -77,7 +68,6 @@ const FollowModal = ({ isOpen, onOpen, onClose, followers}) => {
   );
 };
 export default FollowModal;
-
 
 //            for follower in user?.followers {
 //                                    <HStack

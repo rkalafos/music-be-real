@@ -43,7 +43,7 @@ export default function NavBar() {
   // to determine when it should be seen
   const searchTab = {
     name: "Songs",
-    onClick: () => navigate("/search")
+    onClick: () => navigate("/search"),
   };
   const profileTab = {
     name: "Profile",
@@ -55,7 +55,7 @@ export default function NavBar() {
   };
   const loginTab = {
     name: "Login",
-    onClick: () => navigate("/login")
+    onClick: () => navigate("/login"),
   };
   const logoutTab = {
     name: "Log out",
