@@ -38,6 +38,7 @@ const ProfilePage = () => {
     onOpen();
   }
 
+
   return (
     <DefaultLayout>
       <FollowModal
@@ -135,7 +136,7 @@ const ProfilePage = () => {
             Followers: {profileUser?.followers.length}
           </Text>
           <Text onClick={(e) => {openModal("Following", profileUser?.following)}}>Following: {profileUser?.following.length}</Text>
-
+          
         </HStack>
         <PostList />
       </Stack>
