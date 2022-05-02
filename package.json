@@ -17,6 +17,7 @@
     "axios": "^0.26.1",
     "bootstrap": "^5.1.3",
     "formik": "^2.2.9",
+    "fortawesome": "^0.0.1-security",
     "framer-motion": "^6.3.0",
     "lodash": "^4.17.21",
     "prettier": "^2.6.2",
