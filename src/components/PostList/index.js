@@ -11,11 +11,13 @@ function filterPosts(posts, user) {
     return [];
   } // If the user is not logged in, return the 5 latest posts
   else if (currentRoute[1] === "" && Object.keys(user).length === 0) {
-    return posts.slice(0, 5);
+    const sortedPosts = posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+    return sortedPosts.slice(0, 5);
   }
   // Otherwise, filter the posts based on the user
   else {
-    return posts?.filter((post) => {
+    const sortedPosts = posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+    return sortedPosts?.filter((post) => {
       if (currentRoute[1] === "profile") {
         return post.userId === currentRoute[2];
       } else if (currentRoute[1] === "details") {

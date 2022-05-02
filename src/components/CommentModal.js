@@ -42,7 +42,7 @@ const CommentModal = ({ isOpen, onOpen, onClose, post, onComment }) => {
             </Heading>
             <Heading size={"l"}>Comments</Heading>
             {post.comments.map((comment) => (
-              <Comment comment={comment} />
+              <Comment key={comment.comment} comment={comment} />
             ))}
           </ModalBody>
           <ModalFooter>

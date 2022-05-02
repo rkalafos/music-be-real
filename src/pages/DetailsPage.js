@@ -35,7 +35,7 @@ const DetailsPage = () => {
       setSongToPost(songDetails);
       onOpen();
     } else {
-      navigate('/register');
+      navigate("/register");
     }
   };
 
@@ -131,13 +131,9 @@ const DetailsPage = () => {
                     ? "Explicit lyrics!!! (be safe)"
                     : "No explicit lyrics"}
                 </Text>
-                  <Button
-                    m={2}
-                    onClick={(e) => onClickPostSong(e, songDetails)}
-                  >
-                    Post Song
-                  </Button>
-
+                <Button m={2} onClick={(e) => onClickPostSong(e, songDetails)}>
+                  Post Song
+                </Button>
               </Box>
             </SimpleGrid>
             <PostList />

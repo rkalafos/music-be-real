@@ -31,6 +31,7 @@ export const updateUser = async (dispatch, user) => {
 };
 
 export const deleteUser = async (dispatch, user) => {
+  // eslint-disable-next-line
   const response = await service.deleteUser(user);
   dispatch({
     type: REMOVE_USER,
