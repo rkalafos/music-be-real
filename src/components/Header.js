@@ -11,7 +11,7 @@ export const Header = () => {
         onClick={() => navigate("/")}
         color={"white"}
         fontWeight={600}
-        fontSize={{ base: "5xl", sm: "5xl", md: "5xl" }}
+        fontSize={{ base: "5xl", sm: "5xl", md: "5xl", xs: "5xl"}}
         opacity={"100%"}
         border={"1px"}
         borderColor={"white"}
