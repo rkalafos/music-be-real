@@ -32,7 +32,7 @@ const HomePage = () => {
           )}
           <PostList />
         </Box>
-        <Box bg={"white"} rounded={"lg"}>
+        <Box bg={"white"} rounded={"lg"} display={{base: "none", md: "block"}}>
           <FollowComponent />
         </Box>
       </Stack>
