@@ -1,4 +1,4 @@
-import { Text, Image, Box, Button, SimpleGrid} from "@chakra-ui/react";
+import { Text, Image, Box, Button, SimpleGrid } from "@chakra-ui/react";
 
 const SongChoice = ({ song, onClickSongDetails, onClickPostSong }) => {
   return (

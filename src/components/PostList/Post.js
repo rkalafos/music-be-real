@@ -159,18 +159,18 @@ const Post = ({ post }) => {
                             <FontAwesomeIcon
                               icon={faThumbsUp}
                               color={liked ? "teal" : "black"}
-                            />
+                            />{" "}
                             {post.liked.length}
                           </span>
                           <span onClick={(e) => onClickDislikePost(e)}>
                             <FontAwesomeIcon
                               icon={faThumbsDown}
                               color={disliked ? "teal" : "black"}
-                            />
+                            />{" "}
                             {post.disliked.length}
                           </span>
                           <span onClick={(e) => onClickComment(e)}>
-                            <FontAwesomeIcon icon={faComment} color={"black"} />
+                            <FontAwesomeIcon icon={faComment} color={"black"} />{" "}
                             {post.comments.length}
                           </span>
                         </HStack>

@@ -1,9 +1,8 @@
-import {Avatar, Button, GridItem, Text, SimpleGrid} from "@chakra-ui/react";
-import {useNavigate} from "react-router";
-import {useDispatch, useSelector} from "react-redux";
-import {updateUser} from "../../actions/user-actions";
-import {loginUser} from "../../actions/current-user-actions";
-
+import { Avatar, Button, GridItem, Text, SimpleGrid } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateUser } from "../../actions/user-actions";
+import { loginUser } from "../../actions/current-user-actions";
 
 const followUser = (dispatch, firstUser, secondUser) => {
   firstUser.following.push(secondUser._id);
@@ -11,16 +10,15 @@ const followUser = (dispatch, firstUser, secondUser) => {
   updateUser(dispatch, firstUser);
   updateUser(dispatch, secondUser);
   loginUser(firstUser);
-}
+};
 
-
-const SingleUserFollow = ({user}) => {
+const SingleUserFollow = ({ user }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
   const isLoggedIn = !!currentUser?.username;
   const isFollowing = currentUser?.following?.includes(user._id);
-  return(
+  return (
     <SimpleGrid
       p={2}
       gap={2}
@@ -36,25 +34,26 @@ const SingleUserFollow = ({user}) => {
         <Text>@{user.username}</Text>
       </GridItem>
       <GridItem>
-        <Button onClick={() => navigate(`/profile/${user._id}`)}>View Profile</Button>
+        <Button onClick={() => navigate(`/profile/${user._id}`)}>
+          View Profile
+        </Button>
       </GridItem>
-      {isLoggedIn &&
+      {isLoggedIn && (
         <GridItem>
           {isFollowing ? (
             <Button bgColor={"gray.200"}>Following</Button>
-            ) : (
-              <Button
-                bgColor={"teal.400"}
-                color={"white"}
-                onClick={() => followUser(dispatch, currentUser, user)}
-              >
-                Follow
-              </Button>
-            )
-          }
+          ) : (
+            <Button
+              bgColor={"teal.400"}
+              color={"white"}
+              onClick={() => followUser(dispatch, currentUser, user)}
+            >
+              Follow
+            </Button>
+          )}
         </GridItem>
-      }
+      )}
     </SimpleGrid>
-  )
-}
+  );
+};
 export default SingleUserFollow;

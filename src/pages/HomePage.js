@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { DefaultLayout } from "../layouts/DefaultLayout";
-import {Box, Heading, SimpleGrid, Stack, Text} from "@chakra-ui/react";
+import { Box, Heading, Stack, Text } from "@chakra-ui/react";
 import PostList from "../components/PostList";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers } from "../actions/user-actions";
@@ -15,11 +15,15 @@ const HomePage = () => {
   }, [dispatch]);
   return (
     <DefaultLayout>
-      <Stack direction={{md: "column", lg: "row"}} spacing={10} m={10}>
-        <Box bg={"white"} align={"center"}>
+      <Stack
+        direction={{ sm: "column", md: "column", lg: "row" }}
+        spacing={10}
+        mx={10}
+      >
+        <Box bg={"white"} align={"center"} rounded={"lg"}>
           {currentUser?.username ? (
             <Heading size={"xl"} p={6}>
-              {currentUser?.username}'s Feed
+              @{currentUser?.username}'s Feed
             </Heading>
           ) : (
             <Text mt={3}>
@@ -28,7 +32,7 @@ const HomePage = () => {
           )}
           <PostList />
         </Box>
-        <Box bg={"white"}>
+        <Box bg={"white"} rounded={"lg"}>
           <FollowComponent />
         </Box>
       </Stack>

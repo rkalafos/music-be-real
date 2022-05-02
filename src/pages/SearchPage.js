@@ -47,7 +47,7 @@ const SearchPage = () => {
       setSongToPost(song);
       onOpen();
     } else {
-      navigate('/register');
+      navigate("/register");
     }
   };
 
@@ -84,7 +84,9 @@ const SearchPage = () => {
         p={6}
         my={12}
       >
-        <Heading color={"teal"}>Search for a Song!</Heading>
+        <Heading color={"teal"} mb={6}>
+          Search for a Song!
+        </Heading>
         <Form action="/" method="get" />
         <Input
           type="text"

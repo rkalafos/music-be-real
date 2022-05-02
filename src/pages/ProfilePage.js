@@ -38,37 +38,37 @@ const ProfilePage = () => {
         p={6}
         my={12}
       >
-        <Wrap spacing='4px'>
-            <WrapItem>
-              <Center>
-                <Avatar
-                    size="md"
-                    name={profileUser?.username}
-                    src={profileUser?.avatarImage}
-                ></Avatar>
-                <Heading>
-                  {profileUser?.firstName + " " + profileUser?.lastName}
-                </Heading>
-              </Center>
-            </WrapItem>
-            <WrapItem>
-              <Center>
-                <Heading color="black">(@{profileUser?.username})</Heading>
-                {profileUser?.verified && <CheckCircleIcon />}
-              </Center>
-            </WrapItem>
-            <WrapItem>
-              <Center>
-                {currentUser?._id === profileUser?._id && (
-                    <Button onClick={() => navigate("/edit-profile")}>
-                      Edit Profile
-                    </Button>
-                )}
-                {currentUser?.userType === "admin" && (
-                    <Button onClick={() => navigate("/admin")}>Admin Page</Button>
-                )}
-              </Center>
-            </WrapItem>
+        <Wrap spacing="4px">
+          <WrapItem>
+            <Center>
+              <Avatar
+                size="md"
+                name={profileUser?.username}
+                src={profileUser?.avatarImage}
+              ></Avatar>
+              <Heading>
+                {profileUser?.firstName + " " + profileUser?.lastName}
+              </Heading>
+            </Center>
+          </WrapItem>
+          <WrapItem>
+            <Center>
+              <Heading color="black">(@{profileUser?.username})</Heading>
+              {profileUser?.verified && <CheckCircleIcon />}
+            </Center>
+          </WrapItem>
+          <WrapItem>
+            <Center>
+              {currentUser?._id === profileUser?._id && (
+                <Button onClick={() => navigate("/edit-profile")}>
+                  Edit Profile
+                </Button>
+              )}
+              {currentUser?.userType === "admin" && (
+                <Button onClick={() => navigate("/admin")}>Admin Page</Button>
+              )}
+            </Center>
+          </WrapItem>
         </Wrap>
         <HStack>
           <Text>Followers: {profileUser?.followers.length}</Text>
