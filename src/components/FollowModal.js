@@ -13,7 +13,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 
-function UserInfo({ follower, navigate }) {
+function UserInfo({ close, follower, navigate }) {
   const user = useSelector((state) =>
     state.allUsers.find((u) => u?._id === follower)
   );
@@ -21,7 +21,10 @@ function UserInfo({ follower, navigate }) {
     <HStack
       spacing={4}
       alignItems="center"
-      onClick={() => navigate(`/profile/${user._id}`)}
+      onClick={() => {
+      close();
+      navigate(`/profile/${user._id}`);
+      }}
     >
       <Avatar size="md" src={user?.avatarImage} alt={user?.username} />
       <Text>{user?.username}</Text>
@@ -58,6 +61,7 @@ const FollowModal = ({ isOpen, onOpen, onClose, followers, header }) => {
             {followers?.map((follower) => (
               <UserInfo
                 key={follower}
+                close = {onClose}
                 follower={follower}
                 navigate={navigate}
               />
